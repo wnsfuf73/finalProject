@@ -1,0 +1,253 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+ <mapper namespace="kos.triple.project.persistence.hee.BoardDAO">
+ 	<!-- 게스트 -->
+ 	
+ 	<update id="increaseCount_proc" parameterType="int">
+ 		UPDATE board
+ 		SET readCount = readCount+1
+ 		WHERE boardNo = #{boardNo}
+ 	</update>
+ 	
+ 	<delete id="deleteBoard_proc" parameterType="int">
+ 		DELETE FROM board 
+ 		WHERE boardNo=#{boardNo}
+ 	</delete>
+ 	
+ 	<select id="getMyQnaDetail" parameterType="int" resultType="kos.triple.project.vo.BoardVO">
+ 		SELECT *
+        FROM BOARD
+        WHERE boardNo=#{boardNo}
+ 	</select>
+ 	
+ 	<insert id="boardWritePro_proc" parameterType="kos.triple.project.vo.BoardVO">
+ 		INSERT INTO board (boardNo , kind , title , content , mem_id ,readcount , reg_date , answerCount)
+ 		VALUES(BOARD_SEQ.NEXTVAL,#{kind},#{title},#{content},#{mem_id},#{readCount} , #{reg_Date} , #{answerCount})
+ 	</insert>
+
+	<select id="getMyQnAList" parameterType="java.util.Map" resultType="kos.triple.project.vo.BoardVO">
+		SELECT *
+		FROM(
+		    SELECT rownum seq , boardno , kind , title , content , mem_id , readcount , reg_date , answercount
+		    FROM (
+		        SELECT *
+		        FROM BOARD
+		        WHERE mem_id=#{mem_id}
+		        ORDER BY reg_date desc
+		    )
+		)
+		WHERE seq BETWEEN #{start} AND #{end}
+	</select>
+	
+	<select id="getMyQnaAnswerList" parameterType="int" resultType="kos.triple.project.vo.AnswerVO">
+		SELECT *
+		FROM answer
+		WHERE boardNo=#{boardNo}
+		ORDER BY reg_date
+	</select>
+
+	<!-- 페이징 카운트 -->
+	<select id="getCount" parameterType="java.util.Map" resultType="int">
+		<if test="method.equals('getMyQnAList')">
+			SELECT COUNT(*)
+	        FROM BOARD
+	        WHERE mem_id=#{mem_id}
+	        ORDER BY reg_date desc
+		</if>
+		<if test="method.equals('getNoticeList')">
+			SELECT COUNT(*)
+		    FROM NOTICE
+		    ORDER BY reg_date DESC
+		</if>
+		<if test="method.equals('getQnAList')">
+			SELECT COUNT(*)
+	        FROM board
+	        ORDER BY reg_date DESC,answercount
+		</if>
+	</select>
+	<!-- 페이징 카운트 -->
+	
+	<!-- 추가 시작 -->	
+<select parameterType="java.util.Map" resultType="kos.triple.project.vo.BoardVO"
+	id="boardGuestSearchPro">
+	SELECT * FROM board WHERE mem_id=#{mem_id}
+	<!-- 추가 시작 -->
+	<if test="selectOpt1.equals('결제')">
+		AND kind=#{selectOpt1}
+		<if test="selectOpt2 == null ">
+			AND (title like '%'||#{searchOpt}||'%'
+			OR content like '%'||#{searchOpt}||'%')
+		</if>
+			
+		<if test="selectOpt2.equals('all')">
+			AND (title like '%'||#{searchOpt}||'%'
+			OR content like '%'||#{searchOpt}||'%')
+		</if>
+		
+		<if test="selectOpt2.equals('title')">
+			AND title like '%'||#{searchOpt}||'%'		
+		</if>
+	
+		<if test="selectOpt2.equals('content')">
+			AND content like '%'||#{searchOpt}||'%'
+		</if>	
+	</if>
+	
+	<if test="selectOpt1.equals('숙박')">
+		AND kind=#{selectOpt1}
+		<if test="selectOpt2 == null ">
+			AND (title like '%'||#{searchOpt}||'%'
+			OR content like '%'||#{searchOpt}||'%')
+		</if>
+		
+		<if test="selectOpt2.equals('all')">
+			AND (title like '%'||#{searchOpt}||'%'
+			OR content like '%'||#{searchOpt}||'%')
+		</if>
+		
+		<if test="selectOpt2.equals('title')">
+			AND title like '%'||#{searchOpt}||'%'		
+		</if>
+	
+		<if test="selectOpt2.equals('content')">
+			AND content like '%'||#{searchOpt}||'%'
+		</if>	
+	</if>
+	
+	
+	<if test="selectOpt1.equals('여행')">
+		AND kind=#{selectOpt1}
+		
+		<if test="selectOpt2 == null ">
+			AND (title like '%'||#{searchOpt}||'%'
+			OR content like '%'||#{searchOpt}||'%')
+		</if>
+				
+		<if test="selectOpt2.equals('all')">
+			AND (title like '%'||#{searchOpt}||'%'
+			OR content like '%'||#{searchOpt}||'%')
+		</if>
+		
+		<if test="selectOpt2.equals('title')">
+			AND title like '%'||#{searchOpt}||'%'		
+		</if>
+	
+		<if test="selectOpt2.equals('content')">
+			AND content like '%'||#{searchOpt}||'%'
+		</if>	
+	</if>
+		
+	<if test="selectOpt1.equals('예약')">
+		AND kind=#{selectOpt1}
+		
+		<if test="selectOpt2 == null ">
+			AND (title like '%'||#{searchOpt}||'%'
+			OR content like '%'||#{searchOpt}||'%')
+		</if>
+				
+		<if test="selectOpt2.equals('all')">
+			AND (title like '%'||#{searchOpt}||'%'
+			OR content like '%'||#{searchOpt}||'%')
+		</if>
+		
+		<if test="selectOpt2.equals('title')">
+			AND title like '%'||#{searchOpt}||'%'		
+		</if>
+	
+		<if test="selectOpt2.equals('content')">
+			AND content like '%'||#{searchOpt}||'%'
+		</if>	
+	</if>	
+
+	<if test="selectOpt1.equals('사이트이용')">
+		AND kind=#{selectOpt1}
+		
+		<if test="selectOpt2 == null ">
+			AND (title like '%'||#{searchOpt}||'%'
+			OR content like '%'||#{searchOpt}||'%')
+		</if>
+				
+		<if test="selectOpt2.equals('all')">
+			AND (title like '%'||#{searchOpt}||'%'
+			OR content like '%'||#{searchOpt}||'%')
+		</if>
+		
+		<if test="selectOpt2.equals('title')">
+			AND title like '%'||#{searchOpt}||'%'		
+		</if>
+	
+		<if test="selectOpt2.equals('content')">
+			AND content like '%'||#{searchOpt}||'%'
+		</if>	
+	</if>	
+
+	<!-- 추가 종료 -->
+</select>
+<!-- 글 검색 종료 -->
+	
+	<!-- 게스트 -->
+	
+	<!-- 호스트 -->
+		
+	<select id="getNoticeList" resultType="kos.triple.project.vo.NoticeVO">
+		SELECT *
+		FROM(
+		    SELECT ROWNUM seq , NOTICENO,TITLE,CONTENT,READCOUNT ,REG_DATE 
+		    FROM(
+		        SELECT NOTICENO,TITLE,CONTENT,READCOUNT ,REG_DATE 
+		        FROM NOTICE
+		        ORDER BY reg_Date DESC
+		        )
+		)
+		WHERE seq BETWEEN #{start} AND #{end}
+	</select>
+	
+	<insert id="noticeWritePro_proc" parameterType="kos.triple.project.vo.NoticeVO">
+		INSERT INTO notice(noticeNo,title,content,readcount,reg_date) 
+		VALUES(NOTICE_SEQ.NEXTVAL,#{title},#{content},#{readCount},#{reg_Date} )
+	</insert>
+		
+	<select id="getQnAList_proc" parameterType="java.util.Map" resultType="kos.triple.project.vo.BoardVO">
+		SELECT * 
+		FROM(
+		      SELECT rownum seq , boardNo , kind , title , content ,  mem_id , readCount , reg_date , answercount
+		      FROM(
+		           SELECT boardNo , kind , title ,  content,  mem_id , readCount , reg_date , answercount
+		           FROM board
+		           ORDER BY reg_Date DESC,answercount)
+		)
+		WHERE seq BETWEEN #{start} AND #{end}
+	</select>
+	
+	<insert id="answerWriteProc_proc" parameterType="kos.triple.project.vo.AnswerVO">
+		INSERT INTO answer(answerNo, kind , title , content , reg_date , boardNo)
+		VALUES(ANSWER_SEQ.NEXTVAL , #{kind} , #{title} , #{content} ,#{reg_Date},#{boardNo} )
+	</insert>
+	
+	<update id="updateBoardCount" parameterType="int">
+		UPDATE board
+		SET answerCount= answerCount+1
+		WHERE boardNo=#{boardNo}
+	</update>
+	
+	<select id="noticeDetail_proc" parameterType="int" resultType="kos.triple.project.vo.NoticeVO">
+		SELECT *
+		FROM notice
+		WHERE noticeNo=#{noticeNo}
+	</select>
+	
+	<update id="noticeModifyPro_proc" parameterType="kos.triple.project.vo.NoticeVO">
+		UPDATE notice
+		SET title=#{title},content=#{content},reg_date=#{reg_Date}
+		WHERE noticeNo = #{noticeNo}
+	</update>
+				
+<!-- 호스트 -->
+	
+	
+
+ </mapper>

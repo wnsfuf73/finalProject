@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="kos.triple.project.persistence.kwak.RecommendDAO">
+<!-- 관광테마 검색 -->
+<select id="tourismSearch" resultType="kos.triple.project.vo.RecommendVO" >
+	SELECT * from (select * from EPILOGUE order by goodcount desc) s JOIN epilogue_course e
+	ON s.epilogueNo = e.epilogueNo
+	WHERE s.kind = #{category}
+</select>
+
+<!-- 맛집테마 검색 -->
+<select id="restaurantSearch" resultType="kos.triple.project.vo.RecommendVO" >
+	SELECT * from (select * from EPILOGUE order by goodcount desc) s JOIN epilogue_course e
+	ON s.epilogueNo = e.epilogueNo
+	WHERE s.kind = #{category}
+</select>
+
+<!-- 레져테마 검색 -->
+<select id="leisureSearch" resultType="kos.triple.project.vo.RecommendVO">
+	SELECT * from (select * from EPILOGUE order by goodcount desc) s JOIN epilogue_course e
+	ON s.epilogueNo = e.epilogueNo
+	WHERE s.kind = #{category}
+</select>
+
+<!-- 힐링테마 검색 -->
+<select id="healingSearch" resultType="kos.triple.project.vo.RecommendVO">
+	SELECT * from (select * from EPILOGUE order by goodcount desc) s JOIN epilogue_course e
+	ON s.epilogueNo = e.epilogueNo
+	WHERE s.kind = #{category}
+</select>
+
+<!-- 좋아요순테마 검색 -->
+<select id="likeSearch" resultType="kos.triple.project.vo.RecommendVO">
+	SELECT * from (select * from EPILOGUE order by goodcount desc)
+</select>
+
+<!-- 조회수순테마 검색 -->
+<select id="countSearch" resultType="kos.triple.project.vo.RecommendVO">
+	SELECT * from (select * from EPILOGUE order by readcnt desc)
+</select>
+
+</mapper>

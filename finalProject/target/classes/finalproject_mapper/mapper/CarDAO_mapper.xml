@@ -1,0 +1,236 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+    
+<mapper namespace="kos.triple.project.persistence.hong.CarDAO">
+	<!-- resultMap : 마이바티스는 자바빈으로 만들기 위해 프로퍼티 매핑을 위한 column 속성의 값을 사용한다.
+		 id : 한개의 namespace내에서 유일해야 하고, 객체를 비교할 때 구분자 역할(대부분 테이블의 기본키)
+		 type속성은 패키지 경로를 포함한 클래스명이나 리턴타입의 별칭 
+		 result : 쿼리 결과의 각각의 컬럼값을 자바빈의 프로퍼티의 매핑하기 위해 하위 엘리먼트에 사용-->
+		 
+ 	<resultMap id="rentCar_Map" type="kos.triple.project.vo.CarInfoVO">
+			 <result property="use_km" column="use_km"/>
+			 <result property="car_count" column="car_count"/>
+			 <result property="insurance" column="insurance"/>
+			 <result property="car_num" column="car_num"/>
+			 <result property="car_img" column="car_img"/>
+			 <result property="car_name" column="car_name"/>
+		 	 <result property="car_kind" column="car_kind"/>
+		 	 <result property="fuel" column="fuel"/>
+			 <result property="brand_name" column="brand_name"/>
+			 <result property="car_price" column="car_price"/>
+			 <result property="car_addprice" column="car_addprice"/>	
+		<!-- <collection property="car" ofType="kos.triple.project.vo.CarVO">
+			<id property="car_num" column="car_num"/>
+			<result property="car_name" column="car_name"/>
+			<result property="car_kind" column="car_kind"/>
+			<result property="fuel" column="fuel"/>
+			<result property="brand_name" column="brand_name"/>
+			<result property="car_price" column="car_price"/>
+			<result property="car_addprice" column="car_addprice"/>		
+		</collection> -->
+	</resultMap>      
+	
+	<!-- 렌트카 조회 -->
+	<select id="rentCar" resultMap="rentCar_Map">
+		SELECT *
+		FROM(
+		SELECT ROWNUM seq,use_km,car_count,insurance,car_num,car_img,
+		    car_name, car_kind, fuel, brand_name, car_price,car_addprice,rent_no
+		FROM(
+		SELECT rentcar.use_km,rentcar.car_count,rentcar.insurance,rentcar.car_num,rentcar.car_img,
+				car.car_name, car.car_kind, car.fuel, car.brand_name, car.car_price,car.car_addprice,rentcar.rent_no
+				FROM 
+		        car JOIN rentcar 
+		        ON rentcar.car_num=car.car_num
+		        WHERE car.car_kind=#{car_kind} 
+		        ORDER BY car.car_price
+		        ))
+		WHERE seq BETWEEN #{start} AND #{end}
+	</select>
+	
+	<!-- 렌트카 전체 조회 -->
+	<select id="rentCarAll" parameterType="java.util.Map" resultType="kos.triple.project.vo.CarInfoVO">
+		SELECT * FROM(
+		SELECT ROWNUM seq,use_km,car_count,insurance,car_num,car_img,
+   			 car_name, car_kind, fuel, brand_name, car_price,car_addprice,rent_no
+		FROM(
+   			 SELECT rentcar.use_km,rentcar.car_count,rentcar.insurance,rentcar.car_num,rentcar.car_img,
+   			 car.car_name, car.car_kind, car.fuel, car.brand_name, car.car_price,car.car_addprice,rentcar.rent_no
+   		 FROM 
+   		 car JOIN rentcar 
+   		 ON rentcar.car_num=car.car_num 
+   		 ORDER BY car.car_price
+			))
+		WHERE seq BETWEEN #{start} AND #{end}
+	</select>
+	
+	<!-- 렌트카 갯수 구하기 -->
+	<select id="getArticleCnt" resultType="int">
+		SELECT COUNT(*) FROM rentcar
+	</select>
+	
+	<!-- 렌트카 갯수 구하기(차종별로) -->
+	<select id="getArticleCntKind" resultType="int">
+		SELECT COUNT(*) FROM car WHERE car_kind=#{car_kind}
+	</select>
+	
+	<!-- 렌트카추가 -->
+	<insert id="rentAdd" parameterType="kos.triple.project.vo.RentCarVO">
+		INSERT INTO rentcar(rent_no,use_km,car_count,insurance,car_num,car_img) 
+		VALUES
+		(#{rent_no},#{use_km},#{car_count},#{insurance},#{car_num},#{car_img})
+	</insert>	
+	
+	<!-- 렌트카삭제 -->
+	<delete id="rentDelete" parameterType="String">
+		DELETE FROM rentcar WHERE car_num = #{car_num}
+	</delete>
+	
+	<!-- 렌트카 상세 정보 -->
+	<select id="getViewDetail" resultType="kos.triple.project.vo.CarInfoVO" parameterType="String">
+		SELECT * FROM car 
+		NATURAL JOIN rentcar
+		WHERE car_num=#{car_num}
+	</select>
+	
+	<!-- 렌트카예약 -->
+	<insert id="reservation_car" parameterType="kos.triple.project.vo.Reservation_CarVO">
+		INSERT INTO reservation_car 
+		VALUES(rs_no.nextval,#{rent_no},#{mem_id},#{name},#{phone1},#{phone2},#{phone3},#{driver_kind},
+		#{driver1},#{driver2},#{driver3},#{email1},#{email2},#{rental_day},#{return_day},#{paymethod},#{price},#{rental_time},#{return_time},#{car_name})
+	</insert>
+	
+	<!-- 렌트예약 완료 - 차수량을 뺀다 -->
+	<update id="carMaineoseu" parameterType="kos.triple.project.vo.RentCarVO">
+		UPDATE rentcar SET car_count=(car_count - 1) WHERE rent_no=#{rent_no}
+	</update>
+	
+	<!-- 렌트카예약리스트 갯수 구하기 -->
+	<select id="rentReservationCnt" resultType="int" parameterType="java.util.Map">
+		<if test="method.equals('rentReservationList')">
+			SELECT COUNT(*) FROM reservation_car
+		</if>
+		<if test="method.equals('rentReservationList_myPage')">
+			SELECT COUNT(*) FROM reservation_car WHERE mem_id = #{mem_id}
+		</if>
+		
+	</select>
+	
+	<!-- 예약리스트 조회 호스트 -->
+	<select id="rentReservationList" parameterType="java.util.Map" resultType="kos.triple.project.vo.Reservation_CarVO">
+		SELECT * FROM(
+		SELECT ROWNUM seq,rent_no,car_count,mem_id,name,phone1,phone2,phone3,driver_kind,driver1,driver2,driver3,
+		              email1,email2,rental_day,return_day,paymethod,price,rental_time,return_time,car_name
+		FROM(
+		     SELECT rentcar.rent_no,rentcar.car_count,reservation_car.car_name,reservation_car.mem_id,
+		     reservation_car.name,reservation_car.phone1,reservation_car.phone2,reservation_car.phone3,
+		     reservation_car.driver_kind,reservation_car.driver1,
+		     reservation_car.driver2,reservation_car.driver3,reservation_car.email1,reservation_car.email2,
+		     reservation_car.rental_day,reservation_car.return_day,reservation_car.paymethod,reservation_car.price,
+		     reservation_car.rental_time,reservation_car.return_time
+		 FROM 
+		 reservation_car JOIN rentcar
+		 ON reservation_car.rent_no = rentcar.rent_no 
+		 ORDER BY return_day , return_time
+		    ))
+		WHERE seq BETWEEN #{start} AND #{end}
+	</select>
+	
+	<!-- 예약리스트 조회 게스트 -->
+	<select id="rentReservationList_myPage" parameterType="java.util.Map" resultType="kos.triple.project.vo.Reservation_CarVO">
+	SELECT * FROM(
+		SELECT ROWNUM seq,rent_no,car_count,mem_id,name,phone1,phone2,phone3,driver_kind,driver1,driver2,driver3,
+		              email1,email2,rental_day,return_day,paymethod,price,rental_time,return_time,car_name
+		FROM(
+		     SELECT r.rent_no,r.car_count,c.car_name,c.mem_id,
+		     c.name,c.phone1,c.phone2,c.phone3,
+		     c.driver_kind,c.driver1,
+		     c.driver2,c.driver3,c.email1,c.email2,
+		     c.rental_day,c.return_day,c.paymethod,c.price,
+		     c.rental_time,c.return_time
+		     FROM 
+		     reservation_car c JOIN rentcar r
+		     ON c.rent_no = r.rent_no
+		     WHERE mem_id = #{mem_id}
+		    ))
+		WHERE seq BETWEEN #{start} AND #{end}
+	</select>
+	
+	<!-- 렌트카 예약 취소 -->
+	<delete id="carResCancel" parameterType="kos.triple.project.vo.Reservation_CarVO">
+		DELETE FROM reservation_car WHERE rent_no = #{rent_no}
+	</delete>
+	
+	<!-- 렌트카 예약 취소로 인한 차량 수량 증가 -->
+	<update id="carResCancel_rentCountAdd" parameterType="String">
+		UPDATE rentcar set car_count = (car_count + 1) WHERE rent_no = #{rent_no}
+	</update>
+	
+	<!-- 차량 날짜 조회(예약을 했을때 똑같은 날짜에 예약이 불가능하게, 다른 날짜 조회했을때 예약 가능하게) --> 
+ 	<select id="date" resultType="kos.triple.project.vo.Reservation_CarVO">
+		SELECT rental_day,rental_time,return_day,return_time,rent_no FROM reservation_car
+	</select> 
+	
+	<!-- 반납시 사용km증가 -->
+	<update id="carUseKmUp" parameterType="String">
+		UPDATE rentcar set use_km = (use_km + 200) WHERE rent_no = #{rent_no}
+	</update>
+	
+	<!-- 차종별 가격 결산 -->
+	<select id="carKindTotal" resultType="kos.triple.project.vo.MapVO">
+		SELECT NVL(c.car_kind,'total') as key , SUM(g.price) as value
+		FROM car c, rentcar r, reservation_car g
+		WHERE c.car_num = r.car_num
+		AND r.rent_no = g.rent_no
+		GROUP BY ROLLUP(car_kind)
+	</select>
+	
+	<!-- 차종 가져오기 -->
+	<select id="carKindSelect" resultType="kos.triple.project.vo.MapVO">
+		SELECT NVL(c.car_kind,'total') as key , COUNT(*) as value
+		FROM car c, rentcar r, reservation_car g
+		WHERE c.car_num = r.car_num
+		AND r.rent_no = g.rent_no
+		GROUP BY ROLLUP(car_kind)
+	</select>
+	
+	<!-- 날짜별 -->
+	<select id="rentDateTotal" resultType="kos.triple.project.vo.MapVO" parameterType="String">
+		SELECT TO_CHAR(TO_TIMESTAMP(rental_day),'MM') as key,SUM(price) as value
+		FROM(
+		SELECT * FROM 
+		car c, rentcar r, reservation_car g
+		WHERE c.car_num = r.car_num
+		AND r.rent_no = g.rent_no
+		)
+		WHERE TO_CHAR(TO_TIMESTAMP(rental_day),'YYYYMM') BETWEEN #{year}||'01' AND #{year}||'12'
+		GROUP BY TO_CHAR(TO_TIMESTAMP(rental_day),'MM')
+		ORDER BY TO_CHAR(TO_TIMESTAMP(rental_day),'MM')
+	</select>
+	
+	<select id="getFirstChat_car" resultType="int" >
+		SELECT COUNT(*) 
+		FROM reservation_car
+	</select>
+	
+	<select id="getSecondChat_car" resultType="int" >
+		SELECT SUM(price)  
+		FROM reservation_car
+	</select>
+	
+	<select id="getFinalChat_car" resultType="kos.triple.project.vo.MapVO" parameterType="String">
+		SELECT TO_CHAR(TO_TIMESTAMP(rental_day),'MM') as key,SUM(price) as value
+		FROM(
+			SELECT * FROM 
+			car c, rentcar r, reservation_car g
+			WHERE c.car_num = r.car_num
+			AND r.rent_no = g.rent_no
+		)
+		WHERE TO_CHAR(TO_TIMESTAMP(rental_day),'YYYYMM') BETWEEN #{year}||'01' AND #{year}||'12'
+		GROUP BY TO_CHAR(TO_TIMESTAMP(rental_day),'MM')
+		ORDER BY TO_CHAR(TO_TIMESTAMP(rental_day),'MM')
+	</select>
+	
+</mapper>

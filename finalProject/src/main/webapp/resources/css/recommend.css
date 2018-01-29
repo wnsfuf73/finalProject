@@ -1,0 +1,17 @@
+@charset "UTF-8";
+
+.recomm_div{
+	height:469px;
+	font-size:20px;
+	text-align:center;
+	vertical-align:middel;
+}
+
+#recomm_id{
+	color: #2786FF;
+}
+
+.recomm_btn{
+	margin-top:160px;
+	heignt:40px;
+}

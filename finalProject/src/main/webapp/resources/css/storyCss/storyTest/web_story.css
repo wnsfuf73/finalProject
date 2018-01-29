@@ -1,0 +1,120 @@
+@charset "UTF-8";
+
+/* LAYOUT */
+#top_title {
+	margin-bottom: 4px;
+}
+
+#top_title .t_title {
+	margin-bottom: 6px;
+	display: inline-block;
+	margin-left: 5px;
+	width: 500px;
+}
+#top_title .t_title .t_srch {
+	font-weight: bold;
+	font-size: 16px;
+	color: #505050;
+}
+#top_title .t_title .t_srch_n {
+	font-size: 13px;
+	color: #aeaeae;
+	margin-left: 5px;
+}
+.top_line {
+	width: 792px;
+	border-top: 1px solid #dbdbdb;
+	border-bottom: 1px solid #fcfcfc;
+	margin-bottom: 7px;
+}
+#top_title .t_btns {
+	display: inline-block;
+	float: right;
+	margin-right: 13px;
+}
+#top_title .t_btns li {
+	float: left;
+}
+#top_title select {
+	width: 192px;
+	height: 28px;
+	float: right;
+	margin-right: 10px;
+	border: none;
+	background: url(../../img/story/story_btn_dropdown.png) no-repeat;
+	padding-left: 5px;
+	padding-right: 5px;
+}
+#top_title select option {
+	height: 20px;
+	border-bottom: 1px solid #ccc;
+}
+#top_title .t_btns li a {
+	display: inline-block;
+	text-indent: -10000px;
+}
+#top_title .t_btns .t_all a {
+	width: 30px;
+	height: 22px;
+	background: url(../../img/story/story_all.png) no-repeat;
+}
+.t_btns .t_all a:HOVER {
+	background: url(../../img/story/story_all_s.png) no-repeat;
+}
+#top_title .t_btns .t_all .over {
+	background: url(../../img/story/story_all_s.png) no-repeat;
+}
+#top_title .t_btns .t_dott {
+	width: 22px;
+	height: 22px;
+	background: url(../../img/story/story_dot.png) no-repeat;
+}
+#top_title .t_btns .t_story a {
+	width: 62px;
+	height: 22px;
+	background: url(../../img/story/story_travel.png) no-repeat;
+}
+.t_btns .t_story a:HOVER {
+	background: url(../../img/story/story_travel_s.png) no-repeat;
+}
+#top_title .t_btns .t_story .over {
+	background: url(../../img/story/story_travel_s.png) no-repeat;
+}
+#top_title .t_btns .t_restr a {
+	width: 62px;
+	height: 22px;
+	background: url(../../img/story/story_food.png) no-repeat;
+}
+.t_btns .t_restr a:HOVER {
+	background: url(../../img/story/story_food_s.png) no-repeat;
+}
+#top_title .t_btns .t_restr .over {
+	background: url(../../img/story/story_food_s.png) no-repeat;
+}
+
+/* NOList */
+.no_list {
+	height: 50px;
+	text-align: center;
+	margin: 100px 0;
+}
+.no_list span {
+	font-size: 14px;
+	color: #989898;
+}
+.no_list div {
+	width: 60px;
+	height: 60px;
+	margin: auto;
+	margin-bottom: 10px;
+	background: url(../../img/comm/story_no_search.png) no-repeat;
+}
+
+/* �� / 濡쒕뵫諛� */
+#quick {
+	padding-bottom: 80px;
+}
+/* 濡쒕뵫諛� */
+#feed_list img{
+	margin-top: 100px;
+}

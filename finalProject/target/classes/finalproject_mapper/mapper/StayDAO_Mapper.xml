@@ -1,0 +1,360 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="kos.triple.project.persistence.soon.stayReservationDAO">
+	<!-- 검색 -->
+	<select id="stay_search" resultType="kos.triple.project.vo.StayVO">
+		SELECT * FROM stay, room
+		WHERE instr(stay_address,+#{search}) &gt; 0
+		AND
+		<if test="stay_kind != 'all'">
+			stay_kind=#{stay_kind} AND
+		</if>
+		<if test="stay_class != 'all'">
+			stay_class=#{stay_class} AND
+		</if>
+		standard&gt;=#{standard} AND
+		stay.stay_no = room.stay_no
+	</select>
+
+	<!-- 장소 상세 보기 -->
+	<select id="stay_view" resultType="kos.triple.project.vo.StayVO">
+		SELECT * FROM
+		stay WHERE
+		stay_no=#{stay_no}
+	</select>
+
+	<!-- 객실 상세 보기 -->
+	<select id="stay_room_view" resultType="kos.triple.project.vo.StayRoomVO">
+		SELECT * FROM
+		room WHERE
+		room_no=#{room_no}
+	</select>
+	
+	<!-- 예약 중복 제외 -->
+	<select id="date" resultType="kos.triple.project.vo.Reservation_StayVO">
+		SELECT * FROM
+		room_reservation
+	</select>
+
+	<!-- 객실 예약 처리 -->
+	<insert id="stay_room_reservation" parameterType="java.util.Map">
+		INSERT INTO
+		room_reservation(reservation_no,
+		mem_id, pay_method,
+		room_sale_price,
+		reservation_date,
+		stay_no,
+		room_no,
+		check_in, check_out, stay_people)
+		VALUES(reservation_no_seq.NEXTVAL,
+		#{mem_id},
+		#{pay_method},
+		#{total_price},
+		SYSDATE,
+		#{stay_no},
+		#{room_no},
+		#{check_in},
+		#{check_out},
+		#{stay_people})
+	</insert>
+	
+	<!-- 객실 예약 취소 처리 -->
+	<delete id="stayResCancel" parameterType="String">
+		DELETE FROM room_reservation
+		WHERE
+		reservation_no=#{reservation_no}
+	</delete>
+
+
+	<!-- 마이페이지 -->
+	<!-- 예약 개수 -->
+	<select id="rentReservationCnt" resultType="int">
+		SELECT COUNT(*) FROM
+		room_reservation
+	</select>
+
+	<!-- 예약 목록 -->
+	<select id="reservation_staylist" parameterType="java.util.Map"
+		resultType="kos.triple.project.vo.Reservation_StayVO">
+		SELECT * FROM(
+		SELECT ROWNUM
+		seq, reservation_no, stay_name,
+		room_name, mem_id,pay_method, room_sale_price, reservation_date,
+		check_in, check_out, stay_people
+		FROM(
+		SELECT sy.stay_name,
+		rm.ROOM_NAME,
+		rr.RESERVATION_NO, rr.MEM_ID, rr.PAY_METHOD,
+		rr.ROOM_SALE_PRICE,
+		rr.RESERVATION_DATE, rr.STAY_NO, rr.ROOM_NO,
+		rr.CHECK_IN,
+		rr.CHECK_OUT, rr.STAY_PEOPLE
+		FROM
+		room_reservation rr JOIN
+		room rm
+		ON rr.room_no = rm.room_no
+		JOIN stay sy
+		ON rr.stay_no =
+		sy.stay_no
+		ORDER BY RESERVATION_DATE
+		) WHERE mem_id=#{mem_id})
+		WHERE seq BETWEEN #{start} AND
+		#{end}
+	</select>
+
+
+
+
+	<!-- 장소 추가 -->
+	<insert id="stay_add" parameterType="kos.triple.project.vo.StayVO">
+		INSERT INTO
+		stay(stay_no,
+		stay_name, stay_kind,
+		stay_class, stay_introduce,
+		stay_address,
+		stay_cellphone,
+		stay_img1, stay_img2, stay_img3, stay_img4, stay_img5,
+		stay_img6, stay_general_details, stay_amenities, stay_service,
+		stay_internet, stay_parking, stay_check_in, stay_check_out, stay_x,
+		stay_y)
+		VALUES(stay_no_seq.NEXTVAL,
+		#{stay_name},
+		#{stay_kind},
+		#{stay_class},
+		#{stay_introduce},
+		#{stay_address},
+		#{stay_cellphone},
+		#{stay_img1},
+		#{stay_img2},
+		#{stay_img3},
+		#{stay_img4}, #{stay_img5},
+		#{stay_img6}, #{stay_general_details},
+		#{stay_amenities},
+		#{stay_service}, #{stay_internet}, #{stay_parking},
+		#{stay_check_in},
+		#{stay_check_out},
+		#{stay_x},
+		#{stay_y})
+	</insert>
+
+	<!-- 숙박지 개수 -->
+	<select id="getCountCnt" resultType="int">
+		SELECT COUNT(*) FROM stay
+	</select>
+
+	<!-- 숙박지 목록 -->
+	<select id="stay_list" resultType="kos.triple.project.vo.StayVO">
+	<![CDATA[SELECT * FROM (SELECT stay_no, stay_name, stay_img1, stay_address,
+		stay_class, stay_kind, ROWNUM rnum FROM stay ) WHERE rnum >= #{start} AND rnum <= #{end}]]>
+	</select>
+
+	<!-- 숙박지 정보 가져오기 -->
+	<select id="stay_list_view" resultType="kos.triple.project.vo.StayVO">
+		SELECT * FROM stay WHERE
+		stay_no=#{stay_no}
+	</select>
+
+	<!-- 숙박지 수정 -->
+	<update id="modify" parameterType="kos.triple.project.vo.StayVO">
+		UPDATE stay
+		SET
+		stay_name=#{stay_name}, stay_kind=#{stay_kind},
+		stay_class=#{stay_class}
+		,stay_introduce=#{stay_introduce},
+		stay_address=#{stay_address}, stay_cellphone=#{stay_cellphone},
+		stay_general_details=#{stay_general_details},
+		stay_amenities=#{stay_amenities}, stay_service=#{stay_service},
+		stay_internet=#{stay_internet}
+		, stay_parking=#{stay_parking},
+		stay_check_in=#{stay_check_in},
+		stay_check_out=#{stay_check_out},
+		stay_x=#{stay_x}, stay_y=#{stay_y}
+		WHERE stay_no=#{stay_no}
+	</update>
+
+	<!-- 숙박지 수정 (이미지) -->
+	<update id="updateImg" parameterType="java.util.Map">
+		UPDATE stay
+		<choose>
+			<when test="location.equals('img1')">
+				SET stay_img1=#{imgName}
+			</when>
+			<when test="location.equals('img2')">
+				SET stay_img2=#{imgName}
+			</when>
+			<when test="location.equals('img3')">
+				SET stay_img3=#{imgName}
+			</when>
+			<when test="location.equals('img4')">
+				SET stay_img4=#{imgName}
+			</when>
+			<when test="location.equals('img5')">
+				SET stay_img5=#{imgName}
+			</when>
+			<when test="location.equals('img6')">
+				SET stay_img6=#{imgName}
+			</when>
+		</choose>
+		WHERE stay_no=#{stay_no}
+	</update>
+
+	<!-- 숙박지 삭제 -->
+	<delete id="delete" parameterType="String">
+		DELETE FROM stay
+		WHERE
+		stay_no=#{stay_no}
+	</delete>
+
+	<!-- 객실 추가 -->
+	<insert id="stay_room_add" parameterType="kos.triple.project.vo.StayVO">
+		INSERT INTO
+		room(room_no,
+		room_img,
+		stay_no, room_name,
+		standard,
+		sale_price,
+		room_info)
+		VALUES(room_no_seq.NEXTVAL,
+		#{room_img},
+		#{stay_no},
+		#{room_name},
+		#{standard},
+		#{sale_price},
+		#{room_info})
+	</insert>
+
+	<!-- 숙박지 객실 목록 -->
+	<select id="stay_room_list" resultType="kos.triple.project.vo.StayVO">
+		SELECT * FROM room WHERE
+		stay_no=#{vo.stay_no}
+	</select>
+
+	<!-- 숙박지 객실 정보 가져오기 -->
+	<select id="stay_room_list_view" resultType="kos.triple.project.vo.StayVO">
+		SELECT * FROM room
+		WHERE
+		room_no=#{room_no}
+	</select>
+
+	<!-- 숙박지 객실 수정 -->
+	<update id="stay_room_modify" parameterType="kos.triple.project.vo.StayVO">
+		UPDATE room
+		SET
+		room_name=#{room_name},
+		standard=#{standard}, sale_price=#{sale_price},
+		room_info=#{room_info}
+		WHERE
+		room_no=#{room_no}
+	</update>
+
+	<!-- 숙박지 수정 (이미지) -->
+	<update id="room_updateImg" parameterType="java.util.Map">
+		UPDATE room
+		<choose>
+			<when test="location.equals('img1')">
+				SET room_img=#{imgName}
+			</when>
+		</choose>
+		WHERE room_no=#{room_no}
+	</update>
+
+	<!-- 숙박지 삭제 -->
+	<delete id="stay_room_delete" parameterType="String">
+		DELETE FROM room
+		WHERE
+		room_no=#{room_no}
+	</delete>
+	
+	<!-- 숙박 예약 현황 -->
+	<select id="stay_reservation_list" parameterType="java.util.Map"
+		resultType="kos.triple.project.vo.Reservation_StayVO">
+		SELECT * FROM(
+		SELECT ROWNUM
+		seq, reservation_no, stay_name,
+		room_name, mem_id,pay_method, room_sale_price, reservation_date,
+		check_in, check_out, stay_people
+		FROM(
+		SELECT sy.stay_name,
+		rm.ROOM_NAME,
+		rr.RESERVATION_NO, rr.MEM_ID, rr.PAY_METHOD,
+		rr.ROOM_SALE_PRICE,
+		rr.RESERVATION_DATE, rr.STAY_NO, rr.ROOM_NO,
+		rr.CHECK_IN,
+		rr.CHECK_OUT, rr.STAY_PEOPLE
+		FROM
+		room_reservation rr JOIN
+		room rm
+		ON rr.room_no = rm.room_no
+		JOIN stay sy
+		ON rr.stay_no =
+		sy.stay_no
+		ORDER BY RESERVATION_DATE
+		))
+		WHERE seq BETWEEN #{start} AND
+		#{end}
+	</select>
+	
+	<!-- 숙박지 결산(총 수입) -->
+	<select id="getTotalSale" resultType="int">
+	SELECT SUM(room_sale_price) FROM room_reservation
+	</select>
+
+	<!-- 숙박지 결산(종류별 이익량) -->
+	<resultMap id="FirstChart" type="kos.triple.project.vo.MapVO">
+		<id property="key" column="key"/>
+		<result property="value" column="value"/>
+	</resultMap>
+	<select id="getFirstChart" resultMap="FirstChart">
+	SELECT NVL(stay_kind, 'total') key, SUM(room_sale_price) value FROM (
+	SELECT stay_kind , room_sale_price FROM (
+	SELECT sy.stay_kind , rr.room_sale_price FROM room_reservation rr JOIN stay sy ON rr.stay_no = sy.stay_no
+	)) 
+	GROUP BY ROLLUP(stay_kind)
+	</select>
+	
+	<!-- 숙박지 결산(종류별 예약량) -->
+	<select id="getSecondChart" resultMap="FirstChart">
+	SELECT NVL(stay_kind, 'total') key, count(*) value FROM (
+	SELECT stay_kind , room_sale_price FROM (
+	SELECT sy.stay_kind , rr.room_sale_price FROM room_reservation rr JOIN stay sy ON rr.stay_no = sy.stay_no
+	)) 
+	GROUP BY ROLLUP(stay_kind)
+	</select>
+	
+	<!-- 숙박지 결산(날짜별 예약량) -->
+	<select id="getFinalChart" resultMap="FirstChart" parameterType="String">
+	SELECT TO_CHAR(TO_TIMESTAMP(check_in),'MM') key,SUM(room_sale_price) value
+      FROM(
+      SELECT * FROM 
+      stay sy, room rm, room_reservation rr
+      WHERE rm.room_no = rr.room_no
+      AND sy.stay_no = rm.stay_no
+      )
+      WHERE TO_CHAR(TO_TIMESTAMP(check_in),'YYYYMM') BETWEEN #{year}||'01' AND #{year}||'12'
+      GROUP BY TO_CHAR(TO_TIMESTAMP(check_in),'MM')
+      ORDER BY TO_CHAR(TO_TIMESTAMP(check_in),'MM')
+	</select>
+	
+	<select id="getFirstChartAll" resultType="int">
+		SELECT COUNT(*)
+		FROM ROOM_RESERVATION
+	</select>
+	
+	<select id="getSecondChartAll" resultType="int">
+		SELECT SUM(room_sale_price)
+		FROM ROOM_RESERVATION
+	</select>
+	
+	<select id="getFinalChartAll" parameterType="String" resultType="kos.triple.project.vo.MapVO">
+		SELECT TO_CHAR(reservation_date,'MM') as key,SUM(room_sale_price) as value
+		FROM ROOM_RESERVATION
+		WHERE TO_CHAR(reservation_date,'YYYYMM') BETWEEN #{year}||'01' AND #{year}||'12'
+		GROUP BY TO_CHAR(reservation_date,'MM') 
+		ORDER BY TO_CHAR(reservation_date,'MM')
+	</select>
+	
+</mapper>

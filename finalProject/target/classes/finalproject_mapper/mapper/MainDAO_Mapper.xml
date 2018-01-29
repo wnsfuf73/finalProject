@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="kos.triple.project.persistence.MainDAO">
+
+	<select id="getMyFaceImg_proc" parameterType="String" resultType="String">
+		SELECT faceImg
+		FROM member
+		WHERE mem_id=#{mem_id}
+	</select>
+	
+	<select id="getBanner_proc" parameterType="java.util.Map" resultType="kos.triple.project.vo.BannerVO">
+		SELECT *
+		FROM banner
+		WHERE bannerLocation=#{bannerLocation} AND seq=#{bannerSeq}
+	</select>
+	
+	<select id="getBannerCount_proc" parameterType="String" resultType="int">
+		SELECT COUNT(*)
+		FROM banner
+		WHERE bannerLocation=#{bannerLocation}
+	</select>
+	
+	<select id="getNewNotice_proc" resultType="kos.triple.project.vo.NoticeVO">
+	    SELECT *
+	    FROM(    
+		     SELECT *
+		     FROM NOTICE
+		     ORDER BY REG_DATE DESC
+	    )
+	    WHERE ROWNUM = 1
+	</select>
+	
+	
+	<!-- 철환이형 , 호선이  -->
+	<select id="myNewStory_proc" parameterType="String" resultType="kos.triple.project.vo.EpilogueVO">
+		<![CDATA[
+		SELECT epilogueNo,SUBSTR(title,0,7) title
+		FROM(
+		    SELECT *
+		    FROM EPILOGUE
+		    WHERE mem_id=#{mem_id}
+		   ORDER BY reg_date desc)
+		WHERE rownum <= 3
+		]]>	
+	</select>
+	
+	<select id="myNewPlan_proc" parameterType="String" resultType="kos.triple.project.vo.PlanVO">
+		<![CDATA[
+		SELECT planNo,SUBSTR(plantitle,0,7) planTitle
+		FROM 
+		    (  
+		    SELECT *
+		    FROM plan
+		    WHERE mem_id=#{mem_id}
+		    ORDER BY planNo DESC)
+		WHERE rownum <= 3
+		]]>	
+	</select>
+	
+</mapper>

@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+ <mapper namespace="kos.triple.project.persistence.hee.BannerDAO">
+ 
+<!-- 배너 글 개수 --> 
+ <select id="getBannerCnt" resultType="int">
+	SELECT NVL(COUNT(*), 0) FROM banner
+ </select>
+ 
+ 
+<!-- 배너 글 목록 조회 -->
+<select id="getBannerList" parameterType="java.util.Map" resultType="kos.triple.project.vo.BannerVO">
+	SELECT * FROM
+	(SELECT ROWNUM seq, bannerNo, bannerName, bannerImg, bannerContent,
+					bannerLocation, bannerLink
+	 FROM (
+	 	SELECT * FROM banner
+	 	ORDER BY bannerNo DESC))
+	WHERE seq BETWEEN #{start} AND #{end}					
+</select>
+
+<!-- 배너 글 상세 페이지 -->
+<select id="getDetailBannerContent" parameterType="int" resultType="kos.triple.project.vo.BannerVO">
+	SELECT * FROM
+	(SELECT ROWNUM seq, bannerNo, bannerName, bannerImg, bannerContent,
+					bannerLocation, bannerLink
+	 FROM (
+	 	SELECT * FROM banner
+	 	ORDER BY bannerNo DESC))
+	WHERE bannerNo=#{bannerNo}
+</select>
+
+<!-- 배너 글 등록 -->
+<insert id="registerBanner" parameterType="kos.triple.project.vo.BannerVO">
+	INSERT INTO banner VALUES(banner_seq.NEXTVAL, #{bannerName}, #{bannerImg},
+							#{bannerContent}, #{bannerLocation}, #{bannerLink},#{seq})
+</insert>
+							
+<!-- 배너 글 삭제 -->
+<delete id="deleteBanner" parameterType="int">
+	DELETE FROM banner WHERE bannerNo=#{bannerNo}
+</delete>
+
+<!-- 배너 글 수정 bannerImg=#{bannerImg},  -->
+<update id="updateBanner" parameterType="kos.triple.project.vo.BannerVO">
+	UPDATE banner SET bannerName=#{bannerName}, bannerContent=#{bannerContent},
+					  bannerLocation=#{bannerLocation}, bannerLink=#{bannerLink}
+	WHERE bannerNo=#{bannerNo}				  
+</update>
+
+<!-- 배너 이미지 수정  updateBannerImg-->
+<update id="updateBannerImg" parameterType="java.util.Map">
+	UPDATE banner SET bannerImg=#{bannerImg}
+	WHERE bannerNo=#{bannerNo}
+</update>
+
+
+<select id="getBannerSeq" parameterType="String" resultType="int">
+	SELECT NVL(MAX(seq),0)+1 as seq
+	FROM BANNER
+	WHERE bannerlocation=#{bannerLocation}
+</select>
+
+
+
+
+ </mapper>

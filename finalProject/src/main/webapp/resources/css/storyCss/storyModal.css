@@ -1,0 +1,136 @@
+@charset "UTF-8";
+
+#write_mask{
+	
+	width:100%;
+	height:100%;
+	position:fixed;
+	z-index:9999;
+	background:url('/project/resources/images/story/white_50.png');
+	
+}
+
+.write_pop{
+	position:absolute;
+	width:100%;
+	height:100%;
+	z-index:10000;
+	position:fixed;
+	
+}
+
+.write_pop .write_cover{
+	
+	width: 812px;
+	margin:auto;
+	margin-top: 30px;
+	
+}
+
+.write_pop .write_top{
+	
+	width:812px;
+	height:20px;
+	background:url('/project/resources/images/story/join_pop_bg_top.png') no-repeat;
+	
+}
+
+
+.write_pop .write_mid{
+	
+	width:812px;
+	height:452px;
+	background:url('/project/resources/images/story/join_pop_bg_mid.png');
+	
+}
+
+.write_mid .write_close{
+	
+	display:block;
+	float: right;
+	width:23px;
+	height:23px;
+	background:url('/project/resources/images/story/write_pop_close.png') no-repeat;
+	margin-right:20px;
+	
+}
+
+a, a:link{
+	
+	text-decoration:none;
+	color:#666;
+	cusor:pointer;
+}
+
+.write_mid .mid_top{
+	
+	padding-top : 30px;
+	
+}
+
+.write_mid .mid_top .top_tt{
+	
+	width:332px;
+	height:70px;
+	background:url('/project/resources/images/story/new_title.png') no-repeat;
+	margin:auto;
+		
+}
+
+.write_mid .mid_btns{
+	
+	width:668px;
+	margin:auto;
+	padding-top:50px;
+}
+
+ul, li{
+	
+	list-style:none;
+}
+
+.mid_btns .travel{
+	
+	background:url('/project/resources/images/story/step01_n.png') no-repeat;
+	
+}
+
+.mid_btns li{
+	
+	display:inline-block;
+	
+}
+
+.mid_btns li a{
+	
+	display:block;
+	width:220px;
+	height:250px;
+	text-indent:-10000px;
+	
+}
+
+a:visited{
+	
+	text-decoration:none;
+}
+
+.mid_btns .essay{
+	
+	background:url('/project/resources/images/story/step02_n.png') no-repeat;
+	
+}
+
+.mid_btns .review{
+	
+	background:url('/project/resources/images/story/step03_n.png') no-repeat;
+	
+}
+
+.write_pop .write_btm{
+	
+	width:812px;
+	height:20px;
+	background:url('/project/resources/images/story/join_pop_bg_bottom.png') no-repeat;
+	
+}

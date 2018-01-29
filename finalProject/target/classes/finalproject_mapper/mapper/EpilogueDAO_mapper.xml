@@ -1,0 +1,659 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="kos.triple.project.persistence.chul.EpilogueDAO">
+
+	<select id="epilogueTotalCount" resultType="int">
+			   	 SELECT COUNT(*)
+	   	 		 FROM epilogue e
+	     		 WHERE security='Y' 
+	     		 AND iscomplete='Y'
+     <choose>
+		<when test="(kind != null and kind.equals('healing')) or (searchKind != null and searchKind.equals('healing'))">
+				 AND kind LIKE '%'||'healing'||'%'
+		</when> 
+		<when test="(kind != null and kind.equals('travel')) or (searchKind != null and searchKind.equals('travel'))">
+				 AND kind LIKE '%'||'travel'||'%'
+		</when>
+		<when test="(kind != null and kind.equals('leisure')) or (searchKind != null and searchKind.equals('leisure'))">
+				 AND kind LIKE '%'||'leisure'||'%'
+		</when>
+		<when test="(kind != null and kind.equals('eat')) or (searchKind != null and searchKind.equals('eat'))">
+				 AND kind LIKE '%'||'eat'||'%'
+		</when>
+	</choose>
+		<if test="searchPhrase != null">
+				 AND (title LIKE '%'||#{searchPhrase}||'%' OR content LIKE '%'||#{searchPhrase}||'%')
+		</if>               
+         		ORDER BY reg_date DESC
+	</select>
+
+
+	<resultMap id="epilogueMap" type="kos.triple.project.vo.EpilogueVO">
+		<id property="epilogueNo" column="epilogueNo" />
+		<result property="title" column="title" />
+		<result property="type" column="type" />
+		<result property="kind" column="kind" />
+		<result property="content" column="content" />
+		<result property="readCnt" column="readcnt" />
+		<result property="security" column="security" />
+		<result property="goodCount" column="goodCount" />
+		<result property="mem_id" column="mem_id" />
+		<result property="reg_date" column="reg_date" />
+		<association property="member" resultMap="memberMap" />
+		<collection property="eComments"
+			ofType="kos.triple.project.vo.Epilogue_commentVO">
+			<result property="epilogue_commentNo" column="epilogue_commentNo" />
+			<result property="content" column="content" />
+			<result property="regDate" column="regDate" />
+			<result property="mem_id" column="mem_id" />
+			<result property="epilogueNo" column="epilogueNo" />
+		</collection>
+		<collection property="courses"
+			ofType="kos.triple.project.vo.Epilogue_courseVO">
+			<id property="epilogue_courseNo" column="epilogue_courseno" />
+			<result property="location_num" column="location_num" />
+			<result property="content" column="content" />
+			<result property="img1" column="img1" />
+			<result property="img2" column="img2" />
+			<result property="img3" column="img3" />
+			<result property="img4" column="img4" />
+			<result property="visit_order" column="visit_order" />
+			<result property="dday" column="dday" />
+			<result property="epilogueNo" column="epilogueNo" />
+			<association property="where" resultMap="tliMap" />
+		</collection>
+		<collection property="eLikes"
+			ofType="kos.triple.project.vo.Epilogue_LikeVO">
+			<id property="epilogue_LikeNo" column="epilogue_LikeNo" />
+			<result property="mem_id" column="mem_id" />
+			<result property="epilogueNo" column="epilogueNo" />
+		</collection>
+	</resultMap>
+
+	<resultMap id="epilCourseMap" type="kos.triple.project.vo.Epilogue_courseVO">
+		<id property="epilogue_courseNo" column="epilogue_courseno" />
+		<result property="location_num" column="location_num" />
+		<result property="content" column="content" />
+		<result property="img1" column="img1" />
+		<result property="img2" column="img2" />
+		<result property="img3" column="img3" />
+		<result property="img4" column="img4" />
+		<result property="visit_order" column="visit_order" />
+		<result property="dday" column="dday" />
+		<result property="epilogueNo" column="epilogueNo" />
+		<association property="where" resultMap="tliMap" />
+	</resultMap>
+
+	<resultMap id="tliMap" type="kos.triple.project.vo.WhereVO">
+		<id property="location_num" column="location_num" />
+		<result property="thema_category" column="thema_category" />
+		<result property="location_name" column="location_name" />
+		<result property="location_addr" column="location_addr" />
+		<result property="location_img1" column="location_img1" />
+		<result property="location_img2" column="location_img2" />
+		<result property="location_img3" column="location_img3" />
+		<result property="location_img4" column="location_img4" />
+		<result property="x_coordinate" column="x_coordinate" />
+		<result property="y_coordinate" column="y_coordinate" />
+		<result property="location_web" column="location_web" />
+		<result property="like_score" column="like_score" />
+		<result property="normal_score" column="normal_score" />
+		<result property="bad_score" column="bad_score" />
+		<result property="open_time" column="open_time" />
+		<result property="close_time" column="close_time" />
+		<result property="area" column="area" />
+	</resultMap>
+
+	<resultMap id="memberMap" type="kos.triple.project.vo.MemberVO">
+		<id property="mem_id" column="mem_id" />
+		<result property="name" column="name" />
+		<result property="faceImg" column="faceImg" />
+	</resultMap>
+
+	<resultMap id="epilCommentMap" type="kos.triple.project.vo.Epilogue_commentVO">
+		<result property="epilogue_commentNo" column="epilogue_commentNo" />
+		<result property="content" column="content" />
+		<result property="regDate" column="regDate" />
+		<result property="mem_id" column="mem_id" />
+		<result property="epilogueNo" column="epilogueNo" />
+	</resultMap>
+
+	<resultMap id="eLikeMap" type="kos.triple.project.vo.Epilogue_LikeVO">
+		<result property="epilogue_LikeNo" column="epilogue_LikeNo" />
+		<result property="mem_id" column="mem_id" />
+		<result property="epilogueNo" column="epilogueNo" />
+	</resultMap>
+
+
+	<select id="location" resultMap="tliMap">
+		SELECT location_num,
+		thema_category, location_name, area
+		FROM trip_location_info
+		WHERE
+		location_name LIKE '%'||#{search}||'%'
+	</select>
+
+	<!-- <select id="getNumOfEpil" resultType="int"> 
+		SELECT NVL(COUNT(*), 0) 
+		FROM epilogue 
+	</select> -->
+
+	<insert id="initialInsertPro" parameterType="java.util.Map">
+		INSERT INTO epilogue
+		(epilogueNo, title, mem_id, type, kind, readcnt, goodcount)
+		VALUES
+		(#{epilogueNo}, #{title}, #{mem_id}, #{type}, #{kind}, 0, 0)
+	</insert>
+
+	<insert id="insertEpilCoursePro" parameterType="java.util.Map">
+		INSERT INTO
+		epilogue_course (epilogue_courseno, location_num, content,
+		visit_order, epilogueNo, dday, img1)
+		VALUES
+		(epilogue_course_seq.nextval, #{location_num}, #{content},
+		#{visit_order}, #{epilogueNo}, #{dday}, #{uploadFile})
+	</insert>
+
+	<select id="getNumOfEpilCour" resultType="int">
+		SELECT NVL(COUNT(*), 0)
+		FROM epilogue_course
+		WHERE epilogueno=#{epilogueNo}
+	</select>
+
+	<select id="getNumOfEpilCourse" resultType="int">
+		SELECT NVL(COUNT(*), 0)
+		FROM epilogue_course c, epilogue e
+		WHERE
+		c.epilogueno=e.epilogueno
+		AND e.iscomplete in ('y', 'Y')
+		<choose>
+			<when test="kind != null and kind.equals('healing')">
+				AND kind LIKE '%'||#{kind}||'%'
+			</when>
+			<when test="kind != null and  kind.equals('leisure')">
+				AND kind LIKE '%'||#{kind}||'%'
+			</when>
+			<when test="kind != null and kind.equals('eat')">
+				AND kind LIKE '%'||#{kind}||'%'
+			</when>
+			<when test="kind != null and kind.equals('travel')">
+				AND kind LIKE '%'||#{kind}||'%'
+			</when>
+		</choose>
+	</select>
+
+	<select id="getNumOfEpilCourseSearch" resultType="int">
+		SELECT NVL(COUNT(*), 0)
+		FROM (select epilogueno, title, kind, visit_order, dday, location_name,
+		img1, reg_date, rownum rnum
+		FROM (select e.epilogueno, e.kind, e.title, c.visit_order, c.dday,
+		t.location_name, c.img1, e.reg_date
+		FROM epilogue e, epilogue_course c, trip_location_info t, member m
+		WHERE e.mem_id=m.mem_id
+		AND e.epilogueno=c.epilogueno
+		AND c.location_num=t.location_num
+		AND iscomplete in ('y', 'Y')
+
+		<if test='searchKind != null'>
+			AND kind like '%'||#{searchKind}||'%'
+		</if>
+		AND (e.title like '%'||#{searchPhrase}||'%' OR e.content like
+		'%'||#{searchPhrase}||'%' OR t.location_name like
+		'%'||#{searchPhrase}||'%' OR c.content like '%'||#{searchPhrase}||'%')
+
+		)
+		)
+
+	</select>
+
+	<select id="getListOfEpilCourse" resultMap="epilCourseMap">
+		<![CDATA[
+			select *
+			from      (
+          				select ec.epilogue_courseno, ec.img1, ec.visit_order, ec.dday, tl.thema_category, tl.location_name, tl.area, rownum rnum 
+          				from epilogue_course ec left outer join trip_location_info tl
+          				on ec.location_num = tl.location_num
+          				where ec.epilogueno=#{epilogueNo}
+          				order by ec.visit_order
+          				)
+		  	where rnum BETWEEN 1 AND #{maxRow}	
+		]]>
+	</select>
+
+	<update id="writeEpilogueProDao" parameterType="java.util.Map">
+		UPDATE epilogue
+		SET content=#{epilogue, jdbcType=VARCHAR},
+		security=#{security, jdbcType=VARCHAR},
+		reg_date=sysdate,
+		iscomplete='Y'
+		WHERE epilogueno=#{epilogueNo}
+	</update>
+
+	<select id="previewEpilViewDao" resultMap="epilogueMap">
+		<![CDATA[
+			 SELECT *
+       		 FROM   (SELECT mem_id, title, faceimg, x_coordinate, y_coordinate, dday, location_name, reg_date, location_addr, content, visit_order, rownum rnum
+            	     FROM  (   
+            	    	  SELECT m.mem_id, e.title, t.x_coordinate, t.y_coordinate, m.faceimg, e.reg_date, c.dday, t.location_name, t.location_addr, c.content, c.visit_order
+                          FROM member m,
+                               epilogue e,
+                               epilogue_course c,
+                               trip_location_info t
+                          WHERE m.mem_id=e.mem_id 
+                          AND   e.epilogueno=c.epilogueno
+                          AND   c.location_num=t.location_num
+                          AND   e.epilogueno=#{epilogueNo}
+                          ORDER BY c.dday c.visit_order
+                      ))           
+		]]>
+	</select>
+
+
+	<select id="getNumOfEpil" parameterType="java.util.Map"
+		resultType="int">
+		SELECT nvl(count(*), 0)
+		FROM epilogue
+		WHERE iscomplete IN ('y', 'Y')
+		AND epilogueno IN (SELECT epilogueno
+                           FROM epilogue_course)
+		<choose>
+			<when test="kind != null and kind.equals('healing')">
+				AND kind LIKE '%'||#{kind}||'%'
+			</when>
+			<when test="kind != null and  kind.equals('leisure')">
+				AND kind LIKE '%'||#{kind}||'%'
+			</when>
+			<when test="kind != null and kind.equals('eat')">
+				AND kind LIKE '%'||#{kind}||'%'
+			</when>
+			<when test="kind != null and kind.equals('travel')">
+				AND kind LIKE '%'||#{kind}||'%'
+			</when>
+		</choose>
+	</select>
+
+	<select id="printEpilogueListPro" parameterType="java.util.Map"
+		resultMap="epilogueMap">
+		<!-- <![CDATA[ select * from (select * from ( select epilogueno, kind, 
+			goodcount, reg_date, title, rownum rnum from ( select * from epilogue ]]> 
+			<choose> <when test="kind != null and kind.equals('healing')"> WHERE kind 
+			LIKE '%'||#{kind}||'%' </when> <when test="kind != null and kind.equals('leisure')"> 
+			WHERE kind LIKE '%'||#{kind}||'%' </when> <when test="kind != null and kind.equals('eat')"> 
+			WHERE kind LIKE '%'||#{kind}||'%' </when> <when test="kind != null and kind.equals('travel')"> 
+			WHERE kind LIKE '%'||#{kind}||'%' </when> <otherwise> WHERE kind LIKE '%'||'%' 
+			</otherwise> </choose> <![CDATA[ order by epilogueno desc ) )where rnum <= 
+			#{endNum}) where rnum >= #{startNum} ]]> -->
+		
+		<![CDATA[
+			SELECT *
+			FROM (select epilogueno, title, kind, visit_order, dday, epilogue_courseno,location_name, img1, reg_date, rownum rnum
+      		FROM (select e.epilogueno, e.kind, e.title, c.visit_order, c.epilogue_courseno,c.dday, t.location_name, c.img1, e.reg_date 
+            FROM epilogue e, epilogue_course c, trip_location_info t, member m
+            WHERE e.mem_id=m.mem_id 
+            AND e.epilogueno=c.epilogueno 
+            AND c.location_num=t.location_num
+            AND iscomplete in ('y', 'Y')
+        ]]>
+		<choose>
+			<when test="kind != null and kind.equals('healing')">
+				AND kind LIKE '%'||#{kind}||'%'
+			</when>
+			<when test="kind != null and kind.equals('leisure')">
+				AND kind LIKE '%'||#{kind}||'%'
+			</when>
+			<when test="kind != null and kind.equals('eat')">
+				AND kind LIKE '%'||#{kind}||'%'
+			</when>
+			<when test="kind != null and kind.equals('travel')">
+				AND kind LIKE '%'||#{kind}||'%'
+			</when>
+			<otherwise>
+				AND kind LIKE '%'||'%'
+			</otherwise>
+		</choose>
+        
+        <![CDATA[
+            ORDER BY e.epilogueno, c.visit_order
+            )         
+            WHERE ROWNUM <= #{endNum})
+            WHERE rnum >= #{startNum}
+		]]>
+
+	</select>
+
+	<select id="getDetailEpilInfo" parameterType="java.util.Map"
+		resultMap="epilogueMap">
+		<!-- SELECT e.epilogueno, e.kind, e.title, c.img1, l.location_name, c.dday, 
+			c.visit_order, e.mem_id, m.faceImg, m.name FROM epilogue e, epilogue_course 
+			c, trip_location_info l, member m, epilogue_comment p WHERE e.epilogueno=c.epilogueno 
+			AND c.location_num=l.location_num AND m.mem_id=e.mem_id AND e.epilogueno 
+			BETWEEN #{startNum} AND #{endNum} <choose> <when test="kind != null and kind.equals('healing')"> 
+			AND kind LIKE '%'||#{kind}||'%' </when> <when test="kind != null and kind.equals('leisure')"> 
+			AND kind LIKE '%'||#{kind}||'%' </when> <when test="kind != null and kind.equals('eat')"> 
+			AND kind LIKE '%'||#{kind}||'%' </when> <when test="kind != null and kind.equals('travel')"> 
+			AND kind LIKE '%'||#{kind}||'%' </when> <otherwise> AND kind LIKE '%'||'%' 
+			</otherwise> </choose> -->
+		
+		<![CDATA[
+			  select *
+  			  from (select epilogueno, kind, title, img1, location_name, dday, visit_order, mem_id, faceImg, name, rnum
+  					from  (SELECT e.epilogueno, e.kind, e.title, c.img1, l.location_name, c.dday, c.visit_order, e.mem_id, m.faceImg, m.name, rownum rnum
+        				   FROM   epilogue e, epilogue_course c, trip_location_info l, member m, epilogue_comment p
+       					   WHERE  e.epilogueno=c.epilogueno
+        				   AND    c.location_num=l.location_num
+        				   AND    m.mem_id=e.mem_id
+        ]]>
+		<choose>
+			<when test="kind != null and kind.equals('healing')">
+				AND kind LIKE '%'||#{kind}||'%'
+			</when>
+			<when test="kind != null and kind.equals('leisure')">
+				AND kind LIKE '%'||#{kind}||'%'
+			</when>
+			<when test="kind != null and kind.equals('eat')">
+				AND kind LIKE '%'||#{kind}||'%'
+			</when>
+			<when test="kind != null and kind.equals('travel')">
+				AND kind LIKE '%'||#{kind}||'%'
+			</when>
+			<otherwise>
+				AND kind LIKE '%'||'%'
+			</otherwise>
+		</choose>
+        <![CDATA[
+       		 order by epilogueno desc
+      		)where rnum <= #{endNum})
+  			where rnum >= #{startNum}
+		]]>
+	</select>
+
+	<select id="detailEpilViewDao" resultMap="epilogueMap">
+		SELECT e.epilogueno, e.iscomplete,e.kind, e.title, c.img1, c.img2, c.img3,
+		c.img4, l.location_addr,l.location_name, c.dday, c.visit_order,
+		e.mem_id, m.faceImg, m.name, e.content, c.content
+		FROM epilogue e, epilogue_course c, trip_location_info l, member m
+		WHERE e.epilogueno=c.epilogueno
+		AND c.location_num=l.location_num
+		AND m.mem_id=e.mem_id
+		AND e.epilogueno=#{selectedEpilogueNo}
+		ORDER BY c.dday, visit_order
+	</select>
+
+	<insert id="writeEpiloguePro" parameterType="java.util.Map">
+		INSERT INTO EPILOGUE
+		(epilogueno, title, type, kind, content, readcnt, security, goodcount,
+		mem_id, reg_date)
+		VALUES (#{epilogueNo}, #{title, jdbcType=VARCHAR},
+		#{type, jdbcType=VARCHAR}, #{kind, jdbcType=VARCHAR}, 0, #{security},
+		#{goodCount}, #{mem_id}, sysdate)
+	</insert>
+
+	<insert id="insertEpilogueCourse" parameterType="java.util.Map">
+		INSERT INTO
+		epilogue_course
+		(epilogue_courseno, location_num, content, img1, img2,
+		img3, img4, visit_order, dday, epilogueno)
+		VALUES(epilogue_course_seq.nextval, #{location_num}, #{content},
+		#{img1, jdbcType=VARCHAR}, #{img2, jdbcType=VARCHAR}, #{img3,
+		jdbcType=VARCHAR}, #{img4, jdbcType=VARCHAR}, #{visit_order}, #{dday},
+		#{epilogueNo})
+	</insert>
+
+	<select id="getLocationNum" resultType="int">
+		SELECT location_num
+		FROM
+		trip_location_info
+		WHERE location_name=#{location_name}
+	</select>
+
+	<select id="getOneEpilCourseDao" resultMap="epilCourseMap">
+		SELECT
+		e.location_num, location_name, content, dday, img1, img2, img3, img4
+		FROM epilogue_course e, trip_location_info t
+		WHERE
+		e.location_num=t.location_num
+		AND e.epilogueno=#{epilogueNo}
+		AND e.epilogue_courseno=#{epilogue_courseNo}
+	</select>
+
+	<select id="epilNumGenerator" resultType="int">
+		SELECT
+		NVL(MAX(epilogueno), 0)
+		FROM epilogue
+	</select>
+
+	<update id="updateCourseInfoPro" parameterType="java.util.Map">
+		UPDATE
+		epilogue_course
+		SET location_num=#{location_num},
+		content=#{content},
+		dday=#{dday},
+		img1=#{img, jdbcType=VARCHAR},
+		img2=#{img2, jdbcType=VARCHAR},
+		img3=#{img3, jdbcType=VARCHAR},
+		img4=#{img4, jdbcType=VARCHAR}
+		WHERE epilogue_courseno=#{epilogue_courseNo}
+	</update>
+
+	<select id="getNumOfLike" resultType="int">
+		SELECT NVL(COUNT(*), 0)
+		FROM epilogue_like
+		WHERE epilogueno=#{epilogueNo}
+	</select>
+
+	<select id="getNumOfCmt" resultType="int">
+		SELECT NVL(COUNT(*), 0)
+		FROM
+		epilogue_comment
+		WHERE epilogueno=#{epilogueNo}
+	</select>
+
+	<select id="printEpilogueListSearch" resultMap="epilogueMap">
+		<![CDATA[
+			SELECT *
+				FROM (select epilogueno, title, kind, visit_order, dday, location_name, img1, reg_date, rownum rnum
+	      		FROM (select e.epilogueno, e.kind, e.title, c.visit_order, c.dday, t.location_name, c.img1, e.reg_date 
+	            FROM epilogue e, epilogue_course c, trip_location_info t, member m
+	            WHERE e.mem_id=m.mem_id 
+	            AND e.epilogueno=c.epilogueno 
+	            AND c.location_num=t.location_num
+	            AND iscomplete in ('y', 'Y')
+	    ]]>
+		<if test="searchKind != null">
+			AND kind like '%'||#{searchKind}||'%'
+		</if>
+		AND (e.title like '%'||#{searchPhrase, jdbcType=VARCHAR}||'%' 
+		OR 	e.content like '%'||#{searchPhrase, jdbcType=VARCHAR}||'%' 
+		OR  t.location_name like '%'||#{searchPhrase, jdbcType=VARCHAR}||'%'
+		OR  c.content like '%'||#{searchPhrase, jdbcType=VARCHAR}||'%')
+	    <![CDATA[
+	    	  order by e.epilogue, c.visit_order
+	          )where rownum <= #{endNum}
+	      ) where rnum >= #{startNum}
+	   ]]>
+	</select>
+
+	<update id="updateReadCount" parameterType="java.util.Map">
+		UPDATE epilogue
+		SET
+		readcnt = readcnt + 1
+		WHERE epilogueno=#{selectedEpilogueNo}
+	</update>
+
+	<select id="printEpilogueListProTest" resultMap="epilogueMap">
+		<![CDATA[
+			SELECT * FROM(
+			SELECT *
+			FROM
+			(select epilogueno, title, kind, visit_order, dday, location_name, img1,
+			reg_date, rownum rnum
+			FROM
+			(select e.epilogueno, e.kind, e.title, c.visit_order, c.dday,
+			t.location_name, c.img1, e.reg_date
+			FROM epilogue e, epilogue_course c, trip_location_info t, member m
+			WHERE e.mem_id=m.mem_id
+			AND e.epilogueno=c.epilogueno
+			AND c.location_num=t.location_num
+			AND iscomplete in ('y', 'Y')
+			AND kind LIKE '%'||'%'
+			ORDER BY e.reg_date desc, c.visit_order
+			)
+			)WHERE epilogueno <= 34
+			)WHERE epilogueno >= #{startNum}
+		]]>
+	</select>
+	
+	<!-- 새로만든... -->
+	
+	<select id="getAllEpilogueList_proc" parameterType="java.util.Map"
+				resultType="kos.triple.project.vo.EpilogueFrontVO">
+		 
+		 
+		 SELECT * 
+     	 FROM( 
+	           SELECT  rownum seq , epilogueno , title , type , kind , mem_id , goodcount , readcnt  , reg_date
+	           FROM(
+		               SELECT e.epilogueno , e.title , e.type , e.kind , e.goodcount , e.readcnt , e.mem_id , e.reg_date 
+					   FROM epilogue e
+					   WHERE security='Y' 
+					   AND iscomplete='Y'
+		     <choose>
+				<when test="(kind != null and kind.equals('healing')) or (searchKind != null and searchKind.equals('healing'))">
+					   AND kind LIKE '%'||'healing'||'%'
+				</when> 
+				<when test="(kind != null and kind.equals('travel')) or (searchKind != null and searchKind.equals('travel'))">
+					   AND kind LIKE '%'||'travel'||'%' 
+				</when>
+				<when test="(kind != null and kind.equals('leisure')) or (searchKind != null and searchKind.equals('leisure'))">
+				 	  AND kind LIKE '%'||'leisure'||'%'
+				</when>
+				<when test="(kind != null and kind.equals('eat')) or (searchKind != null and searchKind.equals('eat'))">
+				 	  AND kind LIKE '%'||'eat'||'%'
+				</when>
+		     </choose>            
+		     <if test="searchPhrase != null">
+				 AND (title LIKE '%'||#{searchPhrase}||'%' OR content LIKE '%'||#{searchPhrase}||'%')
+			 </if>                       
+		              ORDER BY reg_date DESC
+            	)
+	      )
+	      WHERE seq BETWEEN #{start} AND #{end}
+	
+	
+	</select>
+	
+	<select id="getCommentCount" resultType="int" parameterType="int">
+      SELECT COUNT(*)
+      FROM epilogue_comment
+      WHERE epilogueno=#{num}
+	</select>
+	
+	
+	
+	<select id="getCourses" parameterType="int" 
+		resultType="String">
+		SELECT t.location_name
+      	FROM EPILOGUE_COURSE e JOIN TRIP_LOCATION_INFO t ON e.LOCATION_NUM=t.LOCATION_NUM
+      	WHERE epilogueno=#{num}
+      	ORDER BY visit_order
+	</select>
+	
+	<select id="getRepresentImg" parameterType="int"
+		resultType="String">
+		 SELECT img1
+         FROM epilogue_course
+         WHERE epilogueno=#{num} AND visit_order=1
+	</select>
+	
+	<select id="getDetailLike_proc" resultType="kos.triple.project.vo.Epilogue_LikeVO">
+		SELECT mem_id
+        FROM epilogue_like
+        WHERE epilogueno=#{num}
+	</select>
+	
+	<select id="getDetailComment" resultType="kos.triple.project.vo.Epilogue_commentVO">
+		SELECT content, regdate, mem_id
+        FROM epilogue_comment
+        WHERE epilogueno=#{num}
+        ORDER BY regdate
+	</select>
+	
+	<select id="getLikeCount" resultType="int">
+		SELECT COUNT(*)
+		FROM epilogue_like
+		WHERE epilogueno=#{num}
+	</select>
+	
+	<select id="getEpilogDetail" parameterType="String" resultType="kos.triple.project.vo.EpilogueDetailVO">
+		SELECT e.epilogueno, e.iscomplete ,e.kind , e.title 
+		   , c.img1, c.img2, c.img3, c.img4 
+		   , l.location_addr,l.location_name, c.dday 
+		   , c.visit_order, e.mem_id, m.faceImg 
+		   , e.content as epilogContent , c.content as courseContent
+	    FROM   epilogue e, epilogue_course c, trip_location_info l, member m
+		WHERE  e.epilogueno=c.epilogueno
+		AND    c.location_num=l.location_num
+		AND    m.mem_id=e.mem_id
+		AND    e.epilogueno=#{epilogNum}
+		ORDER BY c.dday, visit_order
+	</select>
+
+	<select id="getEpilog" parameterType="int" resultType="kos.triple.project.vo.EpilogueVO">
+		SELECT *
+		FROM epilogue
+		WHERE epilogueno = #{epilogNum}
+	</select>
+	
+	<select id="getCommentList_proc" resultType="kos.triple.project.vo.Epilogue_commentVO">
+		SELECT *
+		FROM epilogue_comment
+		WHERE epilogueno=#{epilogueNo}
+	</select>
+	
+	<insert id="insertComment_proc" parameterType="kos.triple.project.vo.Epilogue_commentVO">
+		INSERT INTO epilogue_comment (epilogue_commentno, content, regdate, mem_id, epilogueno)
+		VALUES (epilogue_comment_seq.nextval, #{content, jdbcType=VARCHAR}, sysdate, #{mem_id}, #{epilogueNo}) 
+	</insert>
+	
+	<delete id="deleteComment_proc" parameterType="kos.triple.project.vo.Epilogue_commentVO">
+		DELETE 
+		FROM epilogue_comment
+		WHERE epilogue_commentno=#{epilogue_commentNo}
+	</delete>
+	
+	<update id="updateComment_proc" parameterType="kos.triple.project.vo.Epilogue_commentVO">
+		UPDATE epilogue_comment
+		SET content=#{content}
+		WHERE epilogue_commentno=#{epilogue_commentNo}
+	</update>
+	
+	<select id="likeListFunction_proc" resultType="kos.triple.project.vo.Epilogue_LikeVO">
+		SELECT *
+		FROM epilogue_like
+		WHERE epilogueno=#{epilogueNo}
+	</select>
+	
+	<select id="isExistLike" resultType="int">
+		SELECT COUNT(*)
+		FROM epilogue_like
+		WHERE epilogueno=#{epilogueNo}
+		AND	  mem_id=#{mem_id}
+	</select>
+	
+	<insert id="insertEpilogueLike_proc" parameterType="java.util.Map">
+		INSERT INTO epilogue_like
+		(epilogue_likeno, mem_id, epilogueno)
+		VALUES (epilogue_like_seq.nextval, #{mem_id}, #{epilogueNo})
+	</insert>
+	
+	<delete id="deleteEpilogueLike_proc" parameterType="java.util.Map">
+		DELETE 
+		FROM epilogue_like
+		WHERE mem_id=#{mem_id}
+		AND epilogueno=#{epilogueNo}
+	</delete>
+	
+</mapper>

@@ -25,11 +25,11 @@
     <ul class="nav navbar-nav">
       <li class="active"><a href="logout">로그아웃</a></li>
       
-      <li><a href="" id="homeManage_click">홈페이지관리</a></li>
+      <li><a href="#" id="homeManage_click">홈페이지관리</a></li>
       
-      <li><a href="" id="sale_click">결산</a></li>
+      <li><a href="#" id="sale_click">결산</a></li>
       
-      <li><a href="" id="where_click">여행지관리</a></li>
+      <li><a href="#" id="where_click">여행지관리</a></li>
       
       <li class="dropdown">
         <a class="dropdown-toggle" data-toggle="dropdown" href="#">예약관리

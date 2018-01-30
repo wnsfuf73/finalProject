@@ -36,7 +36,7 @@
     <!-- 목록 이름은 각자 정해주세요..  -->
     <a href="myPageStart" class="w3-bar-item w3-button">MyPage</a>
 	
-	<a href="myPlan?pageNum=1" target="contentFrame" class="w3-bar-item w3-button">나의 계획</a>
+	<a href="myPlan" target="contentFrame" class="w3-bar-item w3-button">나의 계획</a>
 	<a href="myReview" target="contentFrame" class="w3-bar-item w3-button">리뷰</a>
 	<a href="myEssay" target="contentFrame" class="w3-bar-item w3-button">에세이</a>
   	<a href="myEpilogueList" target="contentFrame" class="w3-bar-item w3-button">내 여행 기록</a>

@@ -348,11 +348,11 @@
 												</tr>
 												<tr>
 													<td>1일가격</td>
-													<td id="car_price">${vo.car_price}</td>			
+													<td id="car_price"><fmt:formatNumber value="${vo.car_price}" groupingUsed="true"/></td>			
 												</tr>
 												<tr>
 													<td>시간당추가가격</td>
-													<td id="car_addprice"><fmt:formatNumber value="${vo.car_addprice}" groupingUsed="true"/></td>		
+													<td id="car_addprice"><fmt:formatNumber type="number" value="${vo.car_addprice}" groupingUsed="true"/></td>		
 												</tr>
 												<tr>	
 													<td style="color:red;">총가격</td>
@@ -514,8 +514,7 @@
 					
 					$("form[name='carDetailModalForm'] img").attr("src","/project/resources/images/car/"+vo.car_img);
 					$("form[name='carDetailModalForm'] #car_name").html(vo.car_name);
-					$("form[name='carDetailModalForm'] #car_kind").html(vo.car_kind);
-					//$("form[name='carDetailModalForm'] #car_price").html(vo.car_price);					
+					$("form[name='carDetailModalForm'] #car_kind").html(vo.car_kind);				
 					document.getElementById("car_brand").innerHTML=vo.brand_name;
 					document.getElementById("car_addprice").innerHTML=car_addPrice.toLocaleString();
 					document.getElementById("insurance").innerHTML=vo.insurance;
@@ -528,7 +527,7 @@
 					//리스트에 뿌려져있는 차량가격을 모달로 넘기기
 					var dayPrice = $("#"+car_num+"_car_price").text();
 					$("#car_price").html(dayPrice);
-					
+						
 					$("#carDetailModal").modal('show');
 					
 					$("form[name='carDetailModalForm'] input[name='car_name']").attr("value",vo.car_name);

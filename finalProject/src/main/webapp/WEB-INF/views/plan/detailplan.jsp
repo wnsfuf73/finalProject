@@ -213,8 +213,8 @@
 <script src="${js}bootstrap.js"></script>
 <script type="text/javascript">
 	
+	/* 장소 불러오기  */
 	function getLocation(loc){
-		
 		$.ajax({
 			url : "getLocation?area="+loc ,
 			type : 'GET',
@@ -224,38 +224,26 @@
 			error : function() {
 				alert("error");
 			}
-			
-			
 		})
-		
 	}
 	
 	/* 계획 코스 추가 */
 	function locationClick(location_num){
-		
 		var loc_name = $("#locName_"+location_num).text();
-		
 		var content = "<li onclick='removeNode(this)'>"+
 						"<input type=hidden name=locationNum value="+location_num+">"+
-						loc_name +
-					 "</li>";
+						loc_name + "</li>";		//장소의 정보(이름)을 가지고온다.
 					 
-		
-		
 		var lastNode = $("#courses li:last").text();
 		if(lastNode!=loc_name || !lastNode){
-			$("#courses").append(content);
-		}
-		else{
+			$("#courses").append(content);	//장소 추가
+		} else{
 			alert("같은장소입니다.");
 		}
 	}
 	
-	
-	
 	/* 제이쿼리 */
 	$(document).ready(function() {
-		
 		/* 여행일정 정하기 ajax */
 		$('#btn').click(function() {
 	
@@ -275,20 +263,10 @@
 				}			
 			});			 
 		});		
-	
-	
-	
-	
 	});
 	
-	
 	/* 계획 코스 삭제 */
-	/* $("#courses li[name='courseNode']").click( */
-			
 	function removeNode(target){
-
-		//var prev = target.previousSibling.previousSibling; 
-		//var next = target.nextSibling.nextSibling;
 	   var prev = $(target).prev().text();
 	   var next = $(target).next().text();
 
@@ -301,7 +279,7 @@
 		return false;
 	}
 	
-	
+	/* 상세 계획 작성하기. */
 	function planWrite(){
 		var selectLocation = $("#courses li").length;
 
@@ -312,7 +290,7 @@
 		
 		var chk_radio = document.getElementsByName('date');
 		var sel_type = null;
-		for(var i=0;i<chk_radio.length;i++){
+		for(var i=0; i<chk_radio.length; i++){
 			if(chk_radio[i].checked == true){ 
 				sel_type = chk_radio[i].value;
 				break;

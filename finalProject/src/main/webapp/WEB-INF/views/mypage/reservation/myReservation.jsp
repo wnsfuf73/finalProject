@@ -113,6 +113,27 @@
 				
 			})
 		}
+		return false;
+	}
+	
+	//렌트카 반납
+	function carResReturn(rent_no){
+		
+		if(confirm("차량을 반납하시겠습니까?")){
+		
+			$.ajax({
+				url : "carResReturn?rent_no="+rent_no,
+				type : 'GET',
+				success : function(msg){
+					$("#car_res_list").html(msg);
+				}
+				,error : function(){
+					alert("error");
+				}
+			
+			})
+		}
+		return false;
 	}
 	
 	function stayResCancel(reservation_no){
@@ -137,24 +158,7 @@
 		
 	}
 	
-	//렌트카 반납
-	function carResReturn(rent_no){
-		
-		if(confirm("차량을 반납하시겠습니까?")){
-		
-			$.ajax({
-				url : "carResReturn?rent_no="+rent_no,
-				type : 'GET',
-				success : function(msg){
-					$("#car_res_list").html(msg);
-				}
-				,error : function(){
-					alert("error");
-				}
-			
-			})
-		}
-	}
+
 	
 	
 </script>

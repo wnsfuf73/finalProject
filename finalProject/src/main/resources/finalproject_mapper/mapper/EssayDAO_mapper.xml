@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+    
+<mapper namespace="kos.triple.project.persistence.kwak.EssayDAO">
+
+	<!-- 에세이 추가 -->
+	<insert id="insertEssay" parameterType="kos.triple.project.vo.EssayVO">
+		INSERT INTO essay(essayNo, essayTitle, essayContent, essayImg, security, essayGood, mem_id)
+		VALUES (essay_seq.NEXTVAL, #{essayTitle}, #{essayContent}, #{essayImg}, #{security}, #{essayGood}, #{mem_id})
+	</insert>
+	
+	<!-- 검색 -->
+	<select id="reviewSearch" resultType="kos.triple.project.vo.WhereVO">
+		<![CDATA[
+			SELECT * from TRIP_LOCATION_INFO WHERE instr(location_name,+#{reviewSearch}) > 0 or instr(area,+#{reviewSearch}) > 0 or instr(location_addr,+#{reviewSearch}) > 0 or instr(thema_category,+#{reviewSearch}) > 0
+		]]>
+	</select>
+	
+	<!-- 리뷰저장 -->
+	<insert id="insertReview" parameterType="kos.triple.project.vo.ReviewVO">
+		INSERT INTO review(reviewNo, reviewview, fun, near, price, content, reviewImg, regdate, mem_id, location_num)
+		VALUES(review_seq.NEXTVAL, #{view},#{fun},#{near},#{price},#{content},#{reviewImg},#{regdate},#{mem_id},#{location_num})
+	</insert>
+
+</mapper>

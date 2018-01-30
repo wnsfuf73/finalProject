@@ -80,8 +80,8 @@ footer {
 
 </head>
 
-<body data-spy="scroll" data-target=".navbar-collapse"
-	onload="step2Focus()">
+<body data-spy="scroll" data-target=".navbar-collapse">
+	<!-- onload="step2Focus()" -->
 
 
 	<!-- Preloader -->
@@ -408,10 +408,9 @@ footer {
 			</div>
 		</div>
 
-		
-	<div class="modal fade" id="searchModal" tabindex="-1"
-			role="dialog" aria-labelledby="exampleModalCenterTitle"
-			aria-hidden="true">
+
+		<div class="modal fade" id="searchModal" tabindex="-1" role="dialog"
+			aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
 			<div class="modal-dialog" role="document" style="z-index: 9999;">
 				<div class="modal-content" style="margin-top: 50%">
 					<div class="modal-header">
@@ -421,7 +420,7 @@ footer {
 						<div class="searchLocation" style="display: flex;">
 							<input maxlength="130" id="wantSearch" name="wantSearch"
 								style="width: 30%;" type="text" class="form-control" /> <a
-								 id="modalSearchIcon" class="searchIcon"><img
+								id="modalSearchIcon" class="searchIcon"><img
 								src="/project/resources/images/story/magnifier.svg"
 								style="width: 30px; height: 30px; margin-left: 1.5%;"></a>
 							<!-- enter키 눌러도 기능하게 해야되는데.. -->
@@ -441,8 +440,8 @@ footer {
 			</div>
 		</div>
 
-		
-		
+
+
 
 		<section id="hello" class="home bg-mega">
 			<div id="myCarousel" class="carousel slide" data-ride="carousel">
@@ -521,8 +520,8 @@ footer {
 				</div>
 			</div>
 			<br>
-			<form action="writeEpilogueStep3" name="writeEpilogueStep3"
-				method="POST" onsubmit="return checkStep2()">
+			<form action="writeEpilogueStep3" name="writeEpilogueStep2"
+				id="writeEpilogueStep2" method="POST" onsubmit="return checkStep2()">
 				<div class="row">
 					<div class="col-md-9">
 						<div class="container-fulid">
@@ -538,48 +537,48 @@ footer {
 											</select>
 										</div>
 									</div>
-									<div class="col-md-6">
-										<div class="form-group">
-											<label for="searchText">여행지찾기</label> <input id="searchText"
-												type="text" name="searchText" readonly class="form-control"><span style="visibility: hidden;">찾기</span></label> <input
-												type="button" data-toggle="modal" data-target="#searchModal" value="찾아보기" class="form-control"
-												style="width: 30%">
-											<label>
-										</div>
-									</div>
-									<div class="col-md-2">
-										
+								</div>
+							</div>
+							<div class="col-md-6">
+								<div class="form-group">
+									<label for="searchText">여행지찾기</label> <input id="searchText"
+										type="text" name="searchText" readonly class="form-control"><span
+										style="visibility: hidden;">찾기</span></label> <input type="button"
+										data-toggle="modal" data-target="#searchModal" value="찾아보기"
+										class="form-control" style="width: 30%"> <label>
+								</div>
+							</div>
+							<div class="col-md-2"></div>
+							<br>
+							<div class="row">
+								<div class="col-md-11">
+									<div class="form-group">
+										<label for="content">내용 입력</label> <label for="maxSize">(<span>0</span>/500)
+										</label>
+										<textarea class="form-control" id="content" rows="5"></textarea>
 									</div>
 								</div>
-								<br>
-								<div class="row">
-									<div class="col-md-11">
-										<div class="form-group">
-											<label for="content">내용 입력</label> <label for="maxSize">(<span>0</span>/500)
-											</label>
-											<textarea class="form-control" id="content" rows="5"></textarea>
-										</div>
-									</div>
-								</div>
-								<br>
-								<div class="row">
-									<div class="col-md-9 col-md-offset-1">
-										<div class="form-group">
-											<label for="content">이미지 등록</label>
-											<div  id="imageContainer" class="well well-lg">
-												<center>
-													<input id="uploadImg" type="file" value="사진추가"
-														class="form-control" style="width: 50%"><br>
-													<span><small>한지점당 4개만 추가할수 있습니다.</small></span>
-												</center>
-												<div class="imgs_wrap" style="display: inline-block;">
-													<span><small>이미지 미리보기</small></span>
-												</div>
+							</div>
+							<br>
+							<div class="row">
+								<div class="col-md-9 col-md-offset-1">
+									<div class="form-group">
+										<label for="content">이미지 등록</label>
+										<div id="imageContainer" class="well well-lg">
+											<center>
+												<input id="uploadImg" type="file" name="uploadImg[]"
+													value="사진추가" class="form-control" style="width: 50%"
+													required="" multiple><br> <span><small>한지점당
+														4개만 추가할수 있습니다.</small></span>
+											</center>
+											<div class="imgs_wrap" style="display: inline-block;">
+												<span><small>이미지 미리보기</small></span>
 											</div>
 										</div>
 									</div>
 								</div>
 							</div>
+
 							<br>
 							<div class="row">
 								<div class="col-md-3">
@@ -658,7 +657,7 @@ footer {
 				</div>
 			</div>
 		</footer>
-		
+
 
 		<hr>
 
@@ -673,7 +672,7 @@ footer {
 		</div>
 
 
-		
+
 
 		<!-- End off scroll up -->
 
@@ -720,11 +719,13 @@ footer {
 
 	<script src="${js}plugins.js"></script>
 	<script src="${js}main.js"></script>
-	
+
 	<script src="${js}vendor/storyScript.js?ver=1.1"></script>
-	<script src="${js}vendor/storyScript2.js?ver=1.1"></script>
+	<%-- <script src="${js}vendor/storyScript2.js?ver=1.2"></script> --%>
 	<script src="${js}vendor/myTourStoryJavsScr.js?ver=1.1"></script>
-	
+
+	<script src="${js}vendor/storyScript2Test.js"></script>
+
 	<script src="${js}bootstrap.green.min.js"></script>
 
 	<!-- story javascript -->

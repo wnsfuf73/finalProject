@@ -69,6 +69,7 @@
 	
 	$(function(){
 		
+		//등록
 		$("#addAirplane").click(function(){
 			
 			var airplaneName = $("#planeName").val();
@@ -181,7 +182,7 @@
 	                    </div>
 	   					
 	                    <div class="form-group text-center">
-	                        <button id="addAirplane" class="btn btn-primary">
+	                        <button type="submit" class="btn btn-primary">
 	                           	삭제하기<i class="fa fa-check spaceLeft"></i>
 	                        </button>
 	                    </div>

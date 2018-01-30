@@ -58,8 +58,6 @@ public class EpilogueServiceImpl implements EpilogueService {
 		++getNumOfEpil;
 
 		// 나중에 이 부분 삭제할것.
-		mem_id = "guest";
-
 		model.addAttribute("epilogueNo", getNumOfEpil);
 		model.addAttribute("mem_id", mem_id);
 
@@ -68,12 +66,12 @@ public class EpilogueServiceImpl implements EpilogueService {
 	@Override
 	public void initialInsert(HttpServletRequest req, Model model) {
 
-		// String mem_id = req.getSession().getAttribute("mem_id");
+		String mem_id = (String) req.getSession().getAttribute("mem_id");
 
 		Map<String, Object> kindMap = new HashMap<String, Object>();
 
 		kindMap.put("kind", null);
-
+		
 		/* int epilogueNo = eDao.getNumOfEpil(kindMap); */
 		int epilogueNo = eDao.epilNumGenerator();
 
@@ -82,14 +80,13 @@ public class EpilogueServiceImpl implements EpilogueService {
 		// isDomestic == Y means Domestic
 		// == N means abroad.
 		String isDomestic = req.getParameter("isDomestic");
-		System.out.println("++++++++++++isDomestic : " + isDomestic);
 		String kind = req.getParameter("selectKind");
 		String tour_title = req.getParameter("tour_title");
 
 		Map<String, Object> map = new HashMap<String, Object>();
 
 		// 나중에 mem_id 키 값을 req.getSession().getAttribute() 로 바꿀 것
-		map.put("mem_id", "guest");
+		map.put("mem_id", mem_id);
 		map.put("type", isDomestic);
 		map.put("kind", kind);
 		map.put("epilogueNo", epilogueNo);
@@ -97,7 +94,7 @@ public class EpilogueServiceImpl implements EpilogueService {
 
 		int isInsert = eDao.initialInsertPro(map);
 
-		model.addAttribute("mem_id", "guest");
+		model.addAttribute("mem_id", mem_id);
 		model.addAttribute("epilogueNo", epilogueNo);
 		model.addAttribute("isInsert", isInsert);
 	}
@@ -106,9 +103,12 @@ public class EpilogueServiceImpl implements EpilogueService {
 	public void insertEpilCourse(MultipartHttpServletRequest multi, Model model, List<String> uploadFileList) {
 
 		int i = 1;
-
+		
+		String defaultImage = "default.gif";
+		
 		Map<String, Object> imgMap = new HashMap<String, Object>();
-
+		
+		
 		for (String k : uploadFileList) {
 			imgMap.put("img" + i, k);
 			i++;
@@ -159,10 +159,20 @@ public class EpilogueServiceImpl implements EpilogueService {
 		map.put("content", content);
 		map.put("dday", dday);
 		map.put("visit_order", visit_order);
-		map.put("img1", imgMap.get("img1"));
+		/*map.put("img1", imgMap.get("img1"));
 		map.put("img2", imgMap.get("img2"));
 		map.put("img3", imgMap.get("img3"));
-		map.put("img4", imgMap.get("img4"));
+		map.put("img4", imgMap.get("img4"));*/
+		
+		for (int j = 0; j < 4; j++) {
+			System.out.println(imgMap.get("img" + (j+1)));
+			if (imgMap.get("img" + (j+1)) != null) {
+				map.put("img" + (j+1), imgMap.get("img"+(j+1)));
+			}else {
+				map.put("img" + (j+1), defaultImage);
+			}
+		}
+		
 		// map.put("uploadFile", uploadFile);
 
 		// int isInsert = eDao.insertEpilCoursePro(map);
@@ -644,18 +654,16 @@ public class EpilogueServiceImpl implements EpilogueService {
 
 	@Override
 	public int updateComment_serv(Epilogue_commentVO commentVO, HttpServletRequest req) {
-
-		String curr_id = (String) req.getSession().getAttribute("mem_id");
-
+		
 		return eDao.updateComment_proc(commentVO);
 	}
 
 	@Override
 	public int deleteComment_serv(Epilogue_commentVO commentVO, HttpServletRequest req) {
 
-		/* String curr_id = (String) req.getSession().getAttribute("mem_id"); */
+		String curr_id = (String) req.getSession().getAttribute("mem_id");
 
-		if (commentVO.getMem_id().equals("guest")) {
+		if (commentVO.getMem_id().equals(curr_id)) {
 			return eDao.deleteComment_proc(commentVO);
 		}
 
@@ -715,13 +723,13 @@ public class EpilogueServiceImpl implements EpilogueService {
 	}
 
 	@Override
-	public int epilogueLike_serv(String epilogueNo) {
+	public int epilogueLike_serv(String epilogueNo, HttpServletRequest req) {
 
 		int isLiked = 0;
 		
 		Map<String, Object> likeMap = new HashMap<String, Object>();
 		
-		likeMap.put("mem_id", "guest");
+		likeMap.put("mem_id", req.getSession().getAttribute("mem_id"));
 		likeMap.put("epilogueNo", epilogueNo);
 		
 		// 이 글의 좋아요 목록에 현재 아이디가 포함되어 있는지 판별 후, insert 또는 delete 작업을 수행.
@@ -737,7 +745,6 @@ public class EpilogueServiceImpl implements EpilogueService {
 	@Override
 	public List<Epilogue_LikeVO> likeListFunction_serv(String epilogueNo) {
 
-		
 		return eDao.likeListFunction_proc(epilogueNo);
 	}
 

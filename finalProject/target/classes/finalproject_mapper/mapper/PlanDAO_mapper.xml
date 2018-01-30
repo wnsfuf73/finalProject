@@ -75,12 +75,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	
 	<!-- 나의 계획 리스트 구하기 -->
 	<select id="getMyPlanList" parameterType="java.util.Map" resultType="kos.triple.project.vo.PlanVO">
-		<![CDATA[
-			SELECT * FROM(SELECT planNo, mem_id, planTitle, PlanContent, rownum rNum
-			from(select * from plan order by planNo desc))
-			where rNum >= #{start} and rNum <= #{end}
-			and mem_id = #{mem_id}
-		]]>
+		SELECT * FROM(SELECT planNo, mem_id, planTitle, PlanContent
+		from(select * from plan order by planNo desc))
+		where mem_id = #{mem_id}
 	</select>
 	
 	<!-- plan수정 -->

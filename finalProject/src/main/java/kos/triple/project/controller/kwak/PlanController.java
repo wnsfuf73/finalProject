@@ -87,7 +87,7 @@ public class PlanController {
 	public String detailplan(HttpServletRequest req, Model model) {
 		int planNo = Integer.parseInt(req.getParameter("planNo"));
 		
-		List<String> dateList = new ArrayList<String>();
+		List<String> dateList = new ArrayList<String>();	//내가 선택한 날짜를 담는 list
 		System.out.println("detailplan()");
 		
 		String startDate = req.getParameter("startDate");
@@ -102,20 +102,19 @@ public class PlanController {
 		String[] start = (String[])startDate.split("-");
 		String[] end = (String[])endDate.split("-");
 		
-
-		DateProcess d = new DateProcess();
+		DateProcess d = new DateProcess();	//DateProcess 참조
 		long days = d.diffOfDate(start[0]+start[1]+start[2],end[0]+end[1]+end[2]);
 		System.out.println(days+"총기간");
 		
 		String date = startDate;
 		System.out.println(date);
 		System.out.println("-----------");
-		for(int i=0; i<days; i++) {
+		for(int i=0; i<days; i++) {		//총기간동안 for문 실행
 			if(i==0) {
 				date = d.stringDate(date,0);
 			}
 			else {
-				date = d.stringDate(date,1);
+				date = d.stringDate(date,1);	//하루를 더해준다.
 			}
 			System.out.println(date);
 			if(!choiceDate.equals(date)) {

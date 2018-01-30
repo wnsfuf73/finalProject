@@ -17,7 +17,7 @@
 </style>
 <script type="text/javascript">
 	function epilogDetail(epilogueNo){
-		parent.window.location="epilogueDetail?epilogueNo="+epilogueNo+"&pageNum=1";
+		parent.parent.window.location="epilogueDetail?epilogueNo="+epilogueNo+"&pageNum=1";
 	}
 </script>
 </head>

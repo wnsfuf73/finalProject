@@ -510,12 +510,14 @@
 				,contentType: "application/x-www-form-urlencoded; charset=UTF-8"
 				,success : function(vo) {
 					
+					var car_addPrice = document.getElementById("car_addprice").innerHTML=vo.car_addprice;
+					
 					$("form[name='carDetailModalForm'] img").attr("src","/project/resources/images/car/"+vo.car_img);
 					$("form[name='carDetailModalForm'] #car_name").html(vo.car_name);
 					$("form[name='carDetailModalForm'] #car_kind").html(vo.car_kind);
 					//$("form[name='carDetailModalForm'] #car_price").html(vo.car_price);					
 					document.getElementById("car_brand").innerHTML=vo.brand_name;
-					document.getElementById("car_addprice").innerHTML=vo.car_addprice;
+					document.getElementById("car_addprice").innerHTML=car_addPrice.toLocaleString();
 					document.getElementById("insurance").innerHTML=vo.insurance;
 					document.getElementById("fuel").innerHTML=vo.fuel;
 

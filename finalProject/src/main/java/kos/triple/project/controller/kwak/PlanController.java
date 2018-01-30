@@ -198,6 +198,16 @@ public class PlanController {
 		return "plan/myPlanCourseContent";
 	}
 	
+	//나의상세계획 마이페이지에서보기(아이프레임)
+	@RequestMapping(value="myPlanCourseContent_MyPage")
+	public String myPlanCourseContent_MyPage(HttpServletRequest req, Model model) {
+		System.out.println("myPlanCourseContent_MyPage()");
+		
+		pservice.selectCourseContent(req, model);
+		model.addAttribute("setIframe","myPlanCourseContent");
+		return "mypage/myPageStart";
+	}
+	
 	//계획 수정
 	@RequestMapping(value="modifyPlan")
 	public String modifyPlan(HttpServletRequest req, Model model) {

@@ -210,16 +210,19 @@
 		ORDER BY TO_CHAR(TO_TIMESTAMP(rental_day),'MM')
 	</select>
 	
+	<!-- 전체 결산 (건수) -->
 	<select id="getFirstChat_car" resultType="int" >
 		SELECT COUNT(*) 
 		FROM reservation_car
 	</select>
 	
+	<!-- 전체 결산(가격) -->
 	<select id="getSecondChat_car" resultType="int" >
 		SELECT SUM(price)  
 		FROM reservation_car
 	</select>
 	
+	<!-- 전체 결산(날짜) -->
 	<select id="getFinalChat_car" resultType="kos.triple.project.vo.MapVO" parameterType="String">
 		SELECT TO_CHAR(TO_TIMESTAMP(rental_day),'MM') as key,SUM(price) as value
 		FROM(

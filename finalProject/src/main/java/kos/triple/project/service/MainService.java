@@ -25,9 +25,15 @@ public interface MainService {
 	//철환이형 서비스로 옯긴다.
 	void myNewStory(HttpServletRequest req, Model model);
 
+	//철환이형 서비스로 옮긴다. 마이페이지 자신의 이야기
+	void myEpilogueList(HttpServletRequest req, Model model);
+
+	//철환이형 서비스로 옮긴다. 마이페이지 이야기 삭제
+	void deleteMyStory(HttpServletRequest req, Model model);
+	
 	//호선이 서비스로 옯긴다.
 	void myNewPlan(HttpServletRequest req, Model model);
 
-	
+
 	
 }

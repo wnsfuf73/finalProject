@@ -73,6 +73,14 @@
 
 </style>
 
+<script type="text/javascript">
+
+	window.onload = function(){
+		
+	
+	}
+	 
+</script>
 
 
 </head>
@@ -197,7 +205,7 @@ style="background-color: #36363b;">
 					<div class="row">
 						<div class="col-md-11">
 							<div class="well well-lg" style="background-color: #fbfcfd;">
-								<span>${i.location_addr }</span>
+								<%-- <span>${i.location_name }</span><br><span><small>${i.location_addr }</small></span> --%>
 							</div><br>
 						</div>
 					</div>	

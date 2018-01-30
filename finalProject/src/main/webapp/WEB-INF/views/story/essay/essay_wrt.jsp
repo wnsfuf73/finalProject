@@ -107,7 +107,7 @@ function previewImage(targetObj, previewId) {
                 preview.removeChild(prevImg);
             }
  
-            var img = document.createElement("img"); // 크롬은 div에 이미지가 뿌려지지 않기때문에 자식 Element를 만듬.
+            var img = document.createElement("img"); // 크롬은 div에 이미지가 뿌려지지 않기때문에 자식 Element를 만듦.
             img.id = "prev_" + previewId;
             img.classList.add("obj");
             img.file = file;

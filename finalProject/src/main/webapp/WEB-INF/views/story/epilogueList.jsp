@@ -397,10 +397,10 @@ footer {
 						<div class="top_tt"></div>
 					</div>
 					<ul class="mid_btns">
-						<li class="travel"><a href="writeEpilogueStep1"
+						<li class="travel"><a href="isLogin_travel"
 							target="_top">여행기</a></li>
-						<li class="essay"><a href="essay_wrt" target="_top">에세이</a></li>
-						<li class="review"><a href="reviewForm" target="_top">리뷰</a></li>
+						<li class="essay"><a href="isLogin_essay" target="_top">에세이</a></li>
+						<li class="review"><a href="isLogin_reviewForm" target="_top">리뷰</a></li>
 					</ul>
 				</div>
 				<div class="write_btm"></div>

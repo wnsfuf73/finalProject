@@ -59,11 +59,21 @@
 							<tr>
 								<td align="center" colspan="3" style="width:100%; height:auto">
 									<div style="width:33%; float:left; height:100%; border-right:1px solid ">
-										<c:forEach var="list" items="${dto}">
-											<div>
-												${list.planTitle}
-											</div>
+										
+										<fmt:parseNumber var="title" integerOnly="true" value="${fn:length(dto)/2}"/>
+										<c:forEach var="list" items="${dto}" varStatus="status">
+											<c:if test="${status.index==title}">
+												<div>
+													${list.planTitle}
+												</div>
+											</c:if>
+											<c:if test="${status.index!=title}">
+												<div style="visibility: hidden;">
+													${list.planTitle}
+												</div>
+											</c:if>
 										</c:forEach>
+										
 									</div>
 									
 									<div style="width:33%; float:left; border-right:1px solid">

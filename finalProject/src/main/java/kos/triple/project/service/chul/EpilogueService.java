@@ -63,7 +63,7 @@ public interface EpilogueService {
 
 	public void searchEpilogueList_serv(HttpServletRequest req, Model model);
 
-	public int epilogueLike_serv(String epilogueNo);
+	public int epilogueLike_serv(String epilogueNo, HttpServletRequest req);
 
 	public List<Epilogue_LikeVO> likeListFunction_serv(String epilogueNo);
 }

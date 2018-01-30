@@ -37,7 +37,7 @@ public class MainController {
 		service.getNewNotice(req,model);
 		
 		return "main/mainNotice";
-		
+		 
 	}
 	
 	//관리자페이지

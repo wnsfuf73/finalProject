@@ -98,8 +98,6 @@ $(function() {
 </script>
 </head>
 <body data-spy="scroll" data-target=".navbar-collapse">
-
-
 	<!-- Preloader -->
 
  	<div id="loading">
@@ -120,7 +118,6 @@ $(function() {
 	</div>
 
 	<!--End off Preloader -->
-
 
 	<div class="culmn">
 		<!--Home page style-->
@@ -322,13 +319,11 @@ $(function() {
 			</div>
 		</section>
 
-
 		<!-- scroll up-->
 		<div class="scrollup">
 			<a href="#"><i class="fa fa-chevron-up"></i></a>
 		</div>
 		<!-- End off scroll up -->
-
 
 		<footer id="footer" class="footer bg-mega">
 			<div class="container">
@@ -353,13 +348,6 @@ $(function() {
 				</div>
 			</div>
 		</footer>
-
-
-
-
 	</div>
-
-
-
 </body>
 </html>

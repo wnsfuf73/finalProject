@@ -9,7 +9,7 @@
 <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css?family=Crimson+Text:400,400i,600,600i,700,700i" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css?family=Roboto+Condensed:300,300i,400,400i,700,700i" rel="stylesheet">
-
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 <link rel="stylesheet" href="${css}slick.css">
 <link rel="stylesheet" href="${css}slick-theme.css">
 <link rel="stylesheet" href="${css}animate.css">
@@ -37,7 +37,6 @@
 <script src="${js}bootsnav.js"></script>
 <script src="${js}plugins.js"></script>
 <script src="${js}main.js"></script>
-
 
 <script type="text/javascript">
 	//숫자만 입력 받기
@@ -100,8 +99,8 @@
 					</tr>
 					<tr>
 						<th colspan="2" style="text-align:center;">
-							<input type="submit" name="add" value="추가">
-							<input type="reset" name="reset" value="취소">
+							<button type="submit" class="w3-button w3-black" name="add">추가</button>
+							<button type="reset" class="w3-button w3-black" name="reset">취소</button>
 						</th>
 					</tr>
 				</table>

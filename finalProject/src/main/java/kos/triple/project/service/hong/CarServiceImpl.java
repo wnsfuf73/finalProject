@@ -411,12 +411,10 @@ public class CarServiceImpl implements CarService{
 				
 				String rental_day = i.getRental_day(); //예약일
 				String return_day = i.getReturn_day(); //반납일
-				String return_time = i.getReturn_time(); //반납시간
 				String rent_no = i.getRent_no();
 							
 				int rentalDay = today.compareTo(rental_day);
 				int returnDay = today.compareTo(return_day);
-				int returnTime = today.compareTo(return_time);
 			
 				if(rentalDay < 0) {
 					System.out.println("예약 취소 가능");

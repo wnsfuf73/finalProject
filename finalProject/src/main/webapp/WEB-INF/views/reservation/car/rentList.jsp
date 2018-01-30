@@ -223,6 +223,10 @@
 									</tr>
 									<tr>
 										<td style="color:red;">총 가격</td>
+											<c:if test="${rental_s == return_s}">
+												<c:set var="total2" value="${(car.car_price*diffDats)}"/>												
+												<td id="${car.car_num }_total"><fmt:formatNumber value="${total2}" groupingUsed="true"/></td>
+											</c:if>
 											<c:if test="${return_s < rental_s}">
 												<c:set var="total" value="${(car.car_price*diffDats) + (car.car_addprice*ch)}" />												
 												<td id="${car.car_num }_total"><fmt:formatNumber value="${total}" groupingUsed="true"/></td>		
@@ -356,6 +360,10 @@
 												</tr>
 												<tr>	
 													<td style="color:red;">총가격</td>
+														<c:if test="${rental_s == return_s}">
+															<c:set var="total2" value="${(car.car_price*diffDats)}"/>												
+															<td id="total">${total2}</td>
+														</c:if>
  														<c:if test="${return_s < rental_s}">
 															<c:set var="total" value="${(car.car_price*diffDats) + (car.car_addprice*ch)}" />
 															<td id="total">${total}</td>		
@@ -483,24 +491,6 @@
 		</div>
 	</div>
 	<!-- 상세보기 모달 종료 -->
-	<!-- 결제 모달  시작-->
-			<div class="row">
-			<div class="modal" id="payModal" tabindex="-1">
-				<div class="modal-dialog" style="z-index:9999">				
-					<div class="modal-content">
-						<div class="modal-header">
-							<h4>결제</h4>
-						</div>
-						<div class="modal-body">
-						
-						</div>
-						<div class="modal=footer">
-						
-						</div>
-					</div>
-				</div>
-			</div>
-	<!-- 결제 모달 종료 -->
 	<script type="text/javascript">
 		function showDetailCarInfo(car_num){
 			

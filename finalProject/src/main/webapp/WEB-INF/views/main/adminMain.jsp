@@ -66,8 +66,8 @@
       	<h4>여행지 관리 메뉴</h4>
 	      <ul class="nav nav-pills nav-stacked">
 	        <li><a href="add" target="contentFrame">여행지 추가</a></li>
-	        <li><a href="delete" target="contentFrame">여행지 삭제</a></li>
-	         <li><a href="modify" target="contentFrame">여행지 수정</a></li>
+	        <li><a href="delete-1" target="contentFrame">여행지 삭제</a></li>
+	         <li><a href="list" target="contentFrame">여행지 수정</a></li>
 	      </ul><br>
       </div>
       <!-- 여행지관리 -->

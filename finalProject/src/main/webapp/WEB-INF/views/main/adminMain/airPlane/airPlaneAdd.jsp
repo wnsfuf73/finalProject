@@ -75,9 +75,8 @@
 			var airplaneSize =  $("#airplaneSizeSelect option:selected").val();
 			if(airplaneName && airplaneSize){
 				$.ajax({
-					url : '${project}addAirPlane?airPlaneName='+airplaneName+"&seatPriceCode="+airplaneSize ,
+					url : '${project}addAirPlane?airPlaneName='+airplaneName+"&airPlaneSize="+airplaneSize ,
 					type: "GET",
-					//data: jsonData,
 					contentType: "application/x-www-form-urlencoded; charset=UTF-8",
 					success: function(msg) {
 						alert("등록완료");

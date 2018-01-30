@@ -35,7 +35,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</select>
 	
 	
-	<!-- 철환이형 , 호선이  -->
+	<!-- 철환이형  -->
 	<select id="myNewStory_proc" parameterType="String" resultType="kos.triple.project.vo.EpilogueVO">
 		<![CDATA[
 		SELECT epilogueNo,SUBSTR(title,0,7) title
@@ -48,6 +48,42 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		]]>	
 	</select>
 	
+	<select id="myEpilogueList_proc" parameterType="java.util.Map" resultType="kos.triple.project.vo.EpilogueMyVO">
+		SELECT *
+		FROM(
+		    SELECT rownum seq , epilogueno,title,type,kind,content,readcnt,security,goodcount,reg_date,iscomplete
+		    FROM(
+		      SELECT epilogueno,title,type,kind,content,readcnt,security,goodcount,reg_date,iscomplete
+		      FROM EPILOGUE
+		      WHERE mem_id=#{mem_id}
+		      ORDER BY reg_date DESC)
+		      )
+		WHERE seq BETWEEN #{start} AND #{end}
+	</select>
+	
+	<select id="getTotalCount"  parameterType="java.util.Map" resultType="int">
+	  	<if test="method.equals('myEpilogueList')">
+	  		SELECT COUNT(*)
+      		FROM EPILOGUE
+      		WHERE mem_id=#{mem_id}
+      		ORDER BY reg_date DESC
+      	</if>
+	</select>
+	
+	<select id="getEpilogue_Img1" parameterType="int" resultType="String">
+		SELECT img1
+		FROM EPILOGUE_COURSE
+		WHERE visit_order=1 AND epilogueNo=#{epilogueNo}
+	</select>
+	
+	<delete id="deleteMyStory_proc" parameterType="int">
+		DELETE FROM epilogue
+		WHERE epilogueNo=#{epilogueNo}
+	</delete>
+	
+	<!-- 철환이형 -->
+	
+	<!-- 호선이 -->
 	<select id="myNewPlan_proc" parameterType="String" resultType="kos.triple.project.vo.PlanVO">
 		<![CDATA[
 		SELECT planNo,SUBSTR(plantitle,0,7) planTitle
@@ -60,5 +96,5 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		WHERE rownum <= 3
 		]]>	
 	</select>
-	
+	<!-- 호선이 -->
 </mapper>

@@ -68,18 +68,18 @@ public class AirReservationServiceImpl implements AirReservationService{
 		int cnt = 0;
 		
 		String airPlaneName = req.getParameter("airPlaneName");
-		String seatPriceCode = req.getParameter("seatPriceCode");
+		String airPlaneSize = req.getParameter("airPlaneSize");
 		
 		AirPlaneVO vo = new AirPlaneVO();
 		vo.setAirPlaneNo("AIRPLANE_");
 		vo.setAirPlaneName(airPlaneName);
-		if(seatPriceCode.equals("small")) {
+		if(airPlaneSize.equals("small")) {
 			vo.setPremium(2);
 			vo.setHighClass(8);
 			vo.setNomal(18);
 			vo.setAirPlaneSize("small");
 		}
-		else if(seatPriceCode.equals("large")) {
+		else if(airPlaneSize.equals("large")) {
 			vo.setPremium(8);
 			vo.setHighClass(12);
 			vo.setNomal(30);
@@ -104,7 +104,7 @@ public class AirReservationServiceImpl implements AirReservationService{
 				"<td>"+vo.getHighClass()+"</td>"+
 				"<td>"+vo.getNomal()+"</td>"+
 				"<td>"+(vo.getPremium()+vo.getHighClass()+vo.getNomal())+"</td>"+
-				"<td>"+(seatPriceCode.equals("small")?"소형":"대형")+"</td>"+
+				"<td>"+(airPlaneSize.equals("small")?"소형":"대형")+"</td>"+
 				"<td>"+tmp.toString()+"</td>"+
 			"</tr>");
 			

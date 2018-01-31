@@ -60,6 +60,11 @@ public class BoardServiceImpl implements BoardService{
 		int pageNum = requestPage == null ? 1 : Integer.parseInt(requestPage);
 		
 		String mem_id = (String)req.getSession().getAttribute("mem_id");
+		if(mem_id==null) {
+			req.setAttribute("cnt",0);
+			return;
+		}
+		
 		
 		Map<String,Object> map = new HashMap<String,Object>();
 		map.put("method","getMyQnAList");

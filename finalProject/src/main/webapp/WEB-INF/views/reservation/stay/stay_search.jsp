@@ -170,24 +170,21 @@
 					<div class="item active">
 						<img src="${images}background/bg_where_1.jpg" alt="travel1">
 						<div class="carousel-caption">
-							<h3>어디 갈까?</h3>
-							<p>The atmosphere in New York is lorem ipsum.</p>
+							<h3>숙박 예약 검색 결과</h3>
 						</div>
 					</div>
 
 					<div class="item">
 						<img src="${images}background/bg_where_2.jpg" alt="travel2">
 						<div class="carousel-caption">
-							<h3>어디 갈까?</h3>
-							<p>Thank you, Chicago - A night we won't forget.</p>
+							<h3>숙박 예약 검색 결과</h3>
 						</div>
 					</div>
 
 					<div class="item">
 						<img src="${images}background/bg_where_3.jpg" alt="travel3">
 						<div class="carousel-caption">
-							<h3>어디 갈까?</h3>
-							<p>Even though the traffic was a mess, we had the best time.</p>
+							<h3>숙박 예약 검색 결과</h3>
 						</div>
 					</div>
 				</div>
@@ -213,59 +210,65 @@
 					onsubmit="">
 					<div class="row">
 						<div class="col-md-12">
-							<input type="search" id="search" name="search"
-								placeholder="원하시는 숙소를 입력해 주세요."><input type="submit"
-								value="검색">
+						<div class="input-group">
+							<input type="search" class="form-control input-lg" id="search" name="search"
+								placeholder="원하시는 숙소를 입력해 주세요.">
+								<div class="input-group-btn"><button class="btn btn-default" type="submit" style="height:46px;"><i class="glyphicon glyphicon-search"></i></button>
+								</div>
+								</div>
 						</div>
 					</div>
+					<br>
 					<div class="row">
-						<div class="col-md-1">숙박 종류:</div>
+						<div class="col-md-2">숙박 종류:</div>
 
-						<div class="col-md-1">
-							<input type="radio" name="stay_kind" value="all" checked>전체
-						</div>
-
-						<div class="col-md-1">
-							<input type="radio" name="stay_kind" value="호텔">호텔
-						</div>
-
-						<div class="col-md-1">
-							<input type="radio" name="stay_kind" value="펜션">펜션
-						</div>
-
-						<div class="col-md-1">
-							<input type="radio" name="stay_kind" value="리조트">리조트
+						<div class="col-md-2">
+						<label class="radio-inline">
+							<input type="radio" name="stay_kind" value="all" checked>전체</label>
+							
 						</div>
 
 						<div class="col-md-2">
-							<input type="radio" name="stay_kind" value="게스트하우스">게스트하우스
+							<label class="radio-inline"><input type="radio" name="stay_kind" value="호텔">호텔</label>
+						</div>
+
+						<div class="col-md-2">
+							<label class="radio-inline"><input type="radio" name="stay_kind" value="펜션">펜션</label>
+						</div>
+
+						<div class="col-md-2">
+							<label class="radio-inline"><input type="radio" name="stay_kind" value="리조트">리조트</label>
+						</div>
+
+						<div class="col-md-2">
+							<label class="radio-inline"><input type="radio" name="stay_kind" value="게스트하우스">게스트하우스</label>
 						</div>
 					</div>
-
+					<br>
 					<div class="row">
-						<div class="col-md-1">숙박 등급:</div>
+						<div class="col-md-2">숙박 등급:</div>
 
-						<div class="col-md-1">
-							<input type="radio" name="stay_class" value="all" checked>전체
+						<div class="col-md-2">
+							<label class="radio-inline"><input type="radio" name="stay_class" value="all" checked>전체</label>
 						</div>
 
-						<div class="col-md-1">
-							<input type="radio" name="stay_class" value="3성">3등급
+						<div class="col-md-2">
+							<label class="radio-inline"><input type="radio" name="stay_class" value="3성">3등급</label>
 						</div>
 
-						<div class="col-md-1">
-							<input type="radio" name="stay_class" value="4성">4등급
+						<div class="col-md-2">
+							<label class="radio-inline"><input type="radio" name="stay_class" value="4성">4등급</label>
 						</div>
 
-						<div class="col-md-1">
-							<input type="radio" name="stay_class" value="5성">5등급
+						<div class="col-md-2">
+							<label class="radio-inline"><input type="radio" name="stay_class" value="5성">5등급</label>
 						</div>
 					</div>
-
+					<br>
 					<div class="row">
-						<div class="col-md-1">숙박 인원:</div>
+						<div class="col-md-2">숙박 인원:</div>
 
-						<div class="col-md-1">
+						<div class="col-md-2">
 							<input type="number" min="1" max="10" value="1"
 								name="stay_people">
 						</div>
@@ -287,6 +290,7 @@
 						<td style="width: 10%">객실 이름</td>
 						<td style="width: 10%">객실 가격</td>
 					</tr>
+					<c:if test="${vos != null}">
 					<c:forEach var="vo" items="${vos}">
 						<tr>
 							<td align="center"><img
@@ -306,6 +310,14 @@
 
 						</tr>
 					</c:forEach>
+					</c:if>
+					<c:if test="${vos == null}">
+					<tr>
+						<td>
+							찾으시는 숙소가 없습니다.
+						</td>
+					</tr>
+					</c:if>
 				</table>
 			</div>
 		</section>

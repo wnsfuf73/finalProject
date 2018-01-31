@@ -322,13 +322,11 @@ $(function() {
 			</div>
 		</section>
 
-
 		<!-- scroll up-->
 		<div class="scrollup">
 			<a href="#"><i class="fa fa-chevron-up"></i></a>
 		</div>
 		<!-- End off scroll up -->
-
 
 		<footer id="footer" class="footer bg-mega">
 			<div class="container">
@@ -353,13 +351,6 @@ $(function() {
 				</div>
 			</div>
 		</footer>
-
-
-
-
 	</div>
-
-
-
 </body>
 </html>

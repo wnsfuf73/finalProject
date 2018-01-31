@@ -5,7 +5,6 @@
 <html class="no-js" lang="en">
 <head>
 <meta charset="utf-8">
-<title>Pouseidon - Free HTML5 Model Agency Bootstrap Template</title>
 <style>
 #map {
 	height: 400px;
@@ -38,12 +37,10 @@
 <link rel="stylesheet" href="${css}bootsnav.css">
 <link rel="stylesheet" href="${css}carousel.css">
 <link rel="stylesheet" href="${css}where.css">
+<script src="${js}vendor/jquery-1.11.2.min.js"></script>
 
 <link rel="stylesheet"
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-
-<!--For Plugins external css-->
-<!--<link rel="stylesheet" href="${css}plugins.css" />-->
 
 <!--Theme custom css -->
 <link rel="stylesheet" href="${css}style.css">
@@ -51,7 +48,8 @@
 
 <!--Theme Responsive css-->
 <link rel="stylesheet" href="${css}responsive.css" />
-
+<link rel="stylesheet"
+	href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css" />
 <script src="${js}vendor/modernizr-2.8.3-respond-1.4.2.min.js"></script>
 </head>
 
@@ -377,9 +375,10 @@
 								target="stay_room_search">
 								<input type="hidden" name="stay_no" value="${vo.stay_no}">
 								<h2>객실 검색</h2>
-								<input type="date" name="start_date" id="start_date">~<input
-									type="date" name="end_date" id="end_date"> <input
-									type="submit" value="검색">
+								<input type="text" id="datepicker" name="start_date"
+									required="required"> ~ <input type="text"
+									id="datepickerEnd" name="end_date" required="required">
+								<input type="submit" value="검색">
 								<div class="separator_left"></div>
 							</form>
 						</div>
@@ -465,48 +464,68 @@
 
 	<!-- JS includes -->
 	<script>
-	document.getElementById('start_date').valueAsDate = new Date();
+	$(function() {
+		$.datepicker.setDefaults($.datepicker.regional['ko']);//달력을 한국어로 표시
+	 	$("#datepicker").datepicker({
+	 		datefomat:'yyyy-mm-dd', // 날짜형식
+	 		showAnim : 'show',// 애니메이션
+	 		minDate:'+0', // 최소 오늘날짜 이전 선택불가
+	     	maxDate:'+3m', // 최고 3달후까지 선택가능
+	     	changeMonth: true, // 월을 이동하기 위한 선택상자 표시여부
+	     	onClose:function(selectedDate){
+	     		// 시작일이 닫힐때 종료일의 선택할수있는 최소 날짜를 선택한 시작일로 지정
+	     		$("#datepickerEnd").datepicker("option","minDate",selectedDate)
+	     	}
+		});
+	 	
+	 	$("#datepickerEnd").datepicker({
+	 		dateformat:'yyyy-mm-dd',
+	 		showAnim : 'show',
+	 		changeMonth: true,
+	 		onClose:function(selectedDate){
+	 			$("#datepicker").datepicker("option","maxDate",selectedDate)
+	 		}
+	 	});
+	});
 	
 	function change_parent_url(url) {
 		document.location = url;
 	}
 	
-		// 구글 맵
-		function initMap() {
-			var uluru = {
-				lat : ${vo.stay_x},
-				lng : ${vo.stay_y}
-			};
-			var map = new google.maps.Map(document.getElementById('map'), {
-				zoom : 15,
-				center : uluru
-			});
+	// 구글 맵
+	function initMap() {
+		var uluru = {
+			lat : ${vo.stay_x},
+			lng : ${vo.stay_y}
+		};
+		var map = new google.maps.Map(document.getElementById('map'), {
+			zoom : 15,
+			center : uluru
+		});
 
-			var contentString = '<div id="content">'
-					+ '<div id="siteNotice">'
-					+ '</div>'
-					+ '<h5 id="firstHeading" class="firstHeading">${vo.stay_name}</h5>'
-					+ '<div id="bodyContent">'
-					+ '주소 : ${vo.stay_address}<br>'
-					+ '전화 번호 : ${stay_cellphone}<br>'
-					+ '체크 인 : ${vo.stay_check_in}<br>'
-					+ '체크 아웃 : ${vo.stay_check_out}<br>'
-					+ '좌표 : ${vo.stay_x}, ${vo.stay_y}'
-					+ '</div>' + '</div>';
-
+		var contentString = '<div id="content">'
+				+ '<div id="siteNotice">'
+				+ '</div>'
+				+ '<h5 id="firstHeading" class="firstHeading">${vo.stay_name}</h5>'
+				+ '<div id="bodyContent">'
+				+ '주소 : ${vo.stay_address}<br>'
+				+ '전화 번호 : ${stay_cellphone}<br>'
+				+ '체크 인 : ${vo.stay_check_in}<br>'
+				+ '체크 아웃 : ${vo.stay_check_out}<br>'
+				+ '좌표 : ${vo.stay_x}, ${vo.stay_y}'
+				+ '</div>' + '</div>';
 			var infowindow = new google.maps.InfoWindow({
-				content : contentString
-			});
-
+			content : contentString
+		});
 			var marker = new google.maps.Marker({
-				position : uluru,
-				map : map,
-				title : 'Uluru (Ayers Rock)'
-			});
-			marker.addListener('click', function() {
-				infowindow.open(map, marker);
-			});
-		}
+			position : uluru,
+			map : map,
+			title : 'Uluru (Ayers Rock)'
+		});
+		marker.addListener('click', function() {
+			infowindow.open(map, marker);
+		});
+	};
 	</script>
 	<script async defer
 		src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAu8_5LRl659ZkNDhSI_RKnCDK0jzFryak&callback=initMap">
@@ -528,10 +547,12 @@
 	<script src="${js}plugins.js"></script>
 	<script src="${js}main.js"></script>
 
-	<script src="${js}bootstrap.green.min.js"></script>
 
 	<script src="${js}stayReservation.js"></script>
 
-
+	<!-- 달력을 한국어로 표시 -->
+	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+	<script
+		src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/i18n/datepicker-ko.js"></script>
 </body>
 </html>

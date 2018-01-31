@@ -39,7 +39,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 	<!-- 검색 -->
 	<select id="search" resultType="kos.triple.project.vo.WhereVO">
-		<![CDATA[SELECT * FROM trip_location_info WHERE instr(location_name,+#{search}) > 0 or instr(area,+#{search}) > 0 or instr(location_addr,+#{search}) > 0 or instr(thema_category,+#{search}) > 0]]>
+		<![CDATA[SELECT * FROM trip_location_info WHERE instr(location_name,+#{search}) > 0 or 
+		instr(area,+#{search}) > 0 or instr(location_addr,+#{search}) > 0 or 
+		instr(thema_category,+#{search}) > 0]]>
 	</select>
 
 

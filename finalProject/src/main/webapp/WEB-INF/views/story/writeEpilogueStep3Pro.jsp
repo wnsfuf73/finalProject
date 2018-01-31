@@ -4,9 +4,13 @@
 <%@ include file="../setting.jsp" %>
 
 <c:if test="${isInserted == 1}">
-	<script>
-		alert('글 작성에 성공했습니다.');
-		window.location='main';
+	<script type="text/javascript">
+		alert('글작성 완료');
+		if(confirm("작성글을 확인하겠습니까?")){
+			window.location="myEpilogueListDirectmyPage";
+		}else{
+			window.location="epilogueList";
+		}
 	</script>
 </c:if>
 <c:if test="${isInserted != 1 }">

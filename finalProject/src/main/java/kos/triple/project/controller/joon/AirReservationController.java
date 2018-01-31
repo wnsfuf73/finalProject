@@ -387,7 +387,7 @@ public class AirReservationController {
 		service.getChatDataCustom_Air1(req, model);
 		service.getChatDataCustom_Air2(req, model);
 		service.getChatDataCustom_Air3(req, model);
-		
+		service.getAirTotalPrice(req,model);
 		return "main/adminMain/sale/airSale/airSalePage";
 	
 	}

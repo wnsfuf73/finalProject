@@ -891,13 +891,20 @@ public class AirReservationServiceImpl implements AirReservationService{
 			System.out.println(k+" : " + v);
 		});
 		System.out.println("-----------------------3---------------------¸Ê3");
-		
+
+		model.addAttribute("year",year);
 		model.addAttribute("finalChat",resMap);
 	}
 
 	@Override
 	public void deadPlaneCollection(HttpServletRequest req, Model model) {
 			dao.deadPlaneCollection_proc();
+	}
+
+	@Override
+	public void getAirTotalPrice(HttpServletRequest req, Model model) {
+		int total = dao.getAirTotalPrice_proc();
+		model.addAttribute("totalPrice",total);
 	}
 	
 }

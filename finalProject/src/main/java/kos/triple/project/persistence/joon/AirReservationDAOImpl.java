@@ -460,6 +460,16 @@ public class AirReservationDAOImpl implements AirReservationDAO{
 		return cnt;
 	}
 
+	@Override
+	public int getAirTotalPrice_proc() {
+		int cnt = 0;
+		
+		AirReservationDAO dao = sqlSession.getMapper(AirReservationDAO.class);
+		cnt = dao.getAirTotalPrice_proc();
+		
+		return cnt;
+	}
+
 	
 	
 }

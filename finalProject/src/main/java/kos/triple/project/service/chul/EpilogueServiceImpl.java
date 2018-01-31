@@ -123,8 +123,12 @@ public class EpilogueServiceImpl implements EpilogueService {
 		epilogueNo = epilogueNo.replace('"', '\0');
 		epilogueNo = epilogueNo.trim();
 
-		String location_name = (new JstringConverter().stringConverter(multi.getParameter("location_name")));
-
+		String location_name = multi.getParameter("location_name");
+	
+		
+		location_name=location_name.substring(1, location_name.lastIndexOf('"'));
+		System.out.println("로케이션 네임 : " + location_name);
+		
 		Map<String, Object> tempMap = new HashMap<String, Object>();
 
 		tempMap.put("location_name", location_name);
@@ -156,7 +160,7 @@ public class EpilogueServiceImpl implements EpilogueService {
 		// location_num 여행지찾기 구현하고 나서 다시 ㄱㄱ
 		// map.put("location_num", location_num);
 		map.put("location_num", location_numS);
-		map.put("content", content);
+		map.put("content", content.substring(1, content.lastIndexOf('"')));
 		map.put("dday", dday);
 		map.put("visit_order", visit_order);
 		/*map.put("img1", imgMap.get("img1"));

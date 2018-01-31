@@ -85,6 +85,9 @@ public interface AirReservationService {
 	public void getChatDataCustom_Air1(HttpServletRequest req, Model model);
 	public void getChatDataCustom_Air2(HttpServletRequest req, Model model);
 	public void getChatDataCustom_Air3(HttpServletRequest req, Model model);
+	//항공 결산 총매출액을 가져온다.
+	public void getAirTotalPrice(HttpServletRequest req, Model model);
+		
 	//항공편 검색
 
 	//운항이 완료된 비행기는 제거

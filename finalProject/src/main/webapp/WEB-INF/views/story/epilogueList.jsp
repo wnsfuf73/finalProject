@@ -317,7 +317,10 @@ footer {
 							</c:choose> 
 								<div class="col-md-12">
 								<c:forEach var="epil" items="${epilList}" varStatus="status">
-									<c:if test="${(status.index+1)%4!=0}">
+									<c:if test="${status.index%3==0}">
+											<div style="clear: both;">
+											</div>
+										</c:if>
 										<div style="float: left;">
 											<a id="epilogueBox" href="epilogueDetail?epilogueNo=${epil.epilogueNo}&pageNum=${pageNum}">
 												<p>${epil.title}</p> 
@@ -337,32 +340,7 @@ footer {
 												<span id="otherPart">좋아요 : ${epil.goodcount}   댓글 : ${epil.commentCount}</span>
 											</a>
 										</div>
-									</c:if>
-									<c:if test="${(status.index+1)%4==0}">
-										<div style="clear: both;">
-										</div>
-										<div style="float: left;">
-											<a id="epilogueBox" href="epilogueDetail?epilogueNo=${epil.epilogueNo}&pageNum=${pageNum}">
-												<p>${epil.title}</p> 
-												<img class="thumbnail"
-												src="/project/resources/images/story/${epil.img1}"
-												style="width: 250px; height: auto;">
-														
-												<c:forEach var="info" items="${epil.visitOrder}" varStatus="status">
-												<p>
-													<b>${status.index+1}</b><small>${info}</small>
-												</p>
-												</c:forEach>
-												<p>
-													<fmt:formatDate value="${epil.reg_date}" />
-													에 다녀옴
-												</p>
-												<span id="otherPart">좋아요 : ${epil.goodcount}   댓글 : ${epil.commentCount}</span>
-											</a>
-										</div>
-									</c:if>
 										
-
 								</c:forEach>
 								</div>
  							</div>

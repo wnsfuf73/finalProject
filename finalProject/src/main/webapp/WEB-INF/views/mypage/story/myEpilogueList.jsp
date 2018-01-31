@@ -28,7 +28,7 @@
 	
 	function detailMyStory(epilogueNo){
 		
-		
+		parent.window.location="epilogueDetail?epilogueNo="+epilogueNo+"&pageNum=1";
 		
 	}
 	
@@ -62,15 +62,17 @@
 </head>
 <body>
 <h2>나의 이야기</h2>
+<br>
+
 <div id="myStory">
 
 	<c:forEach var="vo" items="${myEpilogue}" >
 	
- 	  <div class="w3-card-4 w3-light-grey" style="width:33%" id="card_${vo.epilogueNo}">
+ 	  <div class="w3-card-4 w3-light-grey" style="width:33%; margin-left: 10px; margin-top:10px;" id="card_${vo.epilogueNo}">
 	    <div class="w3-container w3-center">
 		  <fmt:formatDate var="time" value="${vo.reg_date}" pattern="yyyy년 MM월 dd일"/>
 	      <h4>${vo.title}</h4>
-	      <img src="${images}story/story${vo.img1}" alt="이미지" style="width:80%">
+	      <img src="${images}story/${vo.img1}" alt="이미지" style="width:80%">
 	      <h5>${time}에 다녀옴...</h5>
 	      <div class="w3-section">
 	        <button class="w3-button w3-green" onclick="detailMyStory('${vo.epilogueNo}')">상세보기</button>
@@ -83,7 +85,7 @@
   
 </div>
 
-<br><br>
+<br><br><br><br>
 <div class="w3-bar">
 	<c:if test="${blockStartNumber!=1}">
 		<a href="myEpilogueList?requestPage=${startPage}" class="w3-button">&laquo;&laquo;</a>

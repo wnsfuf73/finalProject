@@ -47,7 +47,7 @@ public class MemberServiceImpl implements MemberService {
 
 		vo.setSex(req.getParameter("sex"));
 
-		String phone = req.getParameter("phone");
+		/*String phone =req.getParameter("phone");
 		String p1 = phone.substring(0, 3);
 		String p2 = phone.substring(3, 7);
 		String p3 = phone.substring(7);
@@ -55,7 +55,11 @@ public class MemberServiceImpl implements MemberService {
 		vo.setPhone1(p1);
 		vo.setPhone2(p2);
 		vo.setPhone3(p3);
-
+		 */
+		vo.setPhone1("010");
+		vo.setPhone2("1111");
+		vo.setPhone3("1111");
+		
 		vo.setBirth(req.getParameter("birth"));
 		vo.setGrade("¿œπ›");
 		

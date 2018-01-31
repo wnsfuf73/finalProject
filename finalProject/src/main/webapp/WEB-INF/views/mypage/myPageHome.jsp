@@ -180,7 +180,7 @@
 						</div>
 						<div class="col-md-6">
 							<div class="well well-lg" style="height:330px; background-color: #ffffff; padding: 0px 0px;">
-								<center><img id="bannerImage" src="" style="position: absolute; top: 0; left: 0; width: 95%; height: 95%;border-radius: 15px;"></center>
+								<center><img id="bannerImage" src="${images}myPage/bannerLodding.gif" style="position: absolute; top: 0; left: 0; width: 95%; height: 95%;border-radius: 15px;"></center>
 							</div>
 						</div>
 					</div>

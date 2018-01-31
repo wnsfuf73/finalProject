@@ -6,6 +6,40 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>회원가입</title>
+<link rel="icon" type="image/png" href="favicon.ico">
+
+<!--Google Fonts link-->
+<link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Crimson+Text:400,400i,600,600i,700,700i" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Roboto+Condensed:300,300i,400,400i,700,700i" rel="stylesheet">
+
+<link rel="stylesheet" href="${css}slick.css">
+<link rel="stylesheet" href="${css}slick-theme.css">
+<link rel="stylesheet" href="${css}animate.css">
+<link rel="stylesheet" href="${css}fonticons.css">
+<link rel="stylesheet" href="${css}font-awesome.min.css">
+<link rel="stylesheet" href="${css}bootstrap.css">
+<link rel="stylesheet" href="${css}magnific-popup.css">
+<link rel="stylesheet" href="${css}bootsnav.css">
+<link rel="stylesheet" href="${css}carousel.css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<!--Theme custom css -->
+<link rel="stylesheet" href="${css}style.css">
+<!--Theme Responsive css-->
+<link rel="stylesheet" href="${css}responsive.css" />
+
+<!-- JS includes -->
+<script src="${js}vendor/modernizr-2.8.3-respond-1.4.2.min.js"></script>
+<script src="${js}vendor/jquery-1.11.2.min.js"></script>
+<script src="${js}vendor/bootstrap.min.js"></script>
+<script src="${js}isotope.min.js"></script>
+<script src="${js}jquery.magnific-popup.js"></script>
+<script src="${js}jquery.easing.1.3.js"></script>
+<script src="${js}slick.min.js"></script>
+<script src="${js}jquery.collapse.js"></script>
+<script src="${js}bootsnav.js"></script>
+<script src="${js}plugins.js"></script>
+<script src="${js}main.js"></script>
 <script type="text/javascript">
 	
 	// 아이디와 비밀번호가 맞지 않을 경우 가입 버튼 비활성화를 위한 변수 설정
@@ -94,12 +128,12 @@
 				return false;
 			}
 
-			var hp = $("#InputHp");
+/* 			var hp = $("#InputHp");
 
 			if (hp.val() == "") {
 				alert("휴대폰 번호를 입력하세요");
 				return false;
-			}
+			} */
 
 		});
 
@@ -192,7 +226,7 @@
 									<label>약관 동의</label>
 									<div data-toggle="buttons">
 										<label class="btn btn-primary active"> 
-											<span class="fa fa-check"></span> 
+											<span class="glyphicon glyphicon-ok"></span> 
 											<input id="agree" type="checkbox" autocomplete="off" checked>
 										</label> 
 											<a href="#">이용약관</a>에 동의합니다.

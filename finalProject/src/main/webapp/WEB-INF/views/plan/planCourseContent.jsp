@@ -119,7 +119,7 @@
 					<ul class="nav navbar-nav navbar-right" data-in="fadeInDown"
 						data-out="fadeOutUp">
 						<!-- <li><a href="plan">계획하기</a></li> -->
-						<li><a href="story_write_myTourStory">이야기</a></li>
+						<li><a href="epilogueList">이야기</a></li>
 						<li><a href="where_main">어디갈까</a></li>
 						<li class="dropdown"><a class="dropdown-toggle"
 							data-toggle="dropdown" href="#">예약 </a>

@@ -40,6 +40,10 @@ public class BoardController {
 		
 		service.getMyQnAList(req,model);
 		
+		if((Integer)req.getAttribute("cnt")==0) {
+			return "main/loginForm";
+		}
+		
 		model.addAttribute("setIframe","boardList");
 				
 		return "mypage/myPageStart";

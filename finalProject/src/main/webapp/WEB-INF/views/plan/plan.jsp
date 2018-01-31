@@ -237,7 +237,7 @@
 													</td>
 													
 													<td align="center">
-													<a href="planCourseContent?planNo=${planNo}&pageNum=${pageNum}" class="plancourselistA">
+													<a href="planCourseContent?planNo=${dto.planNo}&pageNum=${pageNum}" class="plancourselistA">
 														${dto.planContent}
 														<input type="hidden" name="planNo" value="${dto.planNo}">
 													</a>

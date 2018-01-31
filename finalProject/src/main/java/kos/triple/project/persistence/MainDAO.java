@@ -23,6 +23,9 @@ public interface MainDAO {
 	//최신공지사항을 가져온다.
 	public NoticeVO getNewNotice_proc();
 
+	//베스트여행기
+	public EpilogueVO getHomePageBestTravel();
+	
 	//철환이형 dao로
 	public List<EpilogueVO> myNewStory_proc(String mem_id);
 
@@ -40,6 +43,8 @@ public interface MainDAO {
 	
 	//호선이 dao로
 	public List<PlanVO> myNewPlan_proc(String mem_id);
+
+
 
 
 

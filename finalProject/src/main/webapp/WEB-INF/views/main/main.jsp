@@ -224,15 +224,17 @@
 							</div>
 							<div class="separator_left"></div>
 							<div class="head_title">
-								<h2>노르망디의 짧은 하루</h2>
+								<h2>${bestTravel.title }</h2>
+	
 								<h5>
-									<em>2018년 01월 06일</em>&emsp;<em>|</em>&emsp; <em>Traveler
-										스칼렛</em>
+									<fmt:formatDate var="regDate" value="${bestTravel.reg_date}" pattern="yyyy-MM-dd a hh:mm" />
+									<em>${regDate }</em>&emsp;<em>|</em>&emsp; 
+									<em>작성자 : ${bestTravel.mem_id}</em>
 								</h5>
 							</div>
 							<!-- End off Head Title -->
 							<div class="feature_btns m-top-30">
-								<a href="" class="btn btn-default text-uppercase">여행기 보기 <i
+								<a href="epilogueDetail?epilogueNo=${bestTravel.epilogueNo}&pageNum=1" class="btn btn-default text-uppercase">여행기 보기 <i
 									class="fa fa-long-arrow-right"></i>
 								</a>
 							</div>
@@ -241,7 +243,7 @@
 							<div class="feature_photo wow fadeIn sm-m-top-40">
 								<div class="photo_border"></div>
 								<div class="feature_img">
-									<img src="${images}travel/BestTravel.jpg" alt="" />
+									<img src="${images}story/${bestTravelImg}" alt="" />
 								</div>
 							</div>
 						</div>
@@ -387,6 +389,7 @@
 
 
 			<!-- 추천리스트 주석 -->
+			<c:if test="${sessionScope.mem_id!=null }">
 			<div class="container">
 				<div class="row">
 					<div  class="head_title text-left sm-text-center wow fadeInDown">
@@ -426,6 +429,7 @@
 				</div>
 				<!--End off row -->
 			</div>
+			</c:if>
 			<!-- 추천리스트 주석 -->
 
 		</section>

@@ -93,6 +93,12 @@ public class MainDAOImpl implements MainDAO{
 		return dao.getNewNotice_proc();
 	}
 
+	@Override
+	public EpilogueVO getHomePageBestTravel() {
+		MainDAO dao = sqlSession.getMapper(MainDAO.class);
+		return dao.getHomePageBestTravel();
+	}
+
 
 
 }

@@ -24,7 +24,7 @@ public class MainController {
 	public String main(HttpServletRequest req, Model model) {
 		System.out.println("main()");
 		
-		service.getHomePageRecomandList(req,model);
+		service.getHomePageBestTravel(req,model);
 		
 		return "main/main";
 	}

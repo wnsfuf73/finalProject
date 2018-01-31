@@ -65,7 +65,18 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	WHERE bannerlocation=#{bannerLocation}
 </select>
 
-
+<select id="getBannerNumberList" parameterType="int" resultType="int">
+	SELECT bannerno
+	 FROM banner
+	 WHERE bannerlocation=(SELECT bannerlocation FROM banner WHERE bannerno=#{bannerNo})
+	 ORDER BY bannerNo
+</select>
+	 
+<update id="updateBannerSequence" parameterType="kos.triple.project.vo.BannerVO">
+	UPDATE banner
+	SET SEQ=#{seq}
+	WHERE bannerNo=#{bannerNo}
+</update>
 
 
  </mapper>

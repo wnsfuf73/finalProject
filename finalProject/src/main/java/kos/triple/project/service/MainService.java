@@ -6,9 +6,9 @@ import org.springframework.ui.Model;
 
 public interface MainService {
 
-	//추천여행기를 가져온다.
-	void getHomePageRecomandList(HttpServletRequest req, Model model);
-
+	//베스트여행기를 가져온다.
+	void getHomePageBestTravel(HttpServletRequest req, Model model);
+	
 	//프로필 이미지를 가져온다.
 	void getMyFaceImg(HttpServletRequest req, Model model);
 
@@ -33,6 +33,8 @@ public interface MainService {
 	
 	//호선이 서비스로 옯긴다.
 	void myNewPlan(HttpServletRequest req, Model model);
+
+	
 
 
 	

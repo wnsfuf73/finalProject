@@ -9,7 +9,7 @@ public class BannerVO {
 	private String bannerLocation;
 	private String bannerLink;
 	private int seq;
-	
+
 	public int getBannerNo() {
 		return bannerNo;
 	}

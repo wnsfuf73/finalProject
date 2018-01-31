@@ -387,194 +387,45 @@
 
 
 			<!-- 추천리스트 주석 -->
-			<%-- <div class="container">
+			<div class="container">
 				<div class="row">
 					<div  class="head_title text-left sm-text-center wow fadeInDown">
-						<h2><span>곽호선</span>님의 추천리스트 만들기</h2>
+						<h2><span>${sessionScope.mem_id}</span>님의 추천리스트 만들기</h2>
 						<h5>
-							<em>Some our recent works is here. Discover them now!</em>
+							<em>we're recommended for you!!</em>
 						</h5>
 						<div class="separator_left"></div>
 					</div>
 
-					<div class="service_content_area">
-						<!-- Service LEFT SIDE -->
+					<div class="service_content_area" id="result">
+						<!-- 왼쪽메뉴 -->
 						<div class="col-md-4 service_left wow fadeInLeft">
 							<!-- Service -->
-
-							<div class="service_items">
-								<div class="row">
-
-									<!-- ICON -->
-									<div class="col-xs-3">
-										<div class="hexagon">
-											<div class="about-content">
-												<span class="fa fa-leaf"></span>
-											</div>
-										</div>
-									</div>
-
-									<div class="col-xs-9">
-										<div class="text-left service_left_text">
-											<h4 class="main-color">Perfect Responsive</h4>
-											<p>Duis autem vel eum iriure dolor in hendrerit in
-												vulputate velit esse molestie</p>
-										</div>
-									</div>
-
-								</div>
-							</div>
-							<!-- end Single Service item -->
-
-							<!-- Service -->
-							<div class="service_items">
-								<div class="row">
-									<!-- ICON -->
-									<div class="col-xs-3">
-										<div class="hexagon">
-											<div class="about-content">
-												<span class="fa fa-diamond"></span>
-											</div>
-										</div>
-									</div>
-
-									<div class="col-xs-9">
-										<div class="text-left service_left_text">
-											<h4 class="main-color">Unique Design</h4>
-											<p>Duis autem vel eum iriure dolor in hendrerit in
-												vulputate velit esse molestie</p>
-										</div>
-									</div>
-
-								</div>
-							</div>
-							<!-- end Single Service item -->
-
-							<!-- Service -->
-							<div class="service_items">
-								<div class="row">
-									<!-- ICON -->
-									<div class="col-xs-3">
-										<div class="hexagon">
-											<div class="about-content">
-												<span class="fa fa-android"></span>
-											</div>
-										</div>
-									</div>
-
-									<div class="col-xs-9">
-										<div class="text-left service_left_text">
-											<h4 class="main-color">Clean & Clear</h4>
-											<p>Duis autem vel eum iriure dolor in hendrerit in
-												vulputate velit esse molestie</p>
-										</div>
-									</div>
-								</div>
-							</div>
-							<!-- end Single Service item -->
-
-
 						</div>
 						<!-- /END Service LEFT -->
 
-						<!-- PHONE IMAGE -->
+						<!-- 추천목록 뿌리는 버튼 -->
 						<div class="col-md-4 sm-m-top-40 sm-text-center">
 							<div class="service-img wow bounceIn">
-								<img src="${images}service-img.png" alt="Architect Img">
+								<div class="recomm_div">
+									<span id="recomm_id">${sessionScope.mem_id}</span>님의 추천 목록 보기
+									<div style="height:100%">
+										<a style="margin-top:130px;"type="button" id="recomm_btn" class="btn btn-default text-uppercase">보기</a>
+									</div>
+								</div>
 							</div>
 						</div>
 
-						<!-- Service RIGHT -->
+						<!-- 오른쪽 메뉴 -->
 						<div class="col-md-4 service_right wow fadeInRight sm-m-top-40">
-
 							<!-- Service -->
-							<div class="service_items">
-								<div class="row">
-
-									<div class="col-xs-9">
-										<div class="service_right_text p-l-15 text-right">
-											<h4 class="main-color">Easy install</h4>
-											<p>Duis autem vel eum iriure dolor in hendrerit in
-												vulputate velit esse molestie</p>
-										</div>
-									</div>
-
-									<!-- ICON -->
-									<div class="col-xs-3">
-										<div class="hexagon">
-											<div class="about-content">
-												<span class="fa fa-cut"></span>
-											</div>
-										</div>
-									</div>
-
-								</div>
-
-							</div>
-							<!-- end Single Service item -->
-
-
-
-							<!-- Service -->
-							<div class="service_items">
-								<div class="row">
-
-									<div class="col-xs-9">
-										<div class="service_right_text p-l-15 text-right">
-											<h4 class="main-color">Premium Support</h4>
-											<p>Duis autem vel eum iriure dolor in hendrerit in
-												vulputate velit esse molestie</p>
-										</div>
-									</div>
-
-
-									<!-- ICON -->
-									<div class="col-xs-3">
-										<div class="hexagon">
-											<div class="about-content">
-												<span class="fa fa-bullhorn"></span>
-											</div>
-										</div>
-									</div>
-
-								</div>
-
-							</div>
-							<!-- end Single Service item -->
-
-							<!-- Service -->
-							<div class="service_items">
-								<div class="row">
-
-
-									<div class="col-xs-9">
-										<div class="service_right_text p-l-15 text-right">
-											<h4 class="main-color">And much more</h4>
-											<p>Duis autem vel eum iriure dolor in hendrerit in
-												vulputate velit esse molestie</p>
-										</div>
-									</div>
-
-									<!-- ICON -->
-									<div class="col-xs-3">
-										<div class="hexagon">
-											<div class="about-content">
-												<span class="fa fa-paper-plane"></span>
-											</div>
-										</div>
-									</div>
-
-								</div>
-							</div>
-							<!-- end Single Service item -->
-
-
 						</div>
 						<!-- /END Service RIGHT -->
 					</div>
+					
 				</div>
 				<!--End off row -->
-			</div> --%>
+			</div>
 			<!-- 추천리스트 주석 -->
 
 		</section>
@@ -1110,6 +961,27 @@
 		</footer>
 
 	</div>
-
+<script type="text/javascript">
+	/* 추천 ajax */
+	$(document).ready(function() {
+		$('#recomm_btn').click(function() {
+			
+		/* 	var planTitle = $("input[name='planTitle']").val();
+			var planContent = $("textarea[name='planContent']").val(); */
+		
+			 $.ajax({
+				url: "recommend",
+				type: 'GET',
+				
+				success: function(msg) {
+					$('#result').html(msg);					
+				},				
+				error: function() {
+					alert('오류');
+				}			
+			});			 
+		});		
+	});
+</script>
 </body>
 </html>

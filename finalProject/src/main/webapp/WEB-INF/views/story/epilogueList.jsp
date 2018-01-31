@@ -18,6 +18,10 @@
 <link
 	href="https://fonts.googleapis.com/css?family=Roboto+Condensed:300,300i,400,400i,700,700i"
 	rel="stylesheet">
+	
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
 <link rel="stylesheet" href="${css}slick.css">
 <link rel="stylesheet" href="${css}slick-theme.css">
@@ -30,7 +34,6 @@
 <link rel="stylesheet" href="${css}carousel.css">
 <link rel="stylesheet" href="${css}storyCss/storyModal.css">
 
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 <link rel="stylesheet" href="${css}style.css">
 <link rel="stylesheet" href="${css}responsive.css" />
 <script src="${js}vendor/modernizr-2.8.3-respond-1.4.2.min.js"></script>
@@ -257,20 +260,23 @@ footer {
 		<br> <br> <br> <br> <br>
 		<div class="container-fluid">
 			<div class="row">
-				<div class="col-sm-9">
+				<div class="col-sm-10">
 					<h2>
 						<small>여행기</small>
-						<div id="category_box" class="category_box" style="display:flex;float:right;">
+						<!-- <div id="category_box" class="category_box" style="display:flex;float:right;">
 							<a id="" href="#"><p style="font-size:8px;">전체</p></a>
 							<a id="eat" href="#"><p style="font-size:8px;">맛집</p></a>
 							<a id="travel" href="#"><p style="font-size:8px;">관광</p></a>
 							<a id="leisure" href="#"><p style="font-size:8px;">레져</p></a>
 							<a id="healing" href="#"><p style="font-size:8px;">힐링</p></a>
-						</div>
+						</div> -->
 					</h2>
 					<hr>
 					<div id="searchBar">
+					<div class="form-group">
 						<input type="text" style="width:50%" id="searchPhrase">
+						<input type="button" value="검색하기" class=".btn-info" id="requestSearchBtn" name="requestSearchBtn">
+					</div>	
 						<div id="searchKind">
 							<label><input type="radio" name="searchKind" value="">전체검색</label>
 							<label><input type="radio" name="searchKind" value="eat">맛집검색</label>
@@ -278,7 +284,7 @@ footer {
 							<label><input type="radio" name="searchKind" value="leisure">레져검색</label>
 							<label><input type="radio" name="searchKind" value="healing">힐링검색</label>
 						</div>
-						<input type="button" value="검색하기" id="requestSearchBtn" name="requestSearchBtn">
+						
 					</div>
 					<hr>
 					<div class="epilogue_container" style="width: 100%; height: 100%;">
@@ -321,18 +327,27 @@ footer {
 											<div style="clear: both;">
 											</div>
 										</c:if>
-										<div style="float: left;">
+										<div style="float: left; margin: 10px 10px;
+											    border-color: #6a98bf;
+											    border-radius: 10px;
+											    border-style: solid;">
+											    
 											<a id="epilogueBox" href="epilogueDetail?epilogueNo=${epil.epilogueNo}&pageNum=${pageNum}">
 												<p>${epil.title}</p> 
 												<img class="thumbnail"
 												src="/project/resources/images/story/${epil.img1}"
 												style="width: 250px; height: auto;">
-														
-												<c:forEach var="info" items="${epil.visitOrder}" varStatus="status">
-												<p>
-													<b>${status.index+1}</b><small>${info}</small>
-												</p>
-												</c:forEach>
+												<div>
+													<center><span class="glyphicon glyphicon-flag">여행순서</span></center>
+													<br>
+													<ul class="list-group">
+															<c:forEach var="info" items="${epil.visitOrder}" varStatus="status">
+														   <li class="list-group-item">
+																<b>${status.index+1}.</b><small>&nbsp;&nbsp;${info}</small>
+															</li>
+															</c:forEach>
+													</ul>
+												</div>
 												<p>
 													<fmt:formatDate value="${epil.reg_date}" />
 													에 다녀옴
@@ -348,7 +363,7 @@ footer {
 					</div>
 
 				</div>
-				<div class="col-sm-3" style="padding-right: 0;">
+				<div class="col-sm-2" style="padding-right: 0;">
 					<br> <br> <br>
 					<ul class="nav nav-pills nav-stacked">
 						<li><a id="openWrite"><img src="/project/resources/images/story/quick_menu_01.png"></a></li>
@@ -357,11 +372,13 @@ footer {
 					<br>
 				</div>
 			</div>
-
+			
+			
+			<br><br><br>
 			<!-- 페이지 컨트롤 재고관리, 다 쓰기...ㅜㅜ -->
 			<table style="width: 960px" align="center">
 				<tr>
-					<td>
+					<td style="text-align: center;">
 					<c:if test="${blockStartNumber!=1}">
 						<input type="button" value="[◀◀]" onclick="window.location='epilogueList?requestPage=${startPage}'">
 						<input type="button" value="[◀]" onclick="window.location='epilogueList?requestPage=${blockStartNumber-1}'">
@@ -381,7 +398,7 @@ footer {
 					</td>
 				</tr>
 			</table>
-			
+			<br><br><br>
 			<footer class="container-fluid">
 				<div class="container">
 					<div class="row">

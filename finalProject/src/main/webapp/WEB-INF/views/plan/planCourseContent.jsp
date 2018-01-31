@@ -333,8 +333,6 @@
 	<script src="${js}jquery.collapse.js"></script>
 	<script src="${js}bootsnav.js"></script>
 
-
-
 	<script src="${js}plugins.js"></script>
 	<script src="${js}main.js"></script>
 	

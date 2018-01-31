@@ -37,12 +37,12 @@ public class BoardController {
 	@RequestMapping(value = "myPageBoardList")
 	public String myPageBoardList(HttpServletRequest req, Model model) {
 		System.out.println("boardList()");
-		
-		service.getMyQnAList(req,model);
-		
-		if((Integer)req.getAttribute("cnt")==0) {
+
+		if(req.getSession().getAttribute("mem_id")==null) {
 			return "main/loginForm";
 		}
+		
+		service.getMyQnAList(req,model);
 		
 		model.addAttribute("setIframe","boardList");
 				

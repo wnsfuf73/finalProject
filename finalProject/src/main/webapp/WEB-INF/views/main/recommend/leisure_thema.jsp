@@ -10,7 +10,7 @@
 <c:if test="${dtos != null}">
 <c:forEach var="dto" items="${dtos}">
 	<div class="place_item">
-		<img class="place_data_img" src="${images}where/trip_location/${dto.img1}">
+		<img class="place_data_img" src="${images}story/story${dto.img1}">
 		<div class="place_data_info">
 			<ul>
 				<li>

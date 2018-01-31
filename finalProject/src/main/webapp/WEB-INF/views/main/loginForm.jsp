@@ -20,6 +20,7 @@
 <link rel="stylesheet" href="${css}slick-theme.css">
 <link rel="stylesheet" href="${css}animate.css">
 <link rel="stylesheet" href="${css}fonticons.css">
+<link rel="stylesheet" href="${css}font-awesome.min.css">
 <link rel="stylesheet" href="${css}bootstrap.css">
 <link rel="stylesheet" href="${css}magnific-popup.css">
 <link rel="stylesheet" href="${css}bootsnav.css">
@@ -215,11 +216,8 @@
 						<div class="row">
 							<div class="col-md-6 col-md-offset-3">
 								<div class="text-center">
-											<a href="findId" tabindex="5" class="forgot-id">
-												아이디 찾기 </a>
-												|
-											<a href="findPwd" tabindex="5" class="forgot-password">
-												 비밀번호 찾기</a>	
+									<a href="findIdAndPwd" tabindex="5" class="forgot-password">
+										아이디 | 비밀번호 찾기</a>
 								</div>
 							</div>
 						</div>

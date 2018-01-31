@@ -10,6 +10,9 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
+
+
+
 <style type="text/css">
 	
 	
@@ -114,7 +117,6 @@ style="background-color: #36363b;">
 				<li><a href="plan"><span>계획하기</span></a></li>
 				<li><a href="epilogueList"><span>이야기</span></a></li>
 				<li><a href="where_main"><span>어디갈까</span></a></li>
-				<li><a href="recomandStart">추천여행기</a></li>
 				<li class="dropdown"><a class="dropdown-toggle"
 					data-toggle="dropdown" href="#"><span>예약</span> </a>
 					<ul class="dropdown-menu">
@@ -250,21 +252,27 @@ style="background-color: #36363b;">
 			<!-- foreach -->
 			</div>
 		</div>
-		
+		<br /><br />
 		<div class="row">
 			<div class="col-md-6">
 				<center>
-					<a id="clickLike" onclick="likeFunction();"><img alt="좋아요" src=""><span>${likeCnt}</span></a>
+					<span class="glyphicon glyphicon-thumbs-up"><a id="clickLike" onclick="likeFunction();"> 좋아요</a></span> 
+				</center><br>
+				<center>
+					${likeCnt}
 				</center>
 			</div>
 			<div class="col-md-6">
 				<center>
-				<img alt="댓글" src=""><span>${commentCnt}</span>
+					<span class="glyphicon glyphicon-pencil"> 댓글수</span> 
+				</center><br>
+				<center>
+					<span id="commentCount">${commentCnt}</span>
 				</center>
 			</div>
 		</div>
 		
-		<div class="container">
+<%-- 		<div class="container">
 			<label for="content">이 글을 좋아하는 분들</label>
 			<form id="likeInsertForm" name="likeInsertForm">
 				<div class="input-group">
@@ -281,8 +289,9 @@ style="background-color: #36363b;">
 			<div class="likeList">
 			
 			</div>
-		</div>
+		</div> --%>
 		
+		<br><br>
 		<div class="container">
 			<label for="content">comment</label>
 			<form id="commentInsertForm" name="commentInsertForm">
@@ -310,7 +319,7 @@ style="background-color: #36363b;">
 	
 	<!--Company section-->
 	<section id="company" class="company bg-light">
-		<div class="container">
+		<div class="container" >
 			<div class="row">
 				<div class="main_company roomy-100 text-center">
 					<h3 class="text-uppercase">동 행</h3>

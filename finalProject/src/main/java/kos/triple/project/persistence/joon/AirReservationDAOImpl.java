@@ -60,9 +60,7 @@ public class AirReservationDAOImpl implements AirReservationDAO{
 		
 		int cnt = 0;
 		AirReservationDAO dao = sqlSession.getMapper(AirReservationDAO.class);
-		
 		cnt = dao.addAirPlane_proc(vo);
-		
 		return cnt;
 	}
 

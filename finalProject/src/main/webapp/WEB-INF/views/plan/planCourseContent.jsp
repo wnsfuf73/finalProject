@@ -186,7 +186,7 @@
 								<div class="clear"></div>
 							</div>
 						</a>
-						<a href="myPlan" class="head_button">
+						<a href="myPagePlan" class="head_button">
 							<div class="head_button_in">
 								<img alt="" src="${images}plan/head/search.png">
 								<span>나의 일정보기</span>

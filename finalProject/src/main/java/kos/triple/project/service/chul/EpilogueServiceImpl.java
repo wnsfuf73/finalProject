@@ -537,6 +537,10 @@ public class EpilogueServiceImpl implements EpilogueService {
 		String num1 = req.getParameter("epilogueNo");
 		int num = Integer.parseInt(num1);
 
+		Map<String,Object> map = new HashMap<String,Object>();
+		map.put("selectedEpilogueNo",num1);
+		eDao.updateReadCount(map);
+		
 		EpilogueVO vo = eDao.getEpilog(num);
 
 		model.addAttribute("epilogVo", vo);

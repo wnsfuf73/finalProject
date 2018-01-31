@@ -174,23 +174,20 @@ $(function() {
 								<li><a href="rentReservation">렌트카 예약</a></li>
 							</ul>
 						</li>
-					<c:if test="${sessionScope.mem_id == null}">					
-						<li><a href="" data-toggle="modal" data-target="#login">로그인</a></li>
-						<li><a href="" data-toggle="modal" data-target="#register">회원가입</a></li>
-					</c:if>
-					<c:if test="${sessionScope.mem_id != null}">
-						<li class="dropdown">
-						<a class="dropdown-toggle"
-							data-toggle="dropdown" href="#">${sessionScope.mem_id}님</a>
-							<ul class="dropdown-menu">
-								<li><a href="plan">계획하기</a></li>
-								<li><a href="xxxStart">여행후기</a></li>
-								<li><a href="myPageStart">마이페이지</a></li>
-							</ul>
-						</li>
-								
-						<li><a href="logout" >로그아웃</a></li>
-					</c:if>
+						<c:if test="${sessionScope.mem_id == null}">					
+							<li><a href="" data-toggle="modal" data-target="#login">로그인</a></li>
+							<li><a href="" data-toggle="modal" data-target="#register">회원가입</a></li>
+						</c:if>
+						<c:if test="${sessionScope.mem_id != null}">
+							<li class="dropdown">
+							<a class="dropdown-toggle"
+								data-toggle="dropdown" href="#">${sessionScope.mem_id}님</a>
+								<ul class="dropdown-menu">
+									<li><a href="myPageStart">마이페이지</a></li>
+									<li><a href="logout" >로그아웃</a></li>
+								</ul>
+							</li>
+						</c:if>
 					</ul>
 				</div>
 				<!-- /.navbar-collapse -->

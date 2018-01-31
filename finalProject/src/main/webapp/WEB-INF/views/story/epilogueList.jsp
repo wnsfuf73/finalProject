@@ -2,15 +2,12 @@
 	pageEncoding="UTF-8"%>
 <%@ include file="../setting.jsp"%>
 
-<html class="no-js" lang="en">
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
 <head>
-<meta charset="utf-8">
-<title>Pouseidon - Free HTML5 Model Agency Bootstrap Template</title>
+<title>이야기</title>
 <meta name="description" content="">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-
-
-<link rel="icon" type="image/png" href="favicon.ico">
 
 <!--Google Fonts link-->
 <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700"
@@ -33,19 +30,9 @@
 <link rel="stylesheet" href="${css}carousel.css">
 <link rel="stylesheet" href="${css}storyCss/storyModal.css">
 
-<link rel="stylesheet"
-	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-
-<!--For Plugins external css-->
-<!--<link rel="stylesheet" href="${css}plugins.css" />-->
-
-<!--Theme custom css -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 <link rel="stylesheet" href="${css}style.css">
-<!--<link rel="stylesheet" href="${css}colors/maron.css">-->
-
-<!--Theme Responsive css-->
 <link rel="stylesheet" href="${css}responsive.css" />
-
 <script src="${js}vendor/modernizr-2.8.3-respond-1.4.2.min.js"></script>
 
 <style>
@@ -151,7 +138,7 @@ footer {
 					<ul class="nav navbar-nav navbar-right" data-in="fadeInDown"
 						data-out="fadeOutUp">
 						<li><a href="plan">계획하기</a></li>
-						<li><a href="epilogueList">이야기</a></li>
+						<!-- <li><a href="epilogueList">이야기</a></li> -->
 						<li><a href="where_main">어디갈까</a></li>
 						<li class="dropdown"><a class="dropdown-toggle"
 							data-toggle="dropdown" href="#">예약 </a>
@@ -160,20 +147,19 @@ footer {
 								<li><a href="airReservation">항공 예약</a></li>
 								<li><a href="rentReservation">렌트카 예약</a></li>
 							</ul></li>
-						<c:if test="${sessionScope.mem_id == null}">
+						<c:if test="${sessionScope.mem_id == null}">					
 							<li><a href="" data-toggle="modal" data-target="#login">로그인</a></li>
 							<li><a href="" data-toggle="modal" data-target="#register">회원가입</a></li>
 						</c:if>
 						<c:if test="${sessionScope.mem_id != null}">
-							<li class="dropdown"><a class="dropdown-toggle"
+							<li class="dropdown">
+							<a class="dropdown-toggle"
 								data-toggle="dropdown" href="#">${sessionScope.mem_id}님</a>
 								<ul class="dropdown-menu">
-									<li><a href="xxxStart">계획하기</a></li>
-									<li><a href="xxxStart">여행후기</a></li>
 									<li><a href="myPageStart">마이페이지</a></li>
-								</ul></li>
-
-							<li><a href="logout">로그아웃</a></li>
+									<li><a href="logout" >로그아웃</a></li>
+								</ul>
+							</li>
 						</c:if>
 					</ul>
 				</div>
@@ -182,208 +168,12 @@ footer {
 
 		</nav>
 
-
-		<!-- 모달 추가 시작 login -->
-		<div class="row">
-			<div class="modal" id="login" tabindex="-1">
-				<!-- #model로 지정했으므로 id="model" -->
-				<div class="modal-dialog" style="z-index: 9999">
-					<div class="modal-content">
-						<div class="modal-header">
-							로그인
-							<button class="close" data-dismiss="modal">&times;</button>
-						</div>
-
-						<div class="modal-body" style="text-align: center;">
-							<center>
-								<img src="${images}/Login.png">
-							</center>
-							<form id="login-form" action="login" method="post" role="form"
-								style="display: block;">
-
-								<div class="form-group">
-									<input type="text" name="userId" id="userId" tabindex="1"
-										class="form-control" placeholder="아이디" value="">
-								</div>
-
-								<div class="form-group">
-									<input type="password" name="userPassword" id="userPassword"
-										tabindex="2" class="form-control" placeholder="비밀번호" value="">
-								</div>
-
-								<div class="form-group">
-									<div class="row">
-										<div class="col-sm-6 col-sm-offset-3">
-											<input type="submit" name="login-submit" id="login-submit"
-												tabindex="4" class="btn btn-success" value="로그인">
-										</div>
-									</div>
-								</div>
-
-								<div class="form-group">
-									<div class="row">
-										<div class="col-lg-12">
-											<div class="text-center">
-												<a href="https://phpoll.com/recover" tabindex="5"
-													class="forgot-password"> 아이디 | 비밀번호 찾기</a>
-											</div>
-										</div>
-									</div>
-								</div>
-							</form>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-		<!-- 모달 추가 종료 login-->
-
-
-
-	</div>
-
-	<!-- 모달 추가 시작 register -->
-	<div class="row">
-		<div class="modal" id="register" tabindex="-1">
-			<!-- #model로 지정했으므로 id="model" -->
-			<div class="modal-dialog" style="z-index: 9999">
-				<div class="modal-content" style="height: 950px">
-					<div class="modal-header">
-						회원가입
-						<button class="close" data-dismiss="modal">&times;</button>
-					</div>
-					<div class="modal-body" style="text-align: center;">
-
-						<!-- 회원가입 -->
-						<div class="col-md-12">
-							<form role="form" action="register" method="post" role="form"
-								style="display: block;">
-								<div class="form-group">
-									<label for="username">사용자 이름</label> <input type="text"
-										class="form-control" id="username" placeholder="이름을 입력해 주세요"
-										name="name">
-								</div>
-
-								<!-- 
-		vo.setEmail1(req.getParameter("email1"));
-		vo.setEmail1(req.getParameter("email2"));
-		vo.setSex(req.getParameter("sex"));
-		vo.setPhone1(req.getParameter("phone1"));
-		vo.setPhone2(req.getParameter("phone2"));
-		vo.setPhone3(req.getParameter("phone3"));
-		vo.setBirth(req.getParameter("birth"));
-		vo.setGrade(req.getParameter("grade"));
-		vo.setFaceImg(req.getParameter("faceImg"));
-		vo.setIntroduce(req.getParameter("introduce")); -->
-
-								<div class="form-group">
-									<label for="InputId">아이디</label>
-									<!-- <div id="chkIdOk"><span class="glyphicon glyphicon-ok"></span></div>
-						<div id="chkIdRemove"><span class="glyphicon glyphicon-remove"></span></div> -->
-									<div id="chkIdMsg"></div>
-									<input type="text" class="form-control" id="InputId"
-										placeholder="아이디(영문+숫자/6~15이내)" required="required"
-										name="mem_id">
-								</div>
-
-								<div class="form-group">
-									<label for="InputPassword1">비밀번호</label> <input type="password"
-										class="form-control" id="InputPassword1"
-										placeholder="비밀번호(영문+숫자/6~15이내)" required="required"
-										name="password">
-								</div>
-
-								<div class="form-group">
-									<label for="InputPassword2">비밀번호 확인</label>
-									<!-- <div id="chkPwdOk"><span class="glyphicon glyphicon-ok"></span></div>
-						<div id="chkPwdRemove"><span class="glyphicon glyphicon-remove"></span></div> -->
-									<div id="chkPwdMsg"></div>
-									<input type="password" class="form-control" id="InputPassword2"
-										placeholder="비밀번호 확인" required="required">
-									<!-- <p class="help-block">비밀번호 확인을 위해 다시 한번 입력 해 주세요</p> -->
-								</div>
-
-								<div class="form-group">
-									<label for="InputEmail">이메일 주소</label> <input type="email"
-										class="form-control" id="InputEmail"
-										placeholder="E-Mail(비밀번호 분실 시 필요합니다)" required="required"
-										name="email">
-								</div>
-
-								<div class="form-group">
-									<label for="InputBirthday">생년월일</label> <input type="date"
-										class="form-control" id="InputBirthday"
-										placeholder="생년월일을 선택해 주세요" required="required" name="birth">
-								</div>
-
-								<div class="form-group">
-									<label for="InputGender">성별</label>&nbsp;&nbsp;&nbsp; <label>
-										<input name="sex" type="radio" value="Male" checked>
-										남자
-									</label> &nbsp;&nbsp;&nbsp; <label><input name="sex"
-										type="radio" value="Female"> 여자</label>
-								</div>
-
-								<div class="form-group">
-									<label for="username">휴대폰 인증</label>
-									<div class="input-group">
-										<input type="tel" class="form-control" id="username"
-											placeholder="- 없이 입력해 주세요" name="phone"> <span
-											class="input-group-btn">
-											<button class="btn btn-success">
-												인증번호 전송<i class="fa fa-mail-forward spaceLeft"></i>
-											</button>
-										</span>
-									</div>
-								</div>
-
-								<div class="form-group">
-									<label for="username">인증번호 입력</label>
-									<div class="input-group">
-										<input type="text" class="form-control" id="username"
-											placeholder="인증번호"> <span class="input-group-btn">
-											<button class="btn btn-success">
-												인증번호 입력<i class="fa fa-edit spaceLeft"></i>
-											</button>
-										</span>
-									</div>
-								</div>
-
-								<div class="form-group">
-									<label>약관 동의</label>
-									<div data-toggle="buttons">
-										<label class="btn btn-primary active"> <span
-											class="fa fa-check"></span> <input id="agree" type="checkbox"
-											autocomplete="off" checked>
-										</label> <a href="#">이용약관</a>에 동의합니다.
-									</div>
-								</div>
-
-								<div class="form-group text-center">
-									<button type="submit" class="btn btn-info">
-										회원가입<i class="fa fa-check spaceLeft"></i>
-									</button>
-									<button type="submit" class="btn btn-warning">
-										가입취소<i class="fa fa-times spaceLeft"></i>
-									</button>
-								</div>
-
-							</form>
-						</div>
-						<!-- 회원가입 종료 -->
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
-
-
-	<!-- 모달 추가 종료 register -->
-
+		<c:if test="${sessionScope.mem_id == null}">
+			<%@include file="../main/modal/loginModal.jsp"%>	
+			<%@include file="../main/modal/registerModal.jsp"%>
+		</c:if>
 
 	<!--Home Sections-->
-	
-	
 	
 	<div id="write_mask" style="display: none;"></div>
 		<div id="write_pop" class="write_pop" style="display: none;">
@@ -525,35 +315,15 @@ footer {
 									<h3>맛집여행기</h3>
 								</c:when> --%>
 							</c:choose> 
-								<%-- <c:forEach var="epil" items="${epilList}" varStatus="status">
-									<div class="col-sm-3">
-										<a href="#">
-											<p>${epil.title}</p> 
-											<img class="thumbnail"
-											src="/project/resources/images/story/${epilDetail[status.index].courses[0].img1}"
-											style="width: 190px; height: 280px;">
-											<c:forEach var="info" items="${epilDetail[status.index].courses}">
-											<p>
-												<b>${info.visit_order}</b><small>${info.where.location_name}</small>
-											</p>
-											</c:forEach>
-											<p>
-												<fmt:formatDate value="${epil.reg_date }" />
-												에 다녀왔다시발
-											</p>
-											<p>좋아요 ${epil.goodCount} 댓글 18</p>
-										</a>
-									</div>
-								</c:forEach> --%>
+								<div class="col-md-12">
 								<c:forEach var="epil" items="${epilList}" varStatus="status">
-									<input type="hidden" id="epilNum" name="epilNum" value="${epil.epilogueNo}">
-									<a id="epilogueBox" href="epilogueDetail?epilogueNo=${epil.epilogueNo}&pageNum=${pageNum}">
-										<div class="col-sm-3">
+									<c:if test="${(status.index+1)%4!=0}">
+										<div style="float: left;">
+											<a id="epilogueBox" href="epilogueDetail?epilogueNo=${epil.epilogueNo}&pageNum=${pageNum}">
 												<p>${epil.title}</p> 
-												<input type="hidden" id="selectedEpilNum" name="selectedEpilNum" value="${epil.epilogueNo}">
 												<img class="thumbnail"
-												src="/project/resources/images/story/story${epil.img1}"
-												style="width: 190px; height: 280px;">
+												src="/project/resources/images/story/${epil.img1}"
+												style="width: 250px; height: auto;">
 														
 												<c:forEach var="info" items="${epil.visitOrder}" varStatus="status">
 												<p>
@@ -565,10 +335,36 @@ footer {
 													에 다녀옴
 												</p>
 												<span id="otherPart">좋아요 : ${epil.goodcount}   댓글 : ${epil.commentCount}</span>
+											</a>
 										</div>
-									</a>
+									</c:if>
+									<c:if test="${(status.index+1)%4==0}">
+										<div style="clear: both;">
+										</div>
+										<div style="float: left;">
+											<a id="epilogueBox" href="epilogueDetail?epilogueNo=${epil.epilogueNo}&pageNum=${pageNum}">
+												<p>${epil.title}</p> 
+												<img class="thumbnail"
+												src="/project/resources/images/story/${epil.img1}"
+												style="width: 250px; height: auto;">
+														
+												<c:forEach var="info" items="${epil.visitOrder}" varStatus="status">
+												<p>
+													<b>${status.index+1}</b><small>${info}</small>
+												</p>
+												</c:forEach>
+												<p>
+													<fmt:formatDate value="${epil.reg_date}" />
+													에 다녀옴
+												</p>
+												<span id="otherPart">좋아요 : ${epil.goodcount}   댓글 : ${epil.commentCount}</span>
+											</a>
+										</div>
+									</c:if>
+										
+
 								</c:forEach>
-								
+								</div>
  							</div>
 						</div>
 					</div>
@@ -622,14 +418,9 @@ footer {
 				</div>
 			</footer>
 
-
-
-
 			<hr>
 
-
 			<!--Company section-->
-
 
 
 			<!-- scroll up-->
@@ -669,7 +460,7 @@ footer {
 
 		<!-- JS includes -->
 
-		<script src="${js}vendor/jquery-1.11.2.min.js"></script>
+    	<script src="${js}vendor/jquery-1.11.2.min.js"></script>
 		<script src="${js}vendor/bootstrap.min.js"></script>
 
 		<script src="${js}isotope.min.js"></script>
@@ -684,7 +475,6 @@ footer {
 		
 		<script src="${js}/vendor/storyScript3.js?ver=1.2"></script>
 		
-		<script src="${js}bootstrap.green.min.js"></script>
 
 		<!-- story javascript -->
 

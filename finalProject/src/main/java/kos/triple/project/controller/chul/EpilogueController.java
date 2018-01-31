@@ -49,7 +49,7 @@ public class EpilogueController {
 	public String isLogin_essay(HttpServletRequest req, Model model) {
 		
 		if (req.getSession().getAttribute("mem_id")!=null) {
-			return "essay/essay_wrt";
+			return "story/essay/essay_wrt";
 		}else {
 			return "main/loginForm";
 		}
@@ -60,7 +60,7 @@ public class EpilogueController {
 	public String isLogin_reviewForm(HttpServletRequest req, Model model) {
 		
 		if (req.getSession().getAttribute("mem_id")!=null) {
-			return "review/reviewForm";
+			return "story/review/reviewForm";
 		}else {
 			return "main/loginForm";
 		}

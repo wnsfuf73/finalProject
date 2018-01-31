@@ -120,7 +120,7 @@
 						data-out="fadeOutUp">
 						<li><a href="plan">계획하기</a></li>
 						<li><a href="epilogueList">이야기</a></li>
-						<li><a href="where_main">어디갈까</a></li>
+						<!-- <li><a href="where_main">어디갈까</a></li> -->
 						<li class="dropdown"><a class="dropdown-toggle"
 							data-toggle="dropdown" href="#">예약 </a>
 							<ul class="dropdown-menu">
@@ -139,14 +139,12 @@
 							<a class="dropdown-toggle"
 								data-toggle="dropdown" href="#">${sessionScope.mem_id}님</a>
 								<ul class="dropdown-menu">
-									<li><a href="plan">계획하기</a></li>
-									<li><a href="xxxStart">여행후기</a></li>
 									<li><a href="myPageStart">마이페이지</a></li>
+									<li><a href="logout" >로그아웃</a></li>
 								</ul>
 							</li>
-									
-							<li><a href="logout" >로그아웃</a></li>
 						</c:if>
+						
 					</ul>
 				</div>
 				<!-- /.navbar-collapse -->

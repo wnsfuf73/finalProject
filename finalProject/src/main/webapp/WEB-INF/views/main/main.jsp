@@ -139,7 +139,7 @@
 							data-toggle="dropdown" href="#">${sessionScope.mem_id}님</a>
 							<ul class="dropdown-menu">
 								<li><a href="plan">계획하기</a></li>
-								<li><a href="xxxStart">여행후기</a></li>
+								<li><a href="epilogueList">여행후기</a></li>
 								<li><a href="myPageStart">마이페이지</a></li>
 							</ul>
 						</li>
@@ -218,7 +218,9 @@
 						<div class="col-md-6 m-top-120">
 							<!-- Head Title -->
 							<div class="feature_content wow fadeIn m-top-40">
-								<h3><span color=#2786FF>1월의</span> 베스트 여행기</h3>
+								<jsp:useBean id="now" class="java.util.Date" />
+								<fmt:formatDate var="mm" value="${now}" pattern="MM" />
+								<h3><span color=#2786FF>${mm}월의</span> 베스트 여행기</h3>
 							</div>
 							<div class="separator_left"></div>
 							<div class="head_title">
@@ -234,7 +236,6 @@
 									class="fa fa-long-arrow-right"></i>
 								</a>
 							</div>
-
 						</div>
 						<div class="col-md-6">
 							<div class="feature_photo wow fadeIn sm-m-top-40">
@@ -253,8 +254,9 @@
 			<br><br>
 			<hr />
 			
+			<!-- 추천여행기  -->
 			<!--Our Work Section-->
-			<div class="container">
+<%-- 			<div class="container">
 				<div class="row">
 				
 				<div  class="head_title text-left sm-text-center wow fadeInDown">
@@ -380,10 +382,12 @@
 				</div>
 			</div>
 
-			<hr />
-			
+			<hr /> --%>
+			<!-- 추천여행기 주석  -->			
 
-			<div class="container">
+
+			<!-- 추천리스트 주석 -->
+			<%-- <div class="container">
 				<div class="row">
 					<div  class="head_title text-left sm-text-center wow fadeInDown">
 						<h2><span>곽호선</span>님의 추천리스트 만들기</h2>
@@ -570,14 +574,16 @@
 					</div>
 				</div>
 				<!--End off row -->
-			</div>
+			</div> --%>
+			<!-- 추천리스트 주석 -->
 
 		</section>
 		<!--End off About section -->
 		<hr>
 		<!--Testimonial Section-->
 		<section id="testimonial" class="testimonial fix roomy-100">
-			<div class="container">
+			<!-- 사용자추천 주석 -->
+<%-- 			<div class="container">
 				<div class="row">
 					<div class="main_testimonial text-center">
 						<h2><span>사용자</span> 추천</h2>
@@ -731,14 +737,16 @@
 					</div>
 				</div>
 				<!--End off row-->
-			</div>
+			</div> --%>
+			<!-- 사용자추천 주석 -->
+			
 			<!--End off container -->
 
 			<br />
 			<hr />
 			
-
-			<div class="container">
+			<!-- 하단 호리즌이미지 -->
+			<%-- <div class="container">
 				<div class="row">
 					<div class="main_cbrand text-center">
 						<div class="col-md-2 col-sm-4 col-xs-6">
@@ -775,7 +783,8 @@
 					</div>
 				</div>
 				<!-- End off row -->
-			</div>
+			</div> --%>
+			<!-- 하단 호리즌이미지 주석-->
 			<!-- End off container -->
 		</section>
 		<!--End off Testimonial section -->
@@ -797,11 +806,11 @@
 						</div>
 						<div class="col-md-12 m-bottom-60">
 							<div class="filters-button-group text-right sm-text-center">
-								<button class="button is-checked" data-filter="*">ALL</button>
-								<button class="button" data-filter=".metal">힐링</button>
-								<button class="button" data-filter=".transition">레저</button>
-								<button class="button" data-filter=".alkali">맛집</button>
-								<button class="button" data-filter=".ar">추천</button>
+								<button class="button is-checked" data-filter="*"><span class="glyphicon glyphicon-picture"></span></button>
+								<button class="button" data-filter=".metal"><span class="glyphicon glyphicon-facetime-video"></span></button>
+								<button class="button" data-filter=".transition"><span class="glyphicon glyphicon-eye-open"></span></button>
+						<!-- 		<button class="button" data-filter=".alkali"><span class="glyphicon glyphicon-picture"></span></button>
+								<button class="button" data-filter=".ar"><span class="glyphicon glyphicon-picture"></span></button> -->
 							</div>
 						</div>
 
@@ -1040,9 +1049,11 @@
 						<!-- End off col-md-3 -->
 
 						<div class="col-md-3 col-sm-6">
-							<div class="model_item meet_team m-top-30">
+							<!-- 모두보기 주석 -->
+							<!-- <div class="model_item meet_team m-top-30">
 								<a href="">모두 보기<i class="fa fa-long-arrow-right"></i></a>
-							</div>
+							</div> -->
+							<!-- 모두보기 주석 -->
 						</div>
 						<!-- End off col-md-3 -->
 

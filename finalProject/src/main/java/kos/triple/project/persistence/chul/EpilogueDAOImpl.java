@@ -249,7 +249,7 @@ public class EpilogueDAOImpl implements EpilogueDAO{
 		EpilogueVO vo =  dao.getEpilog(epilogNum);
 		
 		return vo;
-		
+
 	}
 
 	@Override

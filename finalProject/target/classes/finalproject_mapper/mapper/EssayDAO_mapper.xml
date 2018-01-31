@@ -14,7 +14,9 @@
 	<!-- 검색 -->
 	<select id="reviewSearch" resultType="kos.triple.project.vo.WhereVO">
 		<![CDATA[
-			SELECT * from TRIP_LOCATION_INFO WHERE instr(location_name,+#{reviewSearch}) > 0 or instr(area,+#{reviewSearch}) > 0 or instr(location_addr,+#{reviewSearch}) > 0 or instr(thema_category,+#{reviewSearch}) > 0
+			SELECT * from TRIP_LOCATION_INFO WHERE instr(location_name,+#{reviewSearch}) > 0 
+			or instr(area,+#{reviewSearch}) > 0 or instr(location_addr,+#{reviewSearch}) > 0 
+			or instr(thema_category,+#{reviewSearch}) > 0
 		]]>
 	</select>
 	

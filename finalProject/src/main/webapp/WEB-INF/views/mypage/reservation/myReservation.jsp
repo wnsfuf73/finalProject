@@ -6,36 +6,57 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
-<link rel="stylesheet"
-	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-<script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-<script
-	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
 <script type="text/javascript">
-	//ajax 페이지요청
-	function getStayResList(requestPage) {
+//ajax 페이지요청
+function getStayResList(requestPage) {
+	$.ajax({
+		url : "getStayResList?requestPage=" + requestPage,
+		type : 'GET',
+		success : function(msg) {
+			$("#stay_res_list").html(msg);
+		},
+		error : function() {
+			alert("error");
+		}
+	})
+}
 
+function getAirResList(requestPage) {
+	$.ajax({
+		url : "getAirResList?requestPage=" + requestPage,
+		type : 'GET',
+		success : function(msg) {
+			$("#air_res_list").html(msg);
+		},
+		error : function() {
+			alert("error");
+		}
+	})
+}
+
+function getCarResList(requestPage) {
+	$.ajax({
+		url : "getCarResList?requestPage=" + requestPage,
+		type : 'GET',
+		success : function(msg) {
+			$("#car_res_list").html(msg);
+		},
+		error : function() {
+			alert("error");
+		}
+	})
+}
+
+//ajax 페이지요청
+//예약 취소
+function airResCancel(airplaneNo, airResNo) {
+	if (confirm("예약을 취소하겠습니까?")) {
 		$.ajax({
-
-			url : "getStayResList?requestPage=" + requestPage,
-			type : 'GET',
-			success : function(msg) {
-				$("#stay_res_list").html(msg);
-			},
-			error : function() {
-				alert("error");
-			}
-
-		})
-
-	}
-
-	function getAirResList(requestPage) {
-
-		$.ajax({
-
-			url : "getAirResList?requestPage=" + requestPage,
+			url : "airResCancel?airplaneNo=" + airplaneNo + "&airResNo=" + airResNo,
 			type : 'GET',
 			success : function(msg) {
 				$("#air_res_list").html(msg);
@@ -43,16 +64,33 @@
 			error : function() {
 				alert("error");
 			}
-
 		})
-
 	}
-
-	function getCarResList(requestPage) {
-
+	return false;
+}
+	
+//렌트카 반납
+function carResReturn(rent_no){
+	if(confirm("차량을 반납하시겠습니까?")){
 		$.ajax({
+			url : "carResReturn?rent_no="+rent_no,
+			type : 'GET',
+			success : function(msg){
+				$("#car_res_list").html(msg);
+			}
+			,error : function(){
+				alert("error");
+			}
+		})
+	}
+	return false;
+}
 
-			url : "getCarResList?requestPage=" + requestPage,
+//렌트카 취소
+function carResCancel(rent_no) {
+	if (confirm("예약을 취소하겠습니까?")) {
+		$.ajax({
+			url : "carResCancel?rent_no=" + rent_no,
 			type : 'GET',
 			success : function(msg) {
 				$("#car_res_list").html(msg);
@@ -60,165 +98,66 @@
 			error : function() {
 				alert("error");
 			}
-
 		})
-
 	}
+}
 
-	//ajax 페이지요청
-
-	//예약 취소
-
-	function airResCancel(airplaneNo, airResNo) {
-
-		if (confirm("예약을 취소하겠습니까?")) {
-
-			$.ajax({
-
-				url : "airResCancel?airplaneNo=" + airplaneNo + "&airResNo="
-						+ airResNo,
-				type : 'GET',
-				success : function(msg) {
-					$("#air_res_list").html(msg);
-				},
-				error : function() {
-					alert("error");
-				}
-
-			})
-		}
-		return false;
-
+function stayResCancel(reservation_no) {
+	if (confirm("예약을 취소하겠습니까?")) {
+		$.ajax({
+			url : "stayResCancel?reservation_no=" + reservation_no,
+			type : 'GET',
+			success : function(msg) {
+				$("#stay_res_list").html(msg);
+			},
+			error : function() {
+				alert("error");
+			}
+		})
 	}
+	return false;
+}
 
-	//렌트카 취소
-	function carResCancel(rent_no) {
-
-		if (confirm("예약을 취소하겠습니까?")) {
-
-			$.ajax({
-
-				url : "carResCancel?rent_no=" + rent_no,
-				type : 'GET',
-				success : function(msg) {
-					$("#car_res_list").html(msg);
-				},
-				error : function() {
-					alert("error");
-				}
-
-			})
-		}
+//렌트카 반납
+function carResReturn(rent_no) {
+	if (confirm("차량을 반납하시겠습니까?")) {
+		$.ajax({
+			url : "carResReturn?rent_no=" + rent_no,
+			type : 'GET',
+			success : function(msg) {
+				$("#car_res_list").html(msg);
+			},
+			error : function() {
+				alert("error");
+			}
+		})
 	}
-
-	function stayResCancel(reservation_no) {
-
-		if (confirm("예약을 취소하겠습니까?")) {
-
-			$.ajax({
-
-				url : "stayResCancel?reservation_no=" + reservation_no,
-				type : 'GET',
-				success : function(msg) {
-					$("#stay_res_list").html(msg);
-				},
-				error : function() {
-					alert("error");
-				}
-
-			})
-		}
-		return false;
-
-	}
-
-	//렌트카 반납
-	function carResReturn(rent_no) {
-
-		if (confirm("차량을 반납하시겠습니까?")) {
-
-			$.ajax({
-				url : "carResReturn?rent_no=" + rent_no,
-				type : 'GET',
-				success : function(msg) {
-					$("#car_res_list").html(msg);
-				},
-				error : function() {
-					alert("error");
-				}
-
-			})
-		}
-	}
+}
 </script>
 </head>
 <body>
 	<h2>나의 예약 목록</h2>
 	<br>
 	<br>
-
-
 	<script type="text/javascript">
-		$(document)
-				.ready(
-						function() {
+		$(document).ready(function() {
+			$("#search").on("keyup",function() {
+				var value = $(this).val().toLowerCase();
+				$("#air_res_list tr").filter(function() {
+					$(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+				});
+				$("#car_res_list tr").filter(function() {
+					$(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+				});
+				$("#stay_res_list tr").filter(function() {
+					$(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+				});
+			});
 
-							$("#search")
-									.on(
-											"keyup",
-											function() {
-												var value = $(this).val()
-														.toLowerCase();
-
-												$("#air_res_list tr")
-														.filter(
-																function() {
-																	$(this)
-																			.toggle(
-																					$(
-																							this)
-																							.text()
-																							.toLowerCase()
-																							.indexOf(
-																									value) > -1)
-
-																});
-
-												$("#car_res_list tr")
-														.filter(
-																function() {
-																	$(this)
-																			.toggle(
-																					$(
-																							this)
-																							.text()
-																							.toLowerCase()
-																							.indexOf(
-																									value) > -1)
-
-																});
-
-												$("#stay_res_list tr")
-														.filter(
-																function() {
-																	$(this)
-																			.toggle(
-																					$(
-																							this)
-																							.text()
-																							.toLowerCase()
-																							.indexOf(
-																									value) > -1)
-																});
-
-											});
-
-							if ($('#rentTable tbody tr').length == 1) {
-								$("#pagingArea").html("");
-							}
-							;
-
-						});
+			if ($('#rentTable tbody tr').length == 1) {
+				$("#pagingArea").html("");
+			};
+		});
 	</script>
 
 	<div class="container">
@@ -235,7 +174,7 @@
 					<tr>
 						<th>번호</th>
 						<th>호텔 이름</th>
-						<th style="width:200px;">객실 이름</th>
+						<th style="width: 200px;">객실 이름</th>
 						<th>체크 인</th>
 						<th>체크 아웃</th>
 						<th>숙박 인원</th>
@@ -317,10 +256,8 @@
 						<th>도착지</th>
 						<th>출발일시</th>
 						<th>도착일시</th>
-						<th>인원<br>
-						<small>(성인|학생|유아)</small></th>
-						<th>좌석등급<br>
-						<small>(성인|학생|유아)</small></th>
+						<th>인원<br> <small>(성인|학생|유아)</small></th>
+						<th>좌석등급<br> <small>(성인|학생|유아)</small></th>
 						<th>결제금액</th>
 						<th>결제수단</th>
 						<th>결제일시</th>
@@ -341,7 +278,7 @@
 								<fmt:formatDate var="et" value="${airRes.endTime}"
 									pattern="yyyy-MM-dd HH:mm" />
 								<td>${et}</td>
-								<td>${airRes.memSize} <small> (${airRes.adult }|${airRes.student }|${airRes.baby })
+								<td>${airRes.memSize}<small> (${airRes.adult }|${airRes.student }|${airRes.baby })
 								</small>
 								</td>
 								<td><small>( <c:if
@@ -480,9 +417,7 @@
 				</tbody>
 			</table>
 		</div>
-
 		<hr>
 	</div>
-
 </body>
 </html>

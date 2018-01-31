@@ -93,7 +93,7 @@
 						data-target="#navbar-menu">
 						<i class="fa fa-bars"></i>
 					</button>
-					<a class="navbar-brand" href="index"> 홈<img src="#"
+					<a class="navbar-brand" href="main"> 홈<img src="#"
 						class="logo logo-display" alt=""> <img src="#"
 						class="logo logo-scrolled" alt="">
 

@@ -139,7 +139,7 @@
 							data-toggle="dropdown" href="#">${sessionScope.mem_id}님</a>
 							<ul class="dropdown-menu">
 								<li><a href="plan">계획하기</a></li>
-								<li><a href="xxxStart">여행후기</a></li>
+								<li><a href="epilogueList">여행후기</a></li>
 								<li><a href="myPageStart">마이페이지</a></li>
 							</ul>
 						</li>
@@ -218,7 +218,9 @@
 						<div class="col-md-6 m-top-120">
 							<!-- Head Title -->
 							<div class="feature_content wow fadeIn m-top-40">
-								<h3><span color=#2786FF>1월의</span> 베스트 여행기</h3>
+								<jsp:useBean id="now" class="java.util.Date" />
+								<fmt:formatDate var="mm" value="${now}" pattern="MM" />
+								<h3><span color=#2786FF>${mm}월의</span> 베스트 여행기</h3>
 							</div>
 							<div class="separator_left"></div>
 							<div class="head_title">
@@ -234,7 +236,6 @@
 									class="fa fa-long-arrow-right"></i>
 								</a>
 							</div>
-
 						</div>
 						<div class="col-md-6">
 							<div class="feature_photo wow fadeIn sm-m-top-40">
@@ -253,8 +254,9 @@
 			<br><br>
 			<hr />
 			
+			<!-- 추천여행기  -->
 			<!--Our Work Section-->
-			<div class="container">
+<%-- 			<div class="container">
 				<div class="row">
 				
 				<div  class="head_title text-left sm-text-center wow fadeInDown">
@@ -380,204 +382,59 @@
 				</div>
 			</div>
 
-			<hr />
-			
+			<hr /> --%>
+			<!-- 추천여행기 주석  -->			
 
+
+			<!-- 추천리스트 주석 -->
 			<div class="container">
 				<div class="row">
 					<div  class="head_title text-left sm-text-center wow fadeInDown">
-						<h2><span>곽호선</span>님의 추천리스트 만들기</h2>
+						<h2><span>${sessionScope.mem_id}</span>님의 추천리스트 만들기</h2>
 						<h5>
-							<em>Some our recent works is here. Discover them now!</em>
+							<em>we're recommended for you!!</em>
 						</h5>
 						<div class="separator_left"></div>
 					</div>
 
-					<div class="service_content_area">
-						<!-- Service LEFT SIDE -->
+					<div class="service_content_area" id="result">
+						<!-- 왼쪽메뉴 -->
 						<div class="col-md-4 service_left wow fadeInLeft">
 							<!-- Service -->
-
-							<div class="service_items">
-								<div class="row">
-
-									<!-- ICON -->
-									<div class="col-xs-3">
-										<div class="hexagon">
-											<div class="about-content">
-												<span class="fa fa-leaf"></span>
-											</div>
-										</div>
-									</div>
-
-									<div class="col-xs-9">
-										<div class="text-left service_left_text">
-											<h4 class="main-color">Perfect Responsive</h4>
-											<p>Duis autem vel eum iriure dolor in hendrerit in
-												vulputate velit esse molestie</p>
-										</div>
-									</div>
-
-								</div>
-							</div>
-							<!-- end Single Service item -->
-
-							<!-- Service -->
-							<div class="service_items">
-								<div class="row">
-									<!-- ICON -->
-									<div class="col-xs-3">
-										<div class="hexagon">
-											<div class="about-content">
-												<span class="fa fa-diamond"></span>
-											</div>
-										</div>
-									</div>
-
-									<div class="col-xs-9">
-										<div class="text-left service_left_text">
-											<h4 class="main-color">Unique Design</h4>
-											<p>Duis autem vel eum iriure dolor in hendrerit in
-												vulputate velit esse molestie</p>
-										</div>
-									</div>
-
-								</div>
-							</div>
-							<!-- end Single Service item -->
-
-							<!-- Service -->
-							<div class="service_items">
-								<div class="row">
-									<!-- ICON -->
-									<div class="col-xs-3">
-										<div class="hexagon">
-											<div class="about-content">
-												<span class="fa fa-android"></span>
-											</div>
-										</div>
-									</div>
-
-									<div class="col-xs-9">
-										<div class="text-left service_left_text">
-											<h4 class="main-color">Clean & Clear</h4>
-											<p>Duis autem vel eum iriure dolor in hendrerit in
-												vulputate velit esse molestie</p>
-										</div>
-									</div>
-								</div>
-							</div>
-							<!-- end Single Service item -->
-
-
 						</div>
 						<!-- /END Service LEFT -->
 
-						<!-- PHONE IMAGE -->
+						<!-- 추천목록 뿌리는 버튼 -->
 						<div class="col-md-4 sm-m-top-40 sm-text-center">
 							<div class="service-img wow bounceIn">
-								<img src="${images}service-img.png" alt="Architect Img">
+								<div class="recomm_div">
+									<span id="recomm_id">${sessionScope.mem_id}</span>님의 추천 목록 보기
+									<div style="height:100%">
+										<a style="margin-top:130px;"type="button" id="recomm_btn" class="btn btn-default text-uppercase">보기</a>
+									</div>
+								</div>
 							</div>
 						</div>
 
-						<!-- Service RIGHT -->
+						<!-- 오른쪽 메뉴 -->
 						<div class="col-md-4 service_right wow fadeInRight sm-m-top-40">
-
 							<!-- Service -->
-							<div class="service_items">
-								<div class="row">
-
-									<div class="col-xs-9">
-										<div class="service_right_text p-l-15 text-right">
-											<h4 class="main-color">Easy install</h4>
-											<p>Duis autem vel eum iriure dolor in hendrerit in
-												vulputate velit esse molestie</p>
-										</div>
-									</div>
-
-									<!-- ICON -->
-									<div class="col-xs-3">
-										<div class="hexagon">
-											<div class="about-content">
-												<span class="fa fa-cut"></span>
-											</div>
-										</div>
-									</div>
-
-								</div>
-
-							</div>
-							<!-- end Single Service item -->
-
-
-
-							<!-- Service -->
-							<div class="service_items">
-								<div class="row">
-
-									<div class="col-xs-9">
-										<div class="service_right_text p-l-15 text-right">
-											<h4 class="main-color">Premium Support</h4>
-											<p>Duis autem vel eum iriure dolor in hendrerit in
-												vulputate velit esse molestie</p>
-										</div>
-									</div>
-
-
-									<!-- ICON -->
-									<div class="col-xs-3">
-										<div class="hexagon">
-											<div class="about-content">
-												<span class="fa fa-bullhorn"></span>
-											</div>
-										</div>
-									</div>
-
-								</div>
-
-							</div>
-							<!-- end Single Service item -->
-
-							<!-- Service -->
-							<div class="service_items">
-								<div class="row">
-
-
-									<div class="col-xs-9">
-										<div class="service_right_text p-l-15 text-right">
-											<h4 class="main-color">And much more</h4>
-											<p>Duis autem vel eum iriure dolor in hendrerit in
-												vulputate velit esse molestie</p>
-										</div>
-									</div>
-
-									<!-- ICON -->
-									<div class="col-xs-3">
-										<div class="hexagon">
-											<div class="about-content">
-												<span class="fa fa-paper-plane"></span>
-											</div>
-										</div>
-									</div>
-
-								</div>
-							</div>
-							<!-- end Single Service item -->
-
-
 						</div>
 						<!-- /END Service RIGHT -->
 					</div>
+					
 				</div>
 				<!--End off row -->
 			</div>
+			<!-- 추천리스트 주석 -->
 
 		</section>
 		<!--End off About section -->
 		<hr>
 		<!--Testimonial Section-->
 		<section id="testimonial" class="testimonial fix roomy-100">
-			<div class="container">
+			<!-- 사용자추천 주석 -->
+<%-- 			<div class="container">
 				<div class="row">
 					<div class="main_testimonial text-center">
 						<h2><span>사용자</span> 추천</h2>
@@ -731,14 +588,16 @@
 					</div>
 				</div>
 				<!--End off row-->
-			</div>
+			</div> --%>
+			<!-- 사용자추천 주석 -->
+			
 			<!--End off container -->
 
 			<br />
 			<hr />
 			
-
-			<div class="container">
+			<!-- 하단 호리즌이미지 -->
+			<%-- <div class="container">
 				<div class="row">
 					<div class="main_cbrand text-center">
 						<div class="col-md-2 col-sm-4 col-xs-6">
@@ -775,7 +634,8 @@
 					</div>
 				</div>
 				<!-- End off row -->
-			</div>
+			</div> --%>
+			<!-- 하단 호리즌이미지 주석-->
 			<!-- End off container -->
 		</section>
 		<!--End off Testimonial section -->
@@ -797,11 +657,11 @@
 						</div>
 						<div class="col-md-12 m-bottom-60">
 							<div class="filters-button-group text-right sm-text-center">
-								<button class="button is-checked" data-filter="*">ALL</button>
-								<button class="button" data-filter=".metal">힐링</button>
-								<button class="button" data-filter=".transition">레저</button>
-								<button class="button" data-filter=".alkali">맛집</button>
-								<button class="button" data-filter=".ar">추천</button>
+								<button class="button is-checked" data-filter="*"><span class="glyphicon glyphicon-picture"></span></button>
+								<button class="button" data-filter=".metal"><span class="glyphicon glyphicon-facetime-video"></span></button>
+								<button class="button" data-filter=".transition"><span class="glyphicon glyphicon-eye-open"></span></button>
+						<!-- 		<button class="button" data-filter=".alkali"><span class="glyphicon glyphicon-picture"></span></button>
+								<button class="button" data-filter=".ar"><span class="glyphicon glyphicon-picture"></span></button> -->
 							</div>
 						</div>
 
@@ -1040,9 +900,11 @@
 						<!-- End off col-md-3 -->
 
 						<div class="col-md-3 col-sm-6">
-							<div class="model_item meet_team m-top-30">
+							<!-- 모두보기 주석 -->
+							<!-- <div class="model_item meet_team m-top-30">
 								<a href="">모두 보기<i class="fa fa-long-arrow-right"></i></a>
-							</div>
+							</div> -->
+							<!-- 모두보기 주석 -->
 						</div>
 						<!-- End off col-md-3 -->
 
@@ -1099,6 +961,27 @@
 		</footer>
 
 	</div>
-
+<script type="text/javascript">
+	/* 추천 ajax */
+	$(document).ready(function() {
+		$('#recomm_btn').click(function() {
+			
+		/* 	var planTitle = $("input[name='planTitle']").val();
+			var planContent = $("textarea[name='planContent']").val(); */
+		
+			 $.ajax({
+				url: "recommend",
+				type: 'GET',
+				
+				success: function(msg) {
+					$('#result').html(msg);					
+				},				
+				error: function() {
+					alert('오류');
+				}			
+			});			 
+		});		
+	});
+</script>
 </body>
 </html>

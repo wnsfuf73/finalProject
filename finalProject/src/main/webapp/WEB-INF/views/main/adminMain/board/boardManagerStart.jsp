@@ -182,48 +182,6 @@
 	
 				<hr>
 	
-	
-				<!-- ** -->
-				<div class="w3-row w3-section" align="center">
-					<div class="w3-col" style="width: 50px"></div>
-					<div class="w3-rest">
-			
-						<!-- 검색조건1 -->
-						<select class="w3-select w3-border" name="selectOpt1" style="width: 200px;">
-							<option value="" disabled selected>선택</option>
-							<option value="결제">결제</option>
-							<option value="숙박">숙박</option>
-							<option value="여행">여행</option>
-							<option value="예약">예약</option>
-							<option value="사이트 이용">사이트 이용</option>
-						</select>
-						<!-- 검색조건1 -->
-			
-			
-						<!-- 검색조건2 -->
-						<select class="w3-select w3-border" name="selectOpt2" style="width: 200px;">
-							<option value="" disabled selected>선택</option>
-							<option value="all">전체</option>
-							<option value="title">제목</option>
-							<option value="content">내용</option>
-						</select>
-						<!-- 검색조건2 -->
-			
-			
-						<!-- 검색 폼*** -->
-						<input type="text" class="search" name="searchOpt" placeholder="검색어를 입력해주세요" style="width: 200px;">
-						&nbsp;
-						<!-- 검색 버튼 -->
-						<input class="w3-btn w3-ripple w3-blue" type="submit" value="검색">
-						<!-- 검색 버튼 -->
-						<!-- 검색 폼*** -->
-						
-						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-				
-					</div>
-				</div>
-				<!-- ** -->
-	
 		</div>
 	</div>
 	<script type="text/javascript">
@@ -252,20 +210,6 @@
 			window.location="noticeDetail?noticeNo="+noticeNo;
 			
 			
-			/* $.ajax({
-				url:"noticeDetail?noticeNo="+noticeNo,
-				type:"GET",
-				success:function(){
-					var x = $("#board_count_"+boardNo).text();
-					x = parseInt(x)+1;
-					$("#board_count_"+boardNo).html(x);
-					
-					window.location="boardSelectDetail?boardNo="+boardNo+"&requestPage="+pageNum;
-				},
-				error:function(){
-					alert("error");
-				}
-			}) */
 			
 		}
 		

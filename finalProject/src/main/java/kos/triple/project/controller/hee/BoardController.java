@@ -37,6 +37,10 @@ public class BoardController {
 	@RequestMapping(value = "myPageBoardList")
 	public String myPageBoardList(HttpServletRequest req, Model model) {
 		System.out.println("boardList()");
+
+		if(req.getSession().getAttribute("mem_id")==null) {
+			return "main/loginForm";
+		}
 		
 		service.getMyQnAList(req,model);
 		

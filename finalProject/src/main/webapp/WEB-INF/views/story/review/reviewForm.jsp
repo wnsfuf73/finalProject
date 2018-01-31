@@ -33,8 +33,6 @@
 <link rel="stylesheet" href="${css}kwak.css">
 <link rel="stylesheet" href="${css}wrtcss/essay.css">
 
-<link rel="stylesheet"
-	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 
 
 <!--For Plugins external css-->

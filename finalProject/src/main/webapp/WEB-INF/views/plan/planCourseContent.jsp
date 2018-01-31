@@ -118,10 +118,9 @@
 				<div class="collapse navbar-collapse" id="navbar-menu">
 					<ul class="nav navbar-nav navbar-right" data-in="fadeInDown"
 						data-out="fadeOutUp">
-						<li><a href="plan">계획하기</a></li>
-						<li><a href="story_write_myTourStory">이야기</a></li>
+						<!-- <li><a href="plan">계획하기</a></li> -->
+						<li><a href="epilogueList">이야기</a></li>
 						<li><a href="where_main">어디갈까</a></li>
-						<li><a href="recomandStart">추천여행기</a></li>
 						<li class="dropdown"><a class="dropdown-toggle"
 							data-toggle="dropdown" href="#">예약 </a>
 							<ul class="dropdown-menu">
@@ -140,7 +139,7 @@
 							data-toggle="dropdown" href="#">${sessionScope.mem_id}님</a>
 							<ul class="dropdown-menu">
 								<li><a href="plan">계획하기</a></li>
-								<li><a href="xxxStart">여행후기</a></li>
+								<li><a href="epilogueList">여행후기</a></li>
 								<li><a href="myPageStart">마이페이지</a></li>
 							</ul>
 						</li>
@@ -153,6 +152,11 @@
 			</div>
 
 		</nav>
+		<c:if test="${sessionScope.mem_id == null}">
+			<%@include file="../main/modal/loginModal.jsp"%>	
+			<%@include file="../main/modal/registerModal.jsp"%>
+		</c:if>
+		
 		
 		<!-- ================메인  HEAD화면================= -->
 		<section class="plan_head">
@@ -182,7 +186,7 @@
 								<div class="clear"></div>
 							</div>
 						</a>
-						<a href="myPlan" class="head_button">
+						<a href="myPagePlan" class="head_button">
 							<div class="head_button_in">
 								<img alt="" src="${images}plan/head/search.png">
 								<span>나의 일정보기</span>
@@ -220,16 +224,26 @@
 											<th style="width:10%; text-align:center;"> 방문 장소 </th>
 										</tr>
 									</thead>
-											
+												
 										<tr>
 											<td align="center" colspan="3" style="width:100%; height:auto">
+												<fmt:parseNumber var="size" integerOnly="true" value="${fn:length(dto)/2}"/>		
 												<div style="width:33%; float:left; height:100%; border-right:1px solid ">
-													<c:forEach var="list" items="${dto}">
-														<div>
-															${list.planTitle}
-														</div>
+													<c:forEach var="list" items="${dto}" varStatus="status">
+														<c:if test="${status.index==size}">	
+															<div style="visibility: visible;">
+																${list.planTitle}
+															</div>
+														</c:if>
+														<c:if test="${status.index!=size}">	
+															<div style="visibility:hidden;">
+																${list.planTitle}
+															</div>
+														</c:if>
 													</c:forEach>
 												</div>
+												
+												
 												
 												<div style="width:33%; float:left; border-right:1px solid">
 													<c:forEach var="list" items="${dto}">
@@ -318,8 +332,6 @@
 	<script src="${js}slick.min.js"></script>
 	<script src="${js}jquery.collapse.js"></script>
 	<script src="${js}bootsnav.js"></script>
-
-
 
 	<script src="${js}plugins.js"></script>
 	<script src="${js}main.js"></script>

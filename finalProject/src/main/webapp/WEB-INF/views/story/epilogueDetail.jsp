@@ -10,6 +10,9 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
+
+
+
 <style type="text/css">
 	
 	
@@ -114,7 +117,6 @@ style="background-color: #36363b;">
 				<li><a href="plan"><span>계획하기</span></a></li>
 				<li><a href="epilogueList"><span>이야기</span></a></li>
 				<li><a href="where_main"><span>어디갈까</span></a></li>
-				<li><a href="recomandStart">추천여행기</a></li>
 				<li class="dropdown"><a class="dropdown-toggle"
 					data-toggle="dropdown" href="#"><span>예약</span> </a>
 					<ul class="dropdown-menu">
@@ -124,32 +126,29 @@ style="background-color: #36363b;">
 					</ul>
 				</li>
 			<c:if test="${sessionScope.mem_id == null}">					
-				<li><a href="" data-toggle="modal" data-target="#login"><span>로그인</span></a></li>
-				<li><a href="" data-toggle="modal" data-target="#register"><span>회원가입</span></a></li>
-			</c:if>
-			<c:if test="${sessionScope.mem_id != null}">
-				<li class="dropdown">
-				<a class="dropdown-toggle"
-					data-toggle="dropdown" href="#"><span>${sessionScope.mem_id}님</span></a>
-					<ul class="dropdown-menu">
-						<li><a href="plan">계획하기</a></li>
-						<li><a href="xxxStart">여행후기</a></li>
-						<li><a href="myPageStart">마이페이지</a></li>
+							<li><a href="" data-toggle="modal" data-target="#login">로그인</a></li>
+							<li><a href="" data-toggle="modal" data-target="#register">회원가입</a></li>
+						</c:if>
+						<c:if test="${sessionScope.mem_id != null}">
+							<li class="dropdown">
+							<a class="dropdown-toggle"
+								data-toggle="dropdown" href="#">${sessionScope.mem_id}님</a>
+								<ul class="dropdown-menu">
+									<li><a href="myPageStart">마이페이지</a></li>
+									<li><a href="logout" >로그아웃</a></li>
+								</ul>
+							</li>
+						</c:if>
 					</ul>
-				</li>
-						
-				<li><a href="logout" ><span>로그아웃</span></a></li>
-			</c:if>
-			</ul>
-		</div>
-	</div>
-	
-</nav>
+				</div>
+				<!-- /.navbar-collapse -->
+			</div>
 
-<c:if test="${sessionScope.mem_id == null}">
-<%@include file="../main/modal/loginModal.jsp"%>	
-<%@include file="../main/modal/registerModal.jsp"%>
-</c:if>
+		</nav>
+		<c:if test="${sessionScope.mem_id == null}">
+			<%@include file="../main/modal/loginModal.jsp"%>
+			<%@include file="../main/modal/registerModal.jsp"%>
+		</c:if>
 
 	<div class="container" style="background-color: #ffffff;">
 		<div class="row">
@@ -205,7 +204,7 @@ style="background-color: #36363b;">
 					<div class="row">
 						<div class="col-md-11">
 							<div class="well well-lg" style="background-color: #fbfcfd;">
-								<span>${i.location_addr }</span>
+								<%-- <span>${i.location_name }</span><br><span><small>${i.location_addr }</small></span> --%>
 							</div><br>
 						</div>
 					</div>	
@@ -219,7 +218,7 @@ style="background-color: #36363b;">
 						<div class="col-md-11">
 							<div class="thumbnail">
 								<center>
-									<img alt="img1" src="${images}story/story${i.img1}" width="100%" height="450px;">
+									<img alt="img1" src="${images}story/${i.img1}" width="100%" height="450px;">
 								</center>
 								<span>${i.dday}</span>
 							</div>
@@ -227,13 +226,13 @@ style="background-color: #36363b;">
 							<div class="container-fluid">
 								<div class ="row">
 									<div class="col-md-3 col-md-offset-1">
-										<div class="thumbnail"><img alt="img2" src="${images}story/story${i.img2}" width="100%" height="100%"></div>
+										<div class="thumbnail"><img alt="img2" src="${images}story/${i.img2}" width="100%" height="100%"></div>
 									</div>
 									<div class="col-md-3">
-										<div class="thumbnail"><img alt="img3" src="${images}story/story${i.img3}" width="100%" height="100%"></div>
+										<div class="thumbnail"><img alt="img3" src="${images}story/${i.img3}" width="100%" height="100%"></div>
 									</div>
 									<div class="col-md-3">
-										<div class="thumbnail"><img alt="img4" src="${images}story/story${i.img4}" width="100%" height="100%;"></div>
+										<div class="thumbnail"><img alt="img4" src="${images}story/${i.img4}" width="100%" height="100%;"></div>
 									</div>
 								</div>
 							</div>
@@ -253,21 +252,27 @@ style="background-color: #36363b;">
 			<!-- foreach -->
 			</div>
 		</div>
-		
+		<br /><br />
 		<div class="row">
 			<div class="col-md-6">
 				<center>
-					<a id="clickLike" onclick="likeFunction();"><img alt="좋아요" src=""><span>${likeCnt}</span></a>
+					<span class="glyphicon glyphicon-thumbs-up"><a id="clickLike" onclick="likeFunction();"> 좋아요</a></span> 
+				</center><br>
+				<center>
+					${likeCnt}
 				</center>
 			</div>
 			<div class="col-md-6">
 				<center>
-				<img alt="댓글" src=""><span>${commentCnt}</span>
+					<span class="glyphicon glyphicon-pencil"> 댓글수</span> 
+				</center><br>
+				<center>
+					<span id="commentCount">${commentCnt}</span>
 				</center>
 			</div>
 		</div>
 		
-		<div class="container">
+<%-- 		<div class="container">
 			<label for="content">이 글을 좋아하는 분들</label>
 			<form id="likeInsertForm" name="likeInsertForm">
 				<div class="input-group">
@@ -284,8 +289,9 @@ style="background-color: #36363b;">
 			<div class="likeList">
 			
 			</div>
-		</div>
+		</div> --%>
 		
+		<br><br>
 		<div class="container">
 			<label for="content">comment</label>
 			<form id="commentInsertForm" name="commentInsertForm">
@@ -313,7 +319,7 @@ style="background-color: #36363b;">
 	
 	<!--Company section-->
 	<section id="company" class="company bg-light">
-		<div class="container">
+		<div class="container" >
 			<div class="row">
 				<div class="main_company roomy-100 text-center">
 					<h3 class="text-uppercase">동 행</h3>

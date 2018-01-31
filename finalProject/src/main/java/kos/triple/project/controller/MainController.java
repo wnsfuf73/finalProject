@@ -37,7 +37,7 @@ public class MainController {
 		service.getNewNotice(req,model);
 		
 		return "main/mainNotice";
-		
+		 
 	}
 	
 	//관리자페이지
@@ -96,6 +96,26 @@ public class MainController {
 		return "mypage/story/myNewStory";
 	}
 	
+	@RequestMapping(value="myEpilogueList")
+	public String myEpilogueList(HttpServletRequest req , Model model) {
+		
+		service.myEpilogueList(req,model);
+		
+		return "mypage/story/myEpilogueList";
+	}
+	
+	@RequestMapping(value="deleteMyStory")
+	public @ResponseBody String deleteMyStory(HttpServletRequest req, Model model) {
+		String cnt = "0";
+		service.deleteMyStory(req,model);
+		
+		cnt = (String)req.getAttribute("cnt");
+		
+		return cnt;
+	}
+	
+	
+	//철환이형 컨트롤러로 옮긴다.
 	
 	//호선이 컨트롤러로 옮긴다.
 	@RequestMapping(value="myNewPlan")

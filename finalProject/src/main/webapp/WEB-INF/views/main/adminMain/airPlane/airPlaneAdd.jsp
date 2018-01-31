@@ -69,15 +69,15 @@
 	
 	$(function(){
 		
+		//등록
 		$("#addAirplane").click(function(){
 			
 			var airplaneName = $("#planeName").val();
 			var airplaneSize =  $("#airplaneSizeSelect option:selected").val();
 			if(airplaneName && airplaneSize){
 				$.ajax({
-					url : '${project}addAirPlane?airPlaneName='+airplaneName+"&seatPriceCode="+airplaneSize ,
+					url : '${project}addAirPlane?airPlaneName='+airplaneName+"&airPlaneSize="+airplaneSize ,
 					type: "GET",
-					//data: jsonData,
 					contentType: "application/x-www-form-urlencoded; charset=UTF-8",
 					success: function(msg) {
 						alert("등록완료");
@@ -182,7 +182,7 @@
 	                    </div>
 	   					
 	                    <div class="form-group text-center">
-	                        <button id="addAirplane" class="btn btn-primary">
+	                        <button type="submit" class="btn btn-primary">
 	                           	삭제하기<i class="fa fa-check spaceLeft"></i>
 	                        </button>
 	                    </div>

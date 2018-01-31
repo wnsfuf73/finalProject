@@ -26,8 +26,7 @@
 					<c:if test="${cnt > 0}">
 						<c:forEach var="vo" items="${vos}">
 							<tr>
-								<td align="center">${vo.location_num}
-								</td>
+								<td align="center">${vo.location_num}</td>
 								<td align="center"><img
 									src="${images}where/trip_location/${vo.location_img1}"
 									height="100px;" width="150px"></td>
@@ -40,8 +39,8 @@
 								<td align="center">${vo.area}</td>
 
 								<td align="center">${vo.thema_category}</td>
-
 							</tr>
+
 						</c:forEach>
 					</c:if>
 

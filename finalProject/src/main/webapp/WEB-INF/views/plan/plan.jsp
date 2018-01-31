@@ -118,10 +118,10 @@
 				<div class="collapse navbar-collapse" id="navbar-menu">
 					<ul class="nav navbar-nav navbar-right" data-in="fadeInDown"
 						data-out="fadeOutUp">
-						<li><a href="plan">계획하기</a></li>
-						<li><a href="story_write_myTourStory">이야기</a></li>
+						<!-- <li><a href="plan">계획하기</a></li> -->
+						<li><a href="epilogueList">이야기</a></li>
 						<li><a href="where_main">어디갈까</a></li>
-						<li><a href="recomandStart">추천여행기</a></li>
+						<!-- <li><a href="recomandStart">추천여행기</a></li> -->
 						<li class="dropdown"><a class="dropdown-toggle"
 							data-toggle="dropdown" href="#">예약 </a>
 							<ul class="dropdown-menu">
@@ -130,30 +130,30 @@
 								<li><a href="rentReservation">렌트카 예약</a></li>
 							</ul>
 						</li>
-					<c:if test="${sessionScope.mem_id == null}">					
-						<li><a href="" data-toggle="modal" data-target="#login">로그인</a></li>
-						<li><a href="" data-toggle="modal" data-target="#register">회원가입</a></li>
-					</c:if>
-					<c:if test="${sessionScope.mem_id != null}">
-						<li class="dropdown">
-						<a class="dropdown-toggle"
-							data-toggle="dropdown" href="#">${sessionScope.mem_id}님</a>
-							<ul class="dropdown-menu">
-								<li><a href="plan">계획하기</a></li>
-								<li><a href="xxxStart">여행후기</a></li>
-								<li><a href="myPageStart">마이페이지</a></li>
-							</ul>
-						</li>
-								
-						<li><a href="logout" >로그아웃</a></li>
-					</c:if>
+						<c:if test="${sessionScope.mem_id == null}">					
+							<li><a href="" data-toggle="modal" data-target="#login">로그인</a></li>
+							<li><a href="" data-toggle="modal" data-target="#register">회원가입</a></li>
+						</c:if>
+						<c:if test="${sessionScope.mem_id != null}">
+							<li class="dropdown">
+							<a class="dropdown-toggle"
+								data-toggle="dropdown" href="#">${sessionScope.mem_id}님</a>
+								<ul class="dropdown-menu">
+									<li><a href="myPageStart">마이페이지</a></li>
+									<li><a href="logout" >로그아웃</a></li>
+								</ul>
+							</li>
+						</c:if>
 					</ul>
 				</div>
 				<!-- /.navbar-collapse -->
 			</div>
 
 		</nav>
-		
+		<c:if test="${sessionScope.mem_id == null}">
+			<%@include file="../main/modal/loginModal.jsp"%>	
+			<%@include file="../main/modal/registerModal.jsp"%>
+		</c:if>
 		<!-- ================메인  HEAD화면================= -->
 		<section class="plan_head">
 			<div id="head" class="main_head">
@@ -192,11 +192,16 @@
 					</div>
 				</div>
 			</div>
-			<div class="clear"></div>
+			<div class="clear"></div><br />
 			<div class="container-fluid">
 				<div class="row">
-					<div class="plan_title"><b>다른 사람들은 어떻게 계획을 세웠을까?</b></div>
-					
+					<div class="plan_title">
+						<h4>
+						<span class="glyphicon glyphicon-flag" style="font-size: 20px;">
+							<b>다른 사람들은 어떻게 계획을 세웠을까?</b>
+						</span>
+						</h4>
+					</div>
 				</div>
 			</div>
 			<!-- 다른 사람들 일정보기 -->
@@ -232,7 +237,7 @@
 													</td>
 													
 													<td align="center">
-													<a href="planCourseContent?planNo=${planNo}&pageNum=${pageNum}" class="plancourselistA">
+													<a href="planCourseContent?planNo=${dto.planNo}&pageNum=${pageNum}" class="plancourselistA">
 														${dto.planContent}
 														<input type="hidden" name="planNo" value="${dto.planNo}">
 													</a>
@@ -286,7 +291,7 @@
 		</section>
 		<!-- 메인화면 HEAD End -->
 		
-
+		<br /><br />
 
 		<section id="company" class="company bg-light">
 			<div class="container">

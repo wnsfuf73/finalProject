@@ -45,7 +45,7 @@
 						<thead>
 							<tr>
 								<th colspan="6" style="height:25px; text-align:center;">
-									글목록(글개수 : ${cnt})							
+									계획목록(계획개수 : ${cnt})							
 								</th>
 							</tr>
 							<tr>

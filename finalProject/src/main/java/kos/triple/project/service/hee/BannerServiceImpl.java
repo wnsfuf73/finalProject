@@ -137,7 +137,7 @@ public class BannerServiceImpl implements BannerService{
 		
 		String saveDir = req.getSession().getServletContext().getRealPath("/resources/images/banner");
 		System.out.println(saveDir + "saveDir");
-		String realDir = ServerSetting.imgPath+"src/main/webapp/resources/images/banner/";
+		String realDir = ServerSetting.imgPath+"/src/main/webapp/resources/images/banner/";
 		System.out.println(realDir + "realDir");
 		
 		FileInputStream fis = null;
@@ -196,7 +196,7 @@ public class BannerServiceImpl implements BannerService{
 		
 		String saveDir = req.getSession().getServletContext().getRealPath("/resources/images/banner");
 	
-		String realDir = ServerSetting.imgPath+"src/main/webapp/resources/images/banner/";
+		String realDir = ServerSetting.imgPath+"/src/main/webapp/resources/images/banner/";
 		
 		
 		System.out.println(file.getOriginalFilename() + "fileName");

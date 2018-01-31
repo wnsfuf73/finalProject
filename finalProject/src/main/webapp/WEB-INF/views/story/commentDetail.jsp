@@ -72,6 +72,10 @@
 				if (data == 1) {
 					commentList();
 					$('#commentContent').val("");
+					
+					var curCount = $('#commentCount').text();
+					curCount = parseInt(curCount)+1;
+					$('#commentCount').html(curCount);				
 				}
 			}
 
@@ -218,8 +222,13 @@ function likeFunction(){
 						},
 	
 						success : function(data) {
-							if (data == 1)
+							if (data == 1){
 								commentList(epilogueNo);
+							
+								var curCount = $('#commentCount').text();
+								curCount = parseInt(curCount)-1;
+								$('#commentCount').html(curCount);	
+							}
 							else {
 								alert('삭제에 실패했습니다!');
 							}
@@ -244,3 +253,6 @@ function likeFunction(){
 	
 	
 </script>
+
+<br><br><br>
+

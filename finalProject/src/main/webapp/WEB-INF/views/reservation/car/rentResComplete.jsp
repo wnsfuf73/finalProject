@@ -248,7 +248,7 @@
 				<div class="row">
 					<div class="col-md-12">
 						<div class="well well-lg">
-							<h5><span class="glyphicon glyphicon-plane">구매정보</span></h5>
+							<h5><span class="fa fa-car">구매정보</span></h5>
 							<hr>
 							<ul class="list-group">
 							  <li class="list-group-item">차량 : ${vo.car_name}</li>

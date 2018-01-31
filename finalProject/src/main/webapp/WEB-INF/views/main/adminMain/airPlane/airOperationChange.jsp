@@ -309,7 +309,7 @@
 							}
 						})
 					}
-					//경유지가 있는경우 경유지부터 도착지까지 거기를 구해서 step2에 뿌린다.
+					//경유지가 있는경우 경유지부터 도착지까지 거리를 구해서 step2에 뿌린다.
 					else{
 						var fromLoc =  $("#midSelect option:selected").text();
 						var toLoc = $("#endSelect option:selected").text();
@@ -614,6 +614,7 @@
 	    <!-- Modal content-->
 	    <div class="modal-content">
 	    <form action="setCustomSeatPrice" method="POST" name="customPriceForm">
+	    	<input type="hidden" name="airPlaneNo">
 	      <div class="modal-header">
 	        <button type="button" class="close" data-dismiss="modal">&times;</button>
 	        <h4 class="modal-title">

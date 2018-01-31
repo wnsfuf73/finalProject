@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
+import kos.triple.project.etc.ServerSetting;
 import kos.triple.project.persistence.chul.EpilogueDAO;
 import kos.triple.project.service.chul.EpilogueService;
 import kos.triple.project.vo.Epilogue_LikeVO;
@@ -32,13 +33,46 @@ public class EpilogueController {
 	EpilogueService eService;
 	@Autowired
 	EpilogueDAO eDao;
-
+	
+	
+	@RequestMapping(value="isLogin_travel")
+	public String isLogin_travel(HttpServletRequest req, Model model) {
+		
+		if (req.getSession().getAttribute("mem_id")!=null) {
+			return "story/writeEpilogueStep1";
+		}else {
+			return "main/loginForm";
+		}
+	}
+	
+	@RequestMapping(value="isLogin_essay")
+	public String isLogin_essay(HttpServletRequest req, Model model) {
+		
+		if (req.getSession().getAttribute("mem_id")!=null) {
+			return "story/essay/essay_wrt";
+		}else {
+			return "main/loginForm";
+		}
+	
+	}
+	
+	@RequestMapping(value="isLogin_reviewForm")
+	public String isLogin_reviewForm(HttpServletRequest req, Model model) {
+		
+		if (req.getSession().getAttribute("mem_id")!=null) {
+			return "story/review/reviewForm";
+		}else {
+			return "main/loginForm";
+		}
+	
+	}
 	
 	@RequestMapping(value="getCurrentId")
 	@ResponseBody
 	public String getCurrentId(HttpServletRequest req) {
 		
-		req.getSession().setAttribute("mem_id", "guest");
+		// ㅇㅋㅇㅋ
+		/*req.getSession().setAttribute("mem_id", "guest");*/
 		
 		String curr_id = (String) req.getSession().getAttribute("mem_id");
 		
@@ -57,14 +91,6 @@ public class EpilogueController {
 		eService.getAllEpilogueList(req,model);
 		
 		return "story/epilogueList";
-	}
-
-	@RequestMapping(value = "story_write_myTourStory")
-	public String story_write_myTourStory(HttpServletRequest req, Model model) {
-
-		eService.getNumOfEpilogue(req, model);
-
-		return "story/story_write_myTourStory";
 	}
 
 	// 작성하기 -> 여행지 찾기 -> 여행지 찾기 모달창 및 검색결과.
@@ -90,7 +116,7 @@ public class EpilogueController {
 		System.out.println(root + "rootPath");
 		/* String path = root + "resources/upload"; */
 
-		String path = "D:\\TeamProject\\finalProject\\finalProject\\src\\main\\webapp\\resources\\images\\story\\story";
+		String path = ServerSetting.imgPath+"\\src\\main\\webapp\\resources\\images\\story\\story";
 
 		String newFileName = "";
 
@@ -226,7 +252,7 @@ public class EpilogueController {
 		System.out.println(root + "rootPath");
 		/* String path = root + "resources/upload"; */
 
-		String path = "D:\\TeamProject\\finalProject\\finalProject\\src\\main\\webapp\\resources\\images\\story\\story";
+		String path = ServerSetting.imgPath+"\\src\\main\\webapp\\resources\\images\\story\\story";
 
 		String newFileName = "";
 
@@ -237,7 +263,8 @@ public class EpilogueController {
 		}
 
 		List<MultipartFile> mf = multi.getFiles("uploadFiles");
-
+		
+		
 		// 무슨 상황이죠?
 		if (mf.size() == 1 && mf.get(0).getOriginalFilename().equals("")) {
 
@@ -295,7 +322,7 @@ public class EpilogueController {
 		System.out.println(root + "rootPath");
 		/* String path = root + "resources/upload"; */
 
-		String path = "D:\\TeamProject\\finalProject\\finalProject\\src\\main\\webapp\\resources\\images\\story\\story";
+		String path = ServerSetting.imgPath+"\\src\\main\\webapp\\resources\\images\\story\\story";
 
 		String newFileName = "";
 
@@ -451,8 +478,8 @@ public class EpilogueController {
 		Epilogue_commentVO commentVO = new Epilogue_commentVO();
 		
 		commentVO.setEpilogueNo(Integer.parseInt(epilogueNo));
-		//commentVO.setMem_id((String) req.getSession().getAttribute("mem_id"));
-		commentVO.setMem_id("guest");
+		commentVO.setMem_id((String) req.getSession().getAttribute("mem_id"));
+		/*commentVO.setMem_id("guest");*/
 		commentVO.setContent(content);
 		
 		return eService.insertComment_serv(commentVO, req);
@@ -482,8 +509,6 @@ public class EpilogueController {
 	@ResponseBody
 	public int deleteComment(@RequestParam String epilogue_commentNo, @RequestParam String mem_id, HttpServletRequest req) {
 		
-		/*String curr_id = (String) req.getSession().getAttribute("mem_id");*/
-		
 		Epilogue_commentVO commentVO = new Epilogue_commentVO();
 		
 		int commentNo = Integer.parseInt(epilogue_commentNo);
@@ -496,9 +521,9 @@ public class EpilogueController {
 	
 	@RequestMapping(value="epilogueLike")
 	@ResponseBody
-	public int epilogueLike(@RequestParam("epilogueNo") String epilogueNo){
+	public int epilogueLike(@RequestParam("epilogueNo") String epilogueNo, HttpServletRequest req){
 		System.out.println("epilogueLike");
-		return eService.epilogueLike_serv(epilogueNo);
+		return eService.epilogueLike_serv(epilogueNo, req);
 	}
 	
 	@RequestMapping(value="likeListFunction")
@@ -506,5 +531,16 @@ public class EpilogueController {
 	public List<Epilogue_LikeVO> likeListFunction(@RequestParam("epilogueNo") String epilogueNo){
 		System.out.println("likeListFunction");
 		return eService.likeListFunction_serv(epilogueNo);
+	}
+	
+	@RequestMapping(value="myPageStory")
+	public String myPageStory(HttpServletRequest req, Model model) {
+		
+		eService.getEpilog(req,model);
+		eService.getEpilogDetail(req,model);
+		eService.getDetailLike(req,model);
+		eService.getDetailComment(req,model);
+		
+		return "story/epilogueDetail";
 	}
 }

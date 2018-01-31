@@ -36,10 +36,10 @@
     <!-- 목록 이름은 각자 정해주세요..  -->
     <a href="myPageStart" class="w3-bar-item w3-button">MyPage</a>
 	
-	<a href="myPlan?pageNum=1" target="contentFrame" class="w3-bar-item w3-button">나의 계획</a>
+	<a href="myPlan" target="contentFrame" class="w3-bar-item w3-button">나의 계획</a>
 	<a href="myReview" target="contentFrame" class="w3-bar-item w3-button">리뷰</a>
 	<a href="myEssay" target="contentFrame" class="w3-bar-item w3-button">에세이</a>
-  	<a href="#" target="contentFrame" class="w3-bar-item w3-button">내 여행 기록</a>
+  	<a href="myEpilogueList" target="contentFrame" class="w3-bar-item w3-button">내 여행 기록</a>
  	
  	<a href="myReservation" target="contentFrame" class="w3-bar-item w3-button">예약 목록</a>
  	
@@ -62,10 +62,9 @@
 	
    <h1><a href="myPageStart" style="text-decoration: none;!important;">My Page</a></h1>
     <ul id="nav"> 
+    	 <li><a href="plan">계획하기</a></li>
  		 <li><a href="epilogueList">이야기</a></li>
- 		 
  		 <li><a href="where_main">어디갈까</a></li>
-		
 		<li>
 		<div class="w3-dropdown-hover" style="background-color: #333">
 		     <a class="dropdown-toggle"
@@ -139,8 +138,9 @@ $(function() {
 	else if(iframeSrc=='myPlan'){
 		$("iframe[name='contentFrame']").attr("src",iframeSrc);	
 	}
-	
-	
+	else if(iframeSrc=='myPlanCourseContent'){
+		$("iframe[name='contentFrame']").attr("src",iframeSrc);	
+	}
 	
 });
 

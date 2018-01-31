@@ -223,6 +223,10 @@
 									</tr>
 									<tr>
 										<td style="color:red;">총 가격</td>
+											<c:if test="${rental_s == return_s}">
+												<c:set var="total2" value="${(car.car_price*diffDats)}"/>												
+												<td id="${car.car_num }_total"><fmt:formatNumber value="${total2}" groupingUsed="true"/></td>
+											</c:if>
 											<c:if test="${return_s < rental_s}">
 												<c:set var="total" value="${(car.car_price*diffDats) + (car.car_addprice*ch)}" />												
 												<td id="${car.car_num }_total"><fmt:formatNumber value="${total}" groupingUsed="true"/></td>		
@@ -348,14 +352,18 @@
 												</tr>
 												<tr>
 													<td>1일가격</td>
-													<td id="car_price">${vo.car_price}</td>			
+													<td id="car_price"><fmt:formatNumber value="${vo.car_price}" groupingUsed="true"/></td>			
 												</tr>
 												<tr>
 													<td>시간당추가가격</td>
-													<td id="car_addprice"><fmt:formatNumber value="${vo.car_addprice}" groupingUsed="true"/></td>		
+													<td id="car_addprice"><fmt:formatNumber type="number" value="${vo.car_addprice}" groupingUsed="true"/></td>		
 												</tr>
 												<tr>	
 													<td style="color:red;">총가격</td>
+														<c:if test="${rental_s == return_s}">
+															<c:set var="total2" value="${(car.car_price*diffDats)}"/>												
+															<td id="total">${total2}</td>
+														</c:if>
  														<c:if test="${return_s < rental_s}">
 															<c:set var="total" value="${(car.car_price*diffDats) + (car.car_addprice*ch)}" />
 															<td id="total">${total}</td>		
@@ -483,24 +491,6 @@
 		</div>
 	</div>
 	<!-- 상세보기 모달 종료 -->
-	<!-- 결제 모달  시작-->
-			<div class="row">
-			<div class="modal" id="payModal" tabindex="-1">
-				<div class="modal-dialog" style="z-index:9999">				
-					<div class="modal-content">
-						<div class="modal-header">
-							<h4>결제</h4>
-						</div>
-						<div class="modal-body">
-						
-						</div>
-						<div class="modal=footer">
-						
-						</div>
-					</div>
-				</div>
-			</div>
-	<!-- 결제 모달 종료 -->
 	<script type="text/javascript">
 		function showDetailCarInfo(car_num){
 			
@@ -510,12 +500,13 @@
 				,contentType: "application/x-www-form-urlencoded; charset=UTF-8"
 				,success : function(vo) {
 					
+					var car_addPrice = document.getElementById("car_addprice").innerHTML=vo.car_addprice;
+					
 					$("form[name='carDetailModalForm'] img").attr("src","/project/resources/images/car/"+vo.car_img);
 					$("form[name='carDetailModalForm'] #car_name").html(vo.car_name);
-					$("form[name='carDetailModalForm'] #car_kind").html(vo.car_kind);
-					//$("form[name='carDetailModalForm'] #car_price").html(vo.car_price);					
+					$("form[name='carDetailModalForm'] #car_kind").html(vo.car_kind);				
 					document.getElementById("car_brand").innerHTML=vo.brand_name;
-					document.getElementById("car_addprice").innerHTML=vo.car_addprice;
+					document.getElementById("car_addprice").innerHTML=car_addPrice.toLocaleString();
 					document.getElementById("insurance").innerHTML=vo.insurance;
 					document.getElementById("fuel").innerHTML=vo.fuel;
 
@@ -526,7 +517,7 @@
 					//리스트에 뿌려져있는 차량가격을 모달로 넘기기
 					var dayPrice = $("#"+car_num+"_car_price").text();
 					$("#car_price").html(dayPrice);
-					
+						
 					$("#carDetailModal").modal('show');
 					
 					$("form[name='carDetailModalForm'] input[name='car_name']").attr("value",vo.car_name);

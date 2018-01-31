@@ -8,9 +8,7 @@ import java.util.Date;
 
 public class DateProcess{
     
-	//System.out.println(diffOfDate("20031028", "20031102"));
-
-  public long diffOfDate(String begin, String end) {
+  public long diffOfDate(String begin, String end) {	//ÃÑ±â°£ °è»ê
 	  
     SimpleDateFormat formatter = new SimpleDateFormat("yyyyMMdd");
 
@@ -53,7 +51,4 @@ public class DateProcess{
 	  
 	  return strDate;
   }
-
-
-
 }

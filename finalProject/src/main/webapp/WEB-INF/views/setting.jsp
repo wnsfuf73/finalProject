@@ -9,6 +9,7 @@
 <c:set var="resource" value="/project/resources" /> 
 
 <c:set var="js" value="${resource}/js/" />
-<c:set var="images" value="${resource}/images/" />
+<c:set var="images" value="${resource}/images/" /> 
 <c:set var="css" value="${resource}/css/" />
 <c:set var="fonts" value="${resource}/fonts/" />
+

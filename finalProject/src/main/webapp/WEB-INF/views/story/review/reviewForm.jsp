@@ -218,7 +218,7 @@
 										<input type="date" id="review_date1" name="review_date">
 									</li>
 									<li style="text-align:center">
-										<input type="submit" id="review_button" class="button" value="저장">
+										<input type="submit" id="review_button" class="button" value="저장" onclick="alert('리뷰작성완료')">
 									</li>
 								</ul>
 								<input type="hidden" name="view" value="0">

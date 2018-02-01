@@ -253,7 +253,23 @@ public class BannerServiceImpl implements BannerService{
 		int bannerNo = Integer.parseInt(req.getParameter("bannerNo"));
 		int pageNum = Integer.parseInt(req.getParameter("pageNum"));
 		
+		int[] bannerNoList = dao.getBannerNumberList(bannerNo);
+		
+		//해당배너삭제
 		int deleteBannerCnt = dao.deleteBanner(bannerNo);
+		
+		
+		//나머지배너 순서업데이트...
+		BannerVO vo = new BannerVO();
+		int index = 1;
+		for(int i : bannerNoList) {
+			if(i!=bannerNo) {
+				vo.setBannerNo(i);
+				vo.setSeq(index);
+				dao.updateBannerSequence(vo);
+				index++;
+			}
+		}
 		
 		model.addAttribute("deleteBannerCnt", deleteBannerCnt);
 		model.addAttribute("pageNum", pageNum);

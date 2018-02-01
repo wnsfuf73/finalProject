@@ -300,15 +300,18 @@ function carResReturn(rent_no) {
 								<fmt:formatDate var="resTime" value="${airRes.resTime}"
 									pattern="yyyy-MM-dd HH:mm" />
 								<td>${resTime}</td>
-								<td><jsp:useBean id="sysdate" class="java.util.Date" /> <fmt:formatDate
-										var="x" value="${airRes.startTime}" pattern="yyyy-MM-dd HH:mm" />
-									<fmt:formatDate var="y" value="${sysdate}"
-										pattern="yyyy-MM-dd HH:mm" /> <c:if test="${x>y}">
-										<button class="btn btn-primary"
-											onclick="airResCancel('${airRes.airPlaneNo}','${airRes.airResNo}')">예약취소</button>
-									</c:if> <c:if test="${x<y}">
+								<td>
+									<jsp:useBean id="sysdate" class="java.util.Date" /> 
+									<fmt:formatDate var="x" value="${airRes.startTime}" pattern="yyyy-MM-dd HH:mm" />
+									<fmt:formatDate var="y" value="${sysdate}" pattern="yyyy-MM-dd HH:mm" /> 
+									
+									<c:if test="${x>y}">
+										<button class="btn btn-primary" onclick="airResCancel('${airRes.airPlaneNo}','${airRes.airResNo}')">예약취소</button>
+									</c:if> 
+									<c:if test="${x<y}">
 										<button class="btn btn-primary" disabled="disabled">결제완료</button>
-									</c:if></td>
+									</c:if>
+								</td>
 							</tr>
 						</c:forEach>
 						<tr>

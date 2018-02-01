@@ -109,4 +109,22 @@ public class BannerDAOImpl implements BannerDAO{
 		return cnt;
 	}
 
+	@Override
+	public int[] getBannerNumberList(int bannerNo) {
+		BannerDAO dao = sqlSession.getMapper(BannerDAO.class);
+		int[] cnt = dao.getBannerNumberList(bannerNo);
+		return cnt;	
+		
+	}
+
+	//배너순서를 업데이트한다.
+	@Override
+	public int updateBannerSequence(BannerVO vo) {
+		int cnt = 0 ;
+		BannerDAO dao = sqlSession.getMapper(BannerDAO.class);
+		cnt = dao.updateBannerSequence(vo);
+		return cnt;
+		
+	}
+
 }

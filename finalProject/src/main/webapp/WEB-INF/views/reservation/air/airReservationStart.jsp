@@ -105,13 +105,7 @@ input.checkbox:checked + label.input-label.radio::before {
 		$("#airPlaneSearch").click(function(){
 			
 			var f = document.airReservationForm;
-			/*
-			alert(f.seatLevel.value);
-			alert(f.startAirport_Key.value);
-			alert(f.endAirport_Key.value);
-			alert(f.s_fromDate.value);
-			alert(f.s_toDate.value);
-			*/
+	
 			var urlAddr = "airPlaneSearch?seatLevel="+f.seatLevel.value+
 						"&startAirport_Key="+f.startAirport_Key.value+
 						"&endAirport_Key="+f.endAirport_Key.value+

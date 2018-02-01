@@ -51,7 +51,7 @@
 				$("#airPlaneView img").attr("src","${images}air/largeAirPlane.png");
 			}
 						
-			$("#airPlaneView").modal('show');
+			//$("#airPlaneView").modal('show');
 			var content = "<label for='airPortSelect'>상세정보</label>"+
 	       				  "<ul>"+
 	       					"<li>구분 : <span>"+value.size+"</span></li>"+

@@ -73,8 +73,13 @@
 
 <h2><center>결산</center></h2>
 
-
 <div class="container">
+	<div class="row">
+			<h3>총매출액 : <fmt:formatNumber 
+				value="${stay_secondChat['secondChatValue']+air_resultMap['total_air_price']+car_secondChat['price']}" 
+				pattern="#,###원" />
+			</h3>
+	</div>
 	<div class="row">
 		<div class="col-md-6">
 			<div id="firstChat"></div>

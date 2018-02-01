@@ -21,12 +21,17 @@ public class MemberController {
 	
 	//회원가입처리
 	@RequestMapping(value="register")
-	public String register(HttpServletRequest req , Model model) {
+	public ModelAndView register(HttpServletRequest req , Model model) {
 		System.out.println("register()");
 		
+		ModelAndView mav = new ModelAndView();
+		RedirectView redirectView = new RedirectView("main");
+		redirectView.setContextRelative(true);
+		
+		mav.setView(redirectView);
 		service.inputMemberPro(req, model);
 		
-		return "main/main";
+		return mav;
 	}
 	
 	// 아이디 중복

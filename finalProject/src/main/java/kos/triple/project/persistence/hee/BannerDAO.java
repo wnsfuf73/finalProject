@@ -30,4 +30,10 @@ public interface BannerDAO {
 
 	//특정배너위치의 배너순서를 가져온다.
 	public int getBannerSeq(String bannerLocation);
+
+	//배너의배너번호를얻다
+	public int[] getBannerNumberList(int bannerNo);
+
+	//배너의 순서를 업데이트한다.
+	public int updateBannerSequence(BannerVO vo);
 }

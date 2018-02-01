@@ -54,7 +54,7 @@
 	
 				var targetValue = $(".selected input[id=location_name]").val();
 				var location_num = $(".selected input[name=location_num]").val();
-				alert(location_num);
+				//alert(location_num);
 				
 				$("input[type=text][name=searchcontent]").val(targetValue);
 				/*  hidden으로  location_num 넘기기 */

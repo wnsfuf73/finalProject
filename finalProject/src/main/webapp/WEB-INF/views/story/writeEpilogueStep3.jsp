@@ -572,11 +572,12 @@ input.checkbox:checked+label.input-label.radio::before {
 					<form class="form-inline">
 						<input type="hidden" id="epilogueNo" name="epilogueNo" value="${epilogueNo}">
 						<div class="wrap">
-							<input type="radio" id="radio1" class="checkbox"
+							<input type="radio" id="radio1" class="checkbox" checked="checked"
 								name="privarcyRadio" value="Y"> <label for="radio1"
-								class="input-label radio">공개</label> <input type="radio"
+								class="input-label radio">공개</label> 
+							<!-- <input type="radio"
 								id="radio2" class="checkbox" name="privarcyRadio" value="N"> <label
-								for="radio2" class="input-label radio">비공개</label>
+								for="radio2" class="input-label radio">비공개</label> -->
 						</div>
 						<!-- <script type="text/javascript">
 							$("input[name=privarcyRadio]").eq(0).attr("checked", "checked");
@@ -601,10 +602,10 @@ input.checkbox:checked+label.input-label.radio::before {
 								<img  class="img-thumbnail" alt=""
 									src="${images }support/step3_save.png" height="50">
 							</div>
-							<div class="col-md-2">
+							<%-- <div class="col-md-2">
 								<img class="img-thumbnail" alt=""
 									src="${images }support/step3_delete.png" height="50">
-							</div>
+							</div> --%>
 						</div>
 					</div>
 				</div>

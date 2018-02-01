@@ -55,8 +55,8 @@
   	  <div class="homepage_manager">
   	  <h4>홈페이지 관리 메뉴</h4>
       <ul class="nav nav-pills nav-stacked">
+      	<li><a href="boardManager" target="contentFrame">공지  & QnA</a></li>
         <li><a href="banner" target="contentFrame">배너관리</a></li>
-	    <li><a href="boardManager" target="contentFrame">공지  & QnA</a></li>
       </ul><br>
       </div>
       <!-- 홈페이지관리 -->

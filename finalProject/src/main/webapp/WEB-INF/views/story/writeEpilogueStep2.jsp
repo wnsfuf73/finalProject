@@ -596,7 +596,9 @@ footer {
 				<div class="row">
 					<div class="col-md-2 col-md-offset-1" style="margin-right: 3px;">
 						<img class="img-thumbnail" alt=""
-							src="${images }support/step2_back.png" height="50">
+							src="${images }support/step2_back.png" height="50"
+							onclick="window.history.back();"
+							>
 					</div>
 					<div class="col-md-2" id="saveOrUdtBtn">
 						<img id="saveCourseBtn" class="img-thumbnail" alt=""

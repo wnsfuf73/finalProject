@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ include file="../../../../setting.jsp" %> 
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -73,7 +74,8 @@
 
 <div class="container">
 	<div class="row">
-		<h3>총매출액(렌트) : ${priceMap['total']}</h3>
+	
+		<h3>총매출액(렌트) : <fmt:formatNumber value="${priceMap['total']}" pattern="#,###원" /></h3>
 	</div>
 	<div class="row">
 		<div class="col-md-6">

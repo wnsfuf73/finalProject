@@ -121,8 +121,7 @@ public class EssayServiceImpl implements EssayService {
 	         ReviewVO dto = new ReviewVO();
 	         
 	         //바구니에 저장
-	         dto.setLocation_num(req.getParameter("searchcontent"));	         
-	         dto.setReviewview(Integer.parseInt(req.getParameter("reviewview")));	         
+	         dto.setReviewview(Integer.parseInt(req.getParameter("view")));	         
 	         dto.setFun(Integer.parseInt(req.getParameter("fun")));	         
 	         dto.setNear(Integer.parseInt(req.getParameter("near")));	         
 	         dto.setPrice(Integer.parseInt(req.getParameter("price")));	         
@@ -133,6 +132,8 @@ public class EssayServiceImpl implements EssayService {
 	         
 	         String time = req.getParameter("review_date") ; 
 	         //"2017-06-25 13:12:0.0"
+	         System.out.println(time);
+	         
 	         dto.setRegdate(Date.valueOf(time));
 	         System.out.println(Date.valueOf(time));
 	         

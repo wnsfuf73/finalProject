@@ -6,6 +6,20 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 <mapper namespace="kos.triple.project.persistence.MainDAO">
 
+	<select id="getHomePageBestTravel" resultType="kos.triple.project.vo.EpilogueVO">
+		<![CDATA[
+		SELECT *
+		FROM(
+		    SELECT *
+		    FROM EPILOGUE 
+		    WHERE ( readcnt >= (SELECT avg(readcnt) FROM epilogue) ) 
+		        AND ( goodcount >= (SELECT avg(goodcount) FROM epilogue) )
+		    ORDER BY goodcount,readcnt DESC
+		)
+		WHERE rownum=1
+		]]>
+	</select>
+
 	<select id="getMyFaceImg_proc" parameterType="String" resultType="String">
 		SELECT faceImg
 		FROM member

@@ -171,8 +171,13 @@
 			<c:if test="${cnt != 0}">
 				<script type="text/javascript">
 					alert("에세이 등록 완료");
+					if(confirm('작성을 확인하겠습니까?')){
+						window.location="myPageMyEssay";
+					}
+					else{
+						window.location="essay_wrt";
+					}
 				</script>
-				<c:redirect url = "essay_wrt"/>
 			</c:if>
 		</div>
 

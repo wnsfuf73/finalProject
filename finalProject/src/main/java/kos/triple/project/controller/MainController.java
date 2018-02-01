@@ -8,6 +8,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.view.RedirectView;
 
 import kos.triple.project.service.MainService;
 import kos.triple.project.service.chul.EpilogueService;
@@ -24,7 +26,7 @@ public class MainController {
 	public String main(HttpServletRequest req, Model model) {
 		System.out.println("main()");
 		
-		service.getHomePageRecomandList(req,model);
+		service.getHomePageBestTravel(req,model);
 		
 		return "main/main";
 	}
@@ -48,9 +50,15 @@ public class MainController {
 	
 	//로그아웃
 	@RequestMapping(value="logout")
-	public String logout(HttpServletRequest req) {
+	public ModelAndView logout(HttpServletRequest req) {
 		req.getSession().invalidate();
-		return "main/main";
+		
+		RedirectView rd = new RedirectView("main");
+		rd.setContextRelative(true);
+		ModelAndView mav = new ModelAndView();
+		mav.setView(rd);
+		
+		return mav;
 	}
 	
 	//로그인페이지
@@ -114,7 +122,14 @@ public class MainController {
 		return cnt;
 	}
 	
-	
+	@RequestMapping(value="myEpilogueListDirectmyPage")
+	public String myEpilogueListDirectmyPage(HttpServletRequest req, Model model) {
+		
+		service.myEpilogueList(req,model);
+		
+		model.addAttribute("setIframe","myEpilogueList");
+		return "mypage/myPageStart";
+	}
 	//철환이형 컨트롤러로 옮긴다.
 	
 	//호선이 컨트롤러로 옮긴다.
@@ -125,6 +140,15 @@ public class MainController {
 		
 		return "mypage/plan/myNewPlan";
 	}
+	
+	@RequestMapping(value="myPageMyEssay")
+	public String myPageMyEssay(HttpServletRequest req , Model model) {
+		
+		model.addAttribute("setIframe","myEssay");
+		return "mypage/myPageStart";
+	}
+	
+	
 	
 }
 

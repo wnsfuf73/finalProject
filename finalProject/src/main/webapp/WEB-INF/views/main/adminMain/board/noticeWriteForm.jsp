@@ -121,7 +121,6 @@
 			var str = document.getElementById("contentBox").value;
 			str = str.replace(/(?:\r\n|\r|\n)/g, '<br />');
 			document.getElementById("iuputContent").value = str;
-			alert(str);
 			return false;
 		}
 	</script>

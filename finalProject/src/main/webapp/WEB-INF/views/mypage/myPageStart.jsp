@@ -131,7 +131,6 @@ function w3_close() {
 
 $(function() {
 	
-	
 	if(iframeSrc=='boardList'){
 		$("iframe[name='contentFrame']").attr("src",iframeSrc);	
 	}
@@ -141,6 +140,13 @@ $(function() {
 	else if(iframeSrc=='myPlanCourseContent'){
 		$("iframe[name='contentFrame']").attr("src",iframeSrc);	
 	}
+	else if(iframeSrc=='myEpilogueList'){
+		$("iframe[name='contentFrame']").attr("src",iframeSrc);	
+	}
+	else if(iframeSrc=='myEssay'){
+		$("iframe[name='contentFrame']").attr("src",iframeSrc);	
+	}
+	
 	
 });
 

@@ -23,8 +23,11 @@ $(document).ready(function(){
 			
 			success : function(data){
 				alert('글 작성에 성공했습니다!');
-				alert('메인페이지로 이동합니다.');
-				window.location='main';
+				if(confirm("작성글을 확인하겠습니까?")){
+					window.location="myEpilogueListDirectmyPage";
+				}else{
+					window.location="epilogueList";
+				}
 			},
 			
 			error : function(){

@@ -13,6 +13,7 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
 <script type="text/javascript">
+
 	function autoWrite(x){
 		if(x==1){
 			document.getElementById("delete").value="AIRPLANE_";
@@ -51,7 +52,7 @@
 				$("#airPlaneView img").attr("src","${images}air/largeAirPlane.png");
 			}
 						
-			$("#airPlaneView").modal('show');
+			//$("#airPlaneView").modal('show');
 			var content = "<label for='airPortSelect'>상세정보</label>"+
 	       				  "<ul>"+
 	       					"<li>구분 : <span>"+value.size+"</span></li>"+
@@ -65,7 +66,6 @@
 		return false;
 			
 	}
-	
 	
 	$(function(){
 		
@@ -124,12 +124,9 @@
 			
 			return false;
    		})
-		
-   	
    		
 	
 	});
-	
 	
 </script>
 

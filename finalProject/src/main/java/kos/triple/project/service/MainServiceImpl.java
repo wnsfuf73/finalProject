@@ -42,11 +42,6 @@ public class MainServiceImpl implements MainService{
 		model.addAttribute("newPlan", newPlan);
 	}
 	
-	@Override
-	public void getHomePageRecomandList(HttpServletRequest req, Model model) {
-		// TODO Auto-generated method stub
-		
-	}
 
 	@Override
 	public void getMyFaceImg(HttpServletRequest req, Model model) {
@@ -146,5 +141,16 @@ public class MainServiceImpl implements MainService{
 		req.setAttribute("cnt",Integer.toString(cnt));
 	}
 	
+	@Override
+	public void getHomePageBestTravel(HttpServletRequest req, Model model) {
+
+		EpilogueVO vo = dao.getHomePageBestTravel();
+		
+		int epilogueNo = vo.getEpilogueNo();
+		String img1 = dao.getEpilogue_Img1(epilogueNo);
+		
+		model.addAttribute("bestTravelImg",img1);
+		model.addAttribute("bestTravel",vo);
+	}
 	
 }

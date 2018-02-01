@@ -234,7 +234,7 @@
 								</div>
 
 								<div class="form-group text-center">
-									<button type="submit" id="signupbtn" class="btn btn-info">
+									<button type="submit" id="signupbtn" class="btn btn-info" onclick="alert('회원가입완료')">
 										회원가입<i class="fa fa-check spaceLeft"></i>
 									</button>
 									<button type="reset" class="btn btn-warning">

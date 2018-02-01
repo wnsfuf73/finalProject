@@ -127,24 +127,21 @@
 								<li><a href="stayReservation">숙박 예약</a></li>
 								<li><a href="airReservation">항공 예약</a></li>
 								<li><a href="rentReservation">렌트카 예약</a></li>
-							</ul>
-						</li>
-						
-						<c:if test="${sessionScope.mem_id == null}">					
+							</ul></li>
+
+						<c:if test="${sessionScope.mem_id == null}">
 							<li><a href="" data-toggle="modal" data-target="#login">로그인</a></li>
 							<li><a href="" data-toggle="modal" data-target="#register">회원가입</a></li>
 						</c:if>
 						<c:if test="${sessionScope.mem_id != null}">
-							<li class="dropdown">
-							<a class="dropdown-toggle"
+							<li class="dropdown"><a class="dropdown-toggle"
 								data-toggle="dropdown" href="#">${sessionScope.mem_id}님</a>
 								<ul class="dropdown-menu">
 									<li><a href="myPageStart">마이페이지</a></li>
-									<li><a href="logout" >로그아웃</a></li>
-								</ul>
-							</li>
+									<li><a href="logout">로그아웃</a></li>
+								</ul></li>
 						</c:if>
-						
+
 					</ul>
 				</div>
 				<!-- /.navbar-collapse -->
@@ -152,7 +149,7 @@
 
 		</nav>
 		<c:if test="${sessionScope.mem_id == null}">
-			<%@include file="../main/modal/loginModal.jsp"%>	
+			<%@include file="../main/modal/loginModal.jsp"%>
 			<%@include file="../main/modal/registerModal.jsp"%>
 		</c:if>
 
@@ -208,7 +205,6 @@
 		<!--End off Home Sections-->
 
 		<section id="where">
-
 			<br>
 			<form name="search_main" method="post" action="search" onsubmit="">
 				<div class="where_search">
@@ -240,39 +236,53 @@
 						<ul>
 							<li id="01" class="selected"><a
 								href="where_iframe?area=서울&thema=관광" target="hot_spot">서울</a></li>
-							<li id="07"><a href="where_iframe?area=울산&thema=관광" target="hot_spot">울산</a></li>
-							<li id="14"><a href=where_iframe?area=전남&thema=관광 target="hot_spot">전남</a></li>
+							<li id="07"><a href="where_iframe?area=울산&thema=관광"
+								target="hot_spot">울산</a></li>
+							<li id="14"><a href=where_iframe?area=전남&thema=관광
+								target="hot_spot">전남</a></li>
 						</ul>
 						<ul>
 							<li id="05"><a href="where_iframe?area=부산&thema=관광"
 								target="hot_spot">부산</a></li>
-							<li id="08"><a href="where_iframe?area=경기&thema=관광" target="hot_spot">경기</a></li>
-							<li id="12"><a href="where_iframe?area=경북&thema=관광" target="hot_spot">경북</a></li>
+							<li id="08"><a href="where_iframe?area=경기&thema=관광"
+								target="hot_spot">경기</a></li>
+							<li id="12"><a href="where_iframe?area=경북&thema=관광"
+								target="hot_spot">경북</a></li>
 						</ul>
 						<ul>
-							<li id="04"><a href="where_iframe?area=대구&thema=관광" target="hot_spot">대구</a></li>
-							<li id="09"><a href="where_iframe?area=강원&thema=관광" target="hot_spot">강원</a></li>
-							<li id="13"><a href="where_iframe?area=경남&thema=관광" target="hot_spot">경남</a></li>
+							<li id="04"><a href="where_iframe?area=대구&thema=관광"
+								target="hot_spot">대구</a></li>
+							<li id="09"><a href="where_iframe?area=강원&thema=관광"
+								target="hot_spot">강원</a></li>
+							<li id="13"><a href="where_iframe?area=경남&thema=관광"
+								target="hot_spot">경남</a></li>
 						</ul>
 						<ul>
-							<li id="02"><a href="where_iframe?area=인천&thema=관광" target="hot_spot">인천</a></li>
-							<li id="10"><a href="where_iframe?area=충북&thema=관광" target="hot_spot">충북</a></li>
-							<li id="16"><a href="where_iframe?area=제주&thema=관광" target="hot_spot">제주</a></li>
+							<li id="02"><a href="where_iframe?area=인천&thema=관광"
+								target="hot_spot">인천</a></li>
+							<li id="10"><a href="where_iframe?area=충북&thema=관광"
+								target="hot_spot">충북</a></li>
+							<li id="16"><a href="where_iframe?area=제주&thema=관광"
+								target="hot_spot">제주</a></li>
 						</ul>
 						<ul>
-							<li id="06"><a href="where_iframe?area=광주&thema=관광" target="hot_spot">광주</a></li>
-							<li id="11"><a href="where_iframe?area=충남&thema=관광" target="hot_spot">충남</a></li>
-							<li id="17"><a href="where_iframe?area=울릉도/독도&thema=관광" target="hot_spot">울릉도/독도</a></li>
+							<li id="06"><a href="where_iframe?area=광주&thema=관광"
+								target="hot_spot">광주</a></li>
+							<li id="11"><a href="where_iframe?area=충남&thema=관광"
+								target="hot_spot">충남</a></li>
+							<li id="17"><a href="where_iframe?area=울릉도/독도&thema=관광"
+								target="hot_spot">울릉도/독도</a></li>
 						</ul>
 						<ul>
-							<li id="03"><a href="where_iframe?area=대전&thema=관광" target="hot_spot">대전</a></li>
-							<li id="15"><a href="where_iframe?area=전북&thema=관광" target="hot_spot">전북</a></li>
+							<li id="03"><a href="where_iframe?area=대전&thema=관광"
+								target="hot_spot">대전</a></li>
+							<li id="15"><a href="where_iframe?area=전북&thema=관광"
+								target="hot_spot">전북</a></li>
 						</ul>
-
 					</div>
-
 				</div>
-				<div class="where_hot-spot" style="position: absolute; right: 10px; top:0px;">
+				<div class="where_hot-spot"
+					style="position: absolute; right: 10px; top: 0px;">
 					<ul>
 						<li>
 							<button class="spot-btn" id="spot-btn1"
@@ -282,25 +292,25 @@
 
 					<ul>
 						<li>
-							<button class="spot-btn" id="spot-btn2" onclick="window.location='where_main2'">맛집 장소</button>
+							<button class="spot-btn" id="spot-btn2"
+								onclick="window.location='where_main2'">맛집 장소</button>
 						</li>
 					</ul>
 					<ul>
 						<li>
-							<button class="spot-btn" id="spot-btn3" onclick="window.location='where_main3'">레져 장소</button>
+							<button class="spot-btn" id="spot-btn3"
+								onclick="window.location='where_main3'">레져 장소</button>
 						</li>
 					</ul>
 
 					<ul>
 						<li>
-							<button class="spot-btn" id="spot-btn4" onclick="window.location='where_main4'">힐링 장소</button>
+							<button class="spot-btn" id="spot-btn4"
+								onclick="window.location='where_main4'">힐링 장소</button>
 						</li>
 					</ul>
 				</div>
 			</div>
-
-
-
 			<div class="hot_spot_selected">
 				<iframe src="where_iframe?area=서울&thema=관광" name="hot_spot">
 				</iframe>
@@ -363,7 +373,8 @@
 		}
 	</script>
 
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+	<script
+		src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 	<script src="${js}vendor/jquery-1.11.2.min.js"></script>
 	<script src="${js}vendor/bootstrap.min.js"></script>
 

@@ -100,7 +100,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		JOIN stay sy
 		ON rr.stay_no =
 		sy.stay_no
-		ORDER BY RESERVATION_DATE
+		ORDER BY RESERVATION_DATE DESC
 		) WHERE mem_id=#{mem_id})
 		WHERE seq BETWEEN #{start} AND
 		#{end}
@@ -292,7 +292,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		JOIN stay sy
 		ON rr.stay_no =
 		sy.stay_no
-		ORDER BY RESERVATION_DATE
+		ORDER BY RESERVATION_DATE DESC
 		))
 		WHERE seq BETWEEN #{start} AND
 		#{end}

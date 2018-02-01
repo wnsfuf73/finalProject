@@ -394,11 +394,11 @@
 	<insert id="insertEpilogueCourse" parameterType="java.util.Map">
 		INSERT INTO
 		epilogue_course
-		(epilogue_courseno, location_num, content, 'story'||img1, 'story'||img2,
-		'story'||img3, 'story'||img4, visit_order, dday, epilogueno)
+		(epilogue_courseno, location_num, content, img1, img2,
+		img3, img4, visit_order, dday, epilogueno)
 		VALUES(epilogue_course_seq.nextval, #{location_num}, #{content},
-		#{img1, jdbcType=VARCHAR}, #{img2, jdbcType=VARCHAR}, #{img3,
-		jdbcType=VARCHAR}, #{img4, jdbcType=VARCHAR}, #{visit_order}, #{dday},
+		'story'||#{img1, jdbcType=VARCHAR}, 'story'||#{img2, jdbcType=VARCHAR}, 'story'||#{img3,
+		jdbcType=VARCHAR}, 'story'||#{img4, jdbcType=VARCHAR}, #{visit_order}, #{dday},
 		#{epilogueNo})
 	</insert>
 

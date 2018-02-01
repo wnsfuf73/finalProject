@@ -107,9 +107,13 @@ public interface AirReservationDAO {
 	public List<MapVO> getChatDataCustom_Air1(Map<String, Object> parameter);
 	public List<MapVO> getChatDataCustom_Air2(Map<String, Object> parameter);
 	public List<MapVO> getChatDataCustom_Air3(Map<String, Object> parameter);
-
+	//항공매출총액을가져온다.
+	public int getAirTotalPrice_proc();
+	
 	//운행완료된 비행기 삭제
 	public int deadPlaneCollection_proc();
+
+	
 	
 
 	

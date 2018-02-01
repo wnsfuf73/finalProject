@@ -9,7 +9,6 @@ $(document).ready(function(){
 	$('#uploadImg').on('change', function(){
 		
 		fileRepository.push($('input[type=file]')[0].files[0]);
-		alert('first FileRepository length : ' + fileRepository.length);
 	
 	});
 
@@ -42,7 +41,7 @@ $(document).ready(function(){
 		formData.append('course_content', course_content);
 		formData.append('dday', dday);
 		
-		alert('length of fileRepository : ' + fileRepository.length);
+		
 		
 		for (var i = 0; i < fileRepository.length; i++){
 			formData.append('uploadFiles', fileRepository[i]);
@@ -58,7 +57,7 @@ $(document).ready(function(){
 			processData : false,
 			
 			success: function(data){
-				
+				alert("코스저장");
 				$('.resultContainer').html(data);
 				
 			},

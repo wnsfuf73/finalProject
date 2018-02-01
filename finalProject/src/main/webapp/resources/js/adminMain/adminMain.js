@@ -5,7 +5,7 @@ $(function() {
 		$(".reservation_manager").css("display","none");
 		$(".sale_manager").css("display","none");
 		
-		$("iframe").attr("src","banner");
+		$("iframe").attr("src","boardManager");
 		
 		//홈페이지 관리 클릭
 		$("#homeManage_click").click(function(){
@@ -13,7 +13,7 @@ $(function() {
 			$(".where_manager").css("display","none");
 			$(".reservation_manager").css("display","none");
 			$(".sale_manager").css("display","none");
-			$("iframe").attr("src","banner");
+			$("iframe").attr("src","boardManager");
 			
 		})
 		

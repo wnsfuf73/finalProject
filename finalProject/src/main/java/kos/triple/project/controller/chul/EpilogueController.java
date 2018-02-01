@@ -279,7 +279,7 @@ public class EpilogueController {
 				uploadFileList.add(newFileName);
 			}
 		}
-
+		
 		eService.insertEpilCourse(multi, model, uploadFileList);
 		eService.getEpilCourse(multi, model);
 

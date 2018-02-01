@@ -32,6 +32,11 @@
 		ORDER BY TO_CHAR(restime,'MM')
 	</select>
 	
+	<select id="getAirTotalPrice_proc" resultType="int">
+		SELECT SUM(price)
+		FROM RES_AIR
+	</select>
+	
 	<!-- 항공 결산 커스텀 -->
 	
 	<select id="getChatData_Air_chart1" resultType="int">

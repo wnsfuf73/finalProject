@@ -44,14 +44,14 @@
 <script src="${js}plugins.js"></script>
 <script src="${js}main.js"></script>
 
-<script type="text/javascript">
+<!-- <script type="text/javascript">
 	window.onload = function() {
 		window.open("mainNotice"
 				,"_blank"
 				,"toolbar=yes,scrollbars=yes,resizable=yes,top=100,left=100,width=400,height=250");	
 	}
 
-</script>
+</script> -->
 </head>
 
 <body data-spy="scroll" data-target=".navbar-collapse">

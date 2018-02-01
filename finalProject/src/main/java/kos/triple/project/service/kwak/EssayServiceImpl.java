@@ -120,6 +120,17 @@ public class EssayServiceImpl implements EssayService {
 	         //바구니 생성
 	         ReviewVO dto = new ReviewVO();
 	         
+	         System.out.println("----------review---------------------");
+	         System.out.println(req.getParameter("searchcontent"));	         
+	         System.out.println(Integer.parseInt(req.getParameter("reviewview")));	         
+	         System.out.println(Integer.parseInt(req.getParameter("fun")));	         
+	         System.out.println(Integer.parseInt(req.getParameter("near")));	         
+	         System.out.println(Integer.parseInt(req.getParameter("price")));	         
+	         System.out.println(req.getParameter("review_text"));	         
+	         System.out.println(file.getOriginalFilename());
+	         dto.setMem_id((String) req.getSession().getAttribute("mem_id"));
+	         System.out.println(req.getParameter("location_num"));
+	         
 	         //바구니에 저장
 	         dto.setLocation_num(req.getParameter("searchcontent"));	         
 	         dto.setReviewview(Integer.parseInt(req.getParameter("reviewview")));	         

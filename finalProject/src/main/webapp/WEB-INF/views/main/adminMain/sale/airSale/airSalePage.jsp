@@ -73,8 +73,10 @@
 
 <h2><center>항공 결산</center></h2>
 
-
 <div class="container">
+	<div class="row">
+		<h3>총매출액(항공) : <fmt:formatNumber value="${totalPrice}" pattern="#,###원" /></h3>
+	</div>
 	<div class="row">
 		<div class="col-md-6">
 			<div id="firstChat"></div>
@@ -84,10 +86,15 @@
 		</div>
 	</div>
 	<div class="row">
+		<form action="airSalePage" method="POST" name="totalForm">
+			<input type="submit" value="◀" onClick="javascript:this.form.year.value--;">
+			<input type="text" name="year" class="year"  value="${year}" size="2" style="text-align:center;">
+			<input type="submit" value="▶" onClick="javascript:this.form.year.value++;">
+		</form>
 		<div class="col-md-12">
 			<div id="finalChart"></div>
 		</div>
-	</div>
+	</div> 
 </div>
 <!-- 
 firstChat
@@ -160,7 +167,7 @@ firstChat
 	//세번째차트
 	
 	var finalChart_options = {
-		title : '기간별'/* '${printYear}' */,
+		title : '${year}년 월별 가격 차트'/* '${printYear}' */,
 		width : 900,
 		height : 500,
 		bar : {

@@ -16,6 +16,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
+import kos.triple.project.etc.ServerSetting;
 import kos.triple.project.persistence.soon.WhereDAO;
 import kos.triple.project.vo.WhereVO;
 
@@ -184,7 +185,7 @@ public class WhereServiceImpl implements WhereService {
 
 		String saveDir = req.getSession().getServletContext().getRealPath("/resources/images/where/trip_location"); // 저장
 
-		String realDir = "C:\\Dev\\local\\finalProject\\src\\main\\webapp\\resources\\images\\where\\trip_location\\"; // 저장
+		String realDir = ServerSetting.imgPath+"\\src\\main\\webapp\\resources\\images\\where\\trip_location\\"; // 저장
 		// 경로
 		
 		FileInputStream fis = null;
@@ -354,7 +355,7 @@ public class WhereServiceImpl implements WhereService {
 
 		String saveDir = req.getSession().getServletContext().getRealPath("/resources/images/where/trip_location"); // 저장
 
-		String realDir = "C:\\Dev\\local\\finalProject\\src\\main\\webapp\\resources\\images\\where\\trip_location\\"; // 저장
+		String realDir = ServerSetting.imgPath+"\\src\\main\\webapp\\resources\\images\\where\\trip_location\\"; // 저장
 		// 경로
 		FileInputStream fis = null;
 		FileOutputStream fos = null;
@@ -480,7 +481,6 @@ public class WhereServiceImpl implements WhereService {
 
 		model.addAttribute("cnt", cnt);
 
-		
 	}
 
 }

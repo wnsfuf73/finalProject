@@ -88,13 +88,6 @@ public class WhereController {
 		return "where/where_search";
 	}
 
-	@RequestMapping(value = "contactus")
-	public String contactus(HttpServletRequest req, Model model) {
-		System.out.println("contactus()");
-
-		return "where/contactus";
-	}
-
 	/* 관리자 페이지 */
 	// 여행지 수정 페이지
 	@RequestMapping(value = "list")

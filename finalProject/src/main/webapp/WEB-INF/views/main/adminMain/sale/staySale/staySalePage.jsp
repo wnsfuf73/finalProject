@@ -85,7 +85,7 @@
 
 	<div class="container">
 		<div class="row">
-			<h3>총매출액(렌트) : ${firstChat['total']}</h3>
+			<h3>총매출액(숙박) : ${firstChat['total']}</h3>
 		</div>
 		<div class="row">
 			<div class="col-md-6">

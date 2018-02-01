@@ -38,7 +38,7 @@
 	<a href="myReview" class="w3-bar-item w3-button">리뷰</a>
 	<a href="myEssay" class="w3-bar-item w3-button">에세이</a>
   	
-  	<a href="#" class="w3-bar-item w3-button">내 여행 기록</a>
+  	<a href="epilogueList" class="w3-bar-item w3-button">내 여행 기록</a>
  	
  	<a href="myReservation" class="w3-bar-item w3-button">예약 목록</a>
  	
@@ -54,7 +54,7 @@
  
 <div id="main">
 
-<div class="w3-teal" style="background-color:#333!important">
+<%-- <div class="w3-teal" style="background-color:#333!important">
   <button id="openNav" class="w3-button w3-teal w3-xlarge" onclick="w3_open()" style="background-color:#333!important">&#9776;</button>
   <div class="w3-container">
   
@@ -97,7 +97,7 @@
 		</c:if>
 	</ul> 
   </div>
-</div>
+</div> --%>
 
 <!-- 가운데 내용 -->
 <div class="w3-container">

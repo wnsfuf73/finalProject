@@ -165,7 +165,7 @@
 			</c:if>
 			
 			<!-- 재고추가 성공 -->
-			<c:if test="${ctn != 0}">
+			<c:if test="${cnt == 1}">
 				<script type="text/javascript">
 					alert("리뷰등록 성공");
 				</script>

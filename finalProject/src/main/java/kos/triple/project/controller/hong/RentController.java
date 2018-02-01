@@ -151,12 +151,17 @@ public class RentController {
 	
 	//·»Æ®Ä« ¹Ý³³
 	@RequestMapping(value="carResReturn")
-	public String carResReturn(HttpServletRequest req, Model model) {
+	public ModelAndView carResReturn(HttpServletRequest req, Model model) {
 		
 		log.debug("=============================== Method Name : carResReturn() ===============================");
 		service.carResReturn(req, model);
-	
-		return "pro/hongPro/rentResReturn";
+		ModelAndView mav = new ModelAndView();
+		RedirectView redirectView = new RedirectView("getCarResList");
+		redirectView.setContextRelative(true);
+		
+		mav.setView(redirectView);
+		
+		return mav;
 	}
 	
 	//°á»ê

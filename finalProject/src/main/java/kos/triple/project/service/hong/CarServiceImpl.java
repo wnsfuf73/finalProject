@@ -497,6 +497,7 @@ public class CarServiceImpl implements CarService{
 		model.addAttribute("today", year);
 	}
 
+	//전체결산
 	@Override
 	public void getCharData_Car(HttpServletRequest req, Model model) {
 			

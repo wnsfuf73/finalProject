@@ -239,6 +239,7 @@ public class CarDAOImpl implements CarDAO{
 		map.put("중형",0);
 		map.put("대형",0);
 		map.put("SUV",0);
+		map.put("스포츠",0);
 		map.put("total",0);
 
 		for (MapVO i : price) {
@@ -261,6 +262,7 @@ public class CarDAOImpl implements CarDAO{
 		map.put("중형",0);
 		map.put("대형",0);
 		map.put("SUV",0);
+		map.put("스포츠",0);
 		map.put("total",0);
 		
 		for (MapVO i : car_kind) {

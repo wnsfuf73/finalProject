@@ -79,7 +79,8 @@ function carResReturn(rent_no){
 				$("#car_res_list").html(msg);
 			}
 			,error : function(){
-				alert("error");
+				window.location.reload();
+				//alert("error");
 			}
 		})
 	}

@@ -143,6 +143,9 @@ $(function() {
 	else if(iframeSrc=='myEpilogueList'){
 		$("iframe[name='contentFrame']").attr("src",iframeSrc);	
 	}
+	else if(iframeSrc=='myEssay'){
+		$("iframe[name='contentFrame']").attr("src",iframeSrc);	
+	}
 	
 	
 });

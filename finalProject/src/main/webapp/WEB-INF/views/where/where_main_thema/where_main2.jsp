@@ -116,8 +116,9 @@
 				<div class="collapse navbar-collapse" id="navbar-menu">
 					<ul class="nav navbar-nav navbar-right" data-in="fadeInDown"
 						data-out="fadeOutUp">
-						<li><a href="epilogueList">이야기</a></li>
-						<li><a href="where_main">어디갈까</a></li>
+						<li><a href="plan">계획하기</a></li>
+						<li><a href="epilogueList">여행후기</a></li>
+						<li><a href="where_main">여행지소개</a></li>
 						<li class="dropdown"><a class="dropdown-toggle"
 							data-toggle="dropdown" href="#">예약 </a>
 							<ul class="dropdown-menu">
@@ -294,51 +295,7 @@
 
 		<!--Company section-->
 
-		<section id="company" class="company bg-light">
-			<div class="container">
-				<div class="row">
-					<div class="main_company roomy-100 text-center">
-						<h3 class="text-uppercase">동 행</h3>
-						<p>가산 다지털 단지 - 한국 소프트웨어 인재 개발원</p>
-						<p>
-							010 - 1234 - 5678<br> info@poiseidon.lnk
-						</p>
-					</div>
-				</div>
-			</div>
-		</section>
-
-
-		<!-- scroll up-->
-		<div class="scrollup">
-			<a href="#"><i class="fa fa-chevron-up"></i></a>
-		</div>
-		<!-- End off scroll up -->
-
-
-		<footer id="footer" class="footer bg-mega">
-			<div class="container">
-				<div class="row">
-					<div class="main_footer p-top-40 p-bottom-30">
-						<div class="col-md-6 text-left sm-text-center">
-							<p class="wow fadeInRight" data-wow-duration="1s">
-								Made with <i class="fa fa-heart"></i> by <a target="_blank"
-									href="http://bootstrapthemes.co">Bootstrap Themes</a> 2016. All
-								Rights Reserved
-							</p>
-						</div>
-						<div class="col-md-6 text-right sm-text-center sm-m-top-20">
-							<ul class="list-inline">
-								<li><a href="">Facebook</a></li>
-								<li><a href="">Twitter</a></li>
-								<li><a href="">Instagram</a></li>
-								<li><a href="">Pinterest</a></li>
-							</ul>
-						</div>
-					</div>
-				</div>
-			</div>
-		</footer>
+		<%@include file="../../main/sample/footer.jsp" %>
 	</div>
 
 	<!-- JS includes -->

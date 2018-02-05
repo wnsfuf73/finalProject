@@ -139,8 +139,8 @@ footer {
 						data-target="#navbar-menu">
 						<i class="fa fa-bars"></i>
 					</button>
-					<a class="navbar-brand" href="main"> 홈<img src="#"
-						class="logo logo-display" alt=""> <img src="#"
+					<a class="navbar-brand" href="main"> 홈<img 
+						class="logo logo-display" alt=""> <img 
 						class="logo logo-scrolled" alt="">
 					</a>
 				</div>

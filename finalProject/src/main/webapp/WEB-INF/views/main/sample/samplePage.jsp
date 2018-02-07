@@ -5,21 +5,16 @@
 <html class="no-js" lang="en">
 <head>
 <meta charset="utf-8">
-<title>Pouseidon - Free HTML5 Model Agency Bootstrap Template</title>
-<meta name="description" content="">
+<title>동행... 당신의 이야기</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
+
+
 <link rel="icon" type="image/png" href="favicon.ico">
 
 <!--Google Fonts link-->
-<link href="https://fonts.googleapis.com/css?family=Montserrat:400,700"
-	rel="stylesheet">
-
-<link
-	href="https://fonts.googleapis.com/css?family=Crimson+Text:400,400i,600,600i,700,700i"
-	rel="stylesheet">
-<link
-	href="https://fonts.googleapis.com/css?family=Roboto+Condensed:300,300i,400,400i,700,700i"
-	rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Crimson+Text:400,400i,600,600i,700,700i" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Roboto+Condensed:300,300i,400,400i,700,700i" rel="stylesheet">
 
 <link rel="stylesheet" href="${css}slick.css">
 <link rel="stylesheet" href="${css}slick-theme.css">
@@ -30,29 +25,38 @@
 <link rel="stylesheet" href="${css}magnific-popup.css">
 <link rel="stylesheet" href="${css}bootsnav.css">
 <link rel="stylesheet" href="${css}carousel.css">
-
-<link rel="stylesheet"
-	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-
-
-<!--For Plugins external css-->
-<!--<link rel="stylesheet" href="${css}plugins.css" />-->
-
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 <!--Theme custom css -->
 <link rel="stylesheet" href="${css}style.css">
-<!--<link rel="stylesheet" href="${css}colors/maron.css">-->
-
 <!--Theme Responsive css-->
 <link rel="stylesheet" href="${css}responsive.css" />
 
+<!-- JS includes -->
 <script src="${js}vendor/modernizr-2.8.3-respond-1.4.2.min.js"></script>
+<script src="${js}vendor/jquery-1.11.2.min.js"></script>
+<script src="${js}vendor/bootstrap.min.js"></script>
+<script src="${js}isotope.min.js"></script>
+<script src="${js}jquery.magnific-popup.js"></script>
+<script src="${js}jquery.easing.1.3.js"></script>
+<script src="${js}slick.min.js"></script>
+<script src="${js}jquery.collapse.js"></script>
+<script src="${js}bootsnav.js"></script>
+<script src="${js}plugins.js"></script>
+<script src="${js}main.js"></script>
+
+<!-- <script type="text/javascript">
+	window.onload = function() {
+		window.open("mainNotice"
+				,"_blank"
+				,"toolbar=yes,scrollbars=yes,resizable=yes,top=100,left=100,width=400,height=250");	
+	}
+
+</script> -->
 </head>
 
 <body data-spy="scroll" data-target=".navbar-collapse">
 
-
 	<!-- Preloader -->
-
 	<div id="loading">
 		<div id="loading-center">
 			<div id="loading-center-absolute">
@@ -69,14 +73,10 @@
 			</div>
 		</div>
 	</div>
-
 	<!--End off Preloader -->
-
 
 	<div class="culmn">
 		<!--Home page style-->
-
-
 		<nav
 			class="navbar navbar-default navbar-fixed white no-background bootsnav text-uppercase">
 			<!-- Start Top Search -->
@@ -103,13 +103,13 @@
 
 				<!-- Start Header Navigation -->
 				<div class="navbar-header">
-					<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-menu">
+					<button type="button" class="navbar-toggle" data-toggle="collapse"
+						data-target="#navbar-menu">
 						<i class="fa fa-bars"></i>
 					</button>
-					<a class="navbar-brand" href="main">홈
-					<img src="#" class="logo logo-display" alt=""> 
-					<img src="#" class="logo logo-scrolled" alt="">
-
+					<a class="navbar-brand" href="main"> 
+						홈<img src="#" class="logo logo-display" alt=""> 
+						<img src="#"class="logo logo-scrolled" alt="">
 					</a>
 				</div>
 				<!-- End Header Navigation -->
@@ -118,24 +118,44 @@
 				<div class="collapse navbar-collapse" id="navbar-menu">
 					<ul class="nav navbar-nav navbar-right" data-in="fadeInDown"
 						data-out="fadeOutUp">
-						<li><a href="aboutus.html">이야기</a></li>
-						<li><a href="model.html">어디갈까</a></li>
-						<li><a href="blog.html">추천여행기</a></li>
+						<li><a href="plan">계획하기</a></li>
+						<li><a href="epilogueList">이야기</a></li>
+						<li><a href="where_main">어디갈까</a></li>
 						<li class="dropdown"><a class="dropdown-toggle"
 							data-toggle="dropdown" href="#">예약 </a>
 							<ul class="dropdown-menu">
-								<li><a href="#">숙박 예약</a></li>
-								<li><a href="#">항공 예약</a></li>
-								<li><a href="samplePage">렌트카 예약</a></li>
-							</ul></li>
-						<li><a href="#">로그인</a></li>
-						<li><a href="#">회원가입</a></li>
+								<li><a href="stayReservation">숙박 예약</a></li>
+								<li><a href="airReservation">항공 예약</a></li>
+								<li><a href="rentReservation">렌트카 예약</a></li>
+							</ul>
+						</li>
+					<c:if test="${sessionScope.mem_id == null}">					
+						<li><a href="" data-toggle="modal" data-target="#login">로그인</a></li>
+						<li><a href="" data-toggle="modal" data-target="#register">회원가입</a></li>
+					</c:if>
+					<c:if test="${sessionScope.mem_id != null}">
+						<li class="dropdown">
+						<a class="dropdown-toggle"
+							data-toggle="dropdown" href="#">${sessionScope.mem_id}님</a>
+							<ul class="dropdown-menu">
+								<li><a href="plan">계획하기</a></li>
+								<li><a href="epilogueList">여행후기</a></li>
+								<li><a href="myPageStart">마이페이지</a></li>
+							</ul>
+						</li>
+								
+						<li><a href="logout" >로그아웃</a></li>
+					</c:if>
 					</ul>
 				</div>
 				<!-- /.navbar-collapse -->
 			</div>
 
 		</nav>
+		<c:if test="${sessionScope.mem_id == null}">
+			<%@include file="../modal/loginModal.jsp"%>	
+			<%@include file="../modal/registerModal.jsp"%>
+		</c:if>
 
 
 		<!--Home Sections-->
@@ -248,18 +268,37 @@
 
 	<script src="${js}vendor/jquery-1.11.2.min.js"></script>
 	<script src="${js}vendor/bootstrap.min.js"></script>
-
 	<script src="${js}isotope.min.js"></script>
 	<script src="${js}jquery.magnific-popup.js"></script>
 	<script src="${js}jquery.easing.1.3.js"></script>
 	<script src="${js}slick.min.js"></script>
 	<script src="${js}jquery.collapse.js"></script>
 	<script src="${js}bootsnav.js"></script>
-
-
-
 	<script src="${js}plugins.js"></script>
 	<script src="${js}main.js"></script>
+	
+<script type="text/javascript">
+	/* 추천 ajax */
+	$(document).ready(function() {
+		$('#recomm_btn').click(function() {
+			
+		/* 	var planTitle = $("input[name='planTitle']").val();
+			var planContent = $("textarea[name='planContent']").val(); */
+		
+			 $.ajax({
+				url: "recommend",
+				type: 'GET',
+				
+				success: function(msg) {
+					$('#result').html(msg);					
+				},				
+				error: function() {
+					alert('오류');
+				}			
+			});			 
+		});		
+	});
+</script>
 
 </body>
 </html>

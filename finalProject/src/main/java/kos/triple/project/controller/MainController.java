@@ -141,6 +141,15 @@ public class MainController {
 		return "mypage/plan/myNewPlan";
 	}
 	
+	@RequestMapping(value="myPageMyEssay")
+	public String myPageMyEssay(HttpServletRequest req , Model model) {
+		
+		model.addAttribute("setIframe","myEssay");
+		return "mypage/myPageStart";
+	}
+	
+	
+	
 }
 
 

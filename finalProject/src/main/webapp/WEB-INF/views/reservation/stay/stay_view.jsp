@@ -77,95 +77,7 @@
 
 	<!--End off Preloader -->
 
-
-	<div class="culmn">
-		<!--Home page style-->
-
-		<nav
-			class="navbar navbar-default navbar-fixed white no-background bootsnav text-uppercase">
-			<!-- Start Top Search -->
-			<div class="top-search">
-				<div class="container">
-					<div class="input-group">
-						<span class="input-group-addon"><i class="fa fa-search"></i></span>
-						<input type="text" class="form-control" placeholder="Search">
-						<span class="input-group-addon close-search"><i
-							class="fa fa-times"></i></span>
-					</div>
-				</div>
-			</div>
-			<!-- End Top Search -->
-
-			<div class="container">
-				<!-- Start Atribute Navigation -->
-				<div class="attr-nav">
-					<ul>
-						<li class="search"><a href="#"><i class="fa fa-search"></i></a></li>
-					</ul>
-				</div>
-				<!-- End Atribute Navigation -->
-
-				<!-- Start Header Navigation -->
-				<div class="navbar-header">
-					<button type="button" class="navbar-toggle" data-toggle="collapse"
-						data-target="#navbar-menu">
-						<i class="fa fa-bars"></i>
-					</button>
-					<a class="navbar-brand" href="index"> 홈<img src="#"
-						class="logo logo-display" alt=""> <img src="#"
-						class="logo logo-scrolled" alt="">
-
-					</a>
-				</div>
-				<!-- End Header Navigation -->
-
-				<!-- Collect the nav links, forms, and other content for toggling -->
-				<div class="collapse navbar-collapse" id="navbar-menu">
-					<ul class="nav navbar-nav navbar-right" data-in="fadeInDown"
-						data-out="fadeOutUp">
-						<li><a href="plan">계획하기</a></li>
-						<li><a href="epilogueList">이야기</a></li>
-						<li><a href="where_main">어디갈까</a></li>
-						<li class="dropdown"><a class="dropdown-toggle"
-							data-toggle="dropdown" href="#">예약 </a>
-							<ul class="dropdown-menu">
-								<li><a href="stayReservation">숙박 예약</a></li>
-								<li><a href="airReservation">항공 예약</a></li>
-								<li><a href="rentReservation">렌트카 예약</a></li>
-							</ul></li>
-						<c:if test="${sessionScope.mem_id == null}">
-							<li><a href="" data-toggle="modal" data-target="#login">로그인</a></li>
-							<li><a href="" data-toggle="modal" data-target="#register">회원가입</a></li>
-						</c:if>
-						<c:if test="${sessionScope.mem_id != null}">
-							<li class="dropdown"><a class="dropdown-toggle"
-								data-toggle="dropdown" href="#">${sessionScope.mem_id}님</a>
-								<ul class="dropdown-menu">
-									<li><a href="plan">계획하기</a></li>
-									<li><a href="xxxStart">여행후기</a></li>
-									<li><a href="myPageStart">마이페이지</a></li>
-								</ul></li>
-
-							<li><a href="logout">로그아웃</a></li>
-						</c:if>
-					</ul>
-				</div>
-				<!-- /.navbar-collapse -->
-			</div>
-
-		</nav>
-		<c:if test="${sessionScope.mem_id == null}">
-			<%@include file="../../main/modal/loginModal.jsp"%>
-			<%@include file="../../main/modal/registerModal.jsp"%>
-		</c:if>
-
-
-		<!--Home Sections-->
-
-		<section id="hello" class="model-banner bg-mega" style="height: 70px;">
-			<div class="overlay"></div>
-		</section>
-		<!--End off Home Sections-->
+		<%@include file="../../main/sample/header.jsp" %>
 
 		<!--Model Details Section-->
 		<section id="m_details" class="m_details roomy-100 fix">
@@ -415,52 +327,7 @@
 			</div>
 		</section>
 
-		<section id="company" class="company bg-light">
-			<div class="container">
-				<div class="row">
-					<div class="main_company roomy-100 text-center">
-						<h3 class="text-uppercase">동 행</h3>
-						<p>가산 다지털 단지 - 한국 소프트웨어 인재 개발원</p>
-						<p>
-							010 - 1234 - 5678<br> info@poiseidon.lnk
-						</p>
-					</div>
-				</div>
-			</div>
-		</section>
-
-
-		<!-- scroll up-->
-		<div class="scrollup">
-			<a href="#"><i class="fa fa-chevron-up"></i></a>
-		</div>
-		<!-- End off scroll up -->
-
-
-		<footer id="footer" class="footer bg-mega">
-			<div class="container">
-				<div class="row">
-					<div class="main_footer p-top-40 p-bottom-30">
-						<div class="col-md-6 text-left sm-text-center">
-							<p class="wow fadeInRight" data-wow-duration="1s">
-								Made with <i class="fa fa-heart"></i> by <a target="_blank"
-									href="http://bootstrapthemes.co">Bootstrap Themes</a> 2016. All
-								Rights Reserved
-							</p>
-						</div>
-						<div class="col-md-6 text-right sm-text-center sm-m-top-20">
-							<ul class="list-inline">
-								<li><a href="">Facebook</a></li>
-								<li><a href="">Twitter</a></li>
-								<li><a href="">Instagram</a></li>
-								<li><a href="">Pinterest</a></li>
-							</ul>
-						</div>
-					</div>
-				</div>
-			</div>
-		</footer>
-	</div>
+		<%@include file="../../main/sample/footer.jsp" %>
 
 	<!-- JS includes -->
 	<script>

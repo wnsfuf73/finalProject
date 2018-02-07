@@ -10,6 +10,13 @@ public class AirReservationSearchVO {
 
 	}
 
+	public AirReservationSearchVO(RouteVO r, AirPlaneVO a, SeatPriceVO s) {
+		super();
+		this.r = r;
+		this.a = a;
+		this.s = s;
+	}
+
 	public RouteVO getR() {
 		return r;
 	}

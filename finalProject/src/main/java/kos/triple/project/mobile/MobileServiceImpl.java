@@ -2,6 +2,7 @@ package kos.triple.project.mobile;
 
 import java.sql.Timestamp;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -10,10 +11,12 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.ui.Model;
 
+import kos.triple.project.etc.PageCalculator;
 import kos.triple.project.mobile.vo.AirReservationSearchVO;
+import kos.triple.project.mobile.vo.MyResAirSummaryVO;
 import kos.triple.project.vo.AirReservationDetailVO;
+import kos.triple.project.vo.EpilogueFrontVO;
 import kos.triple.project.vo.RouteVO;
 
 
@@ -266,6 +269,83 @@ public class MobileServiceImpl implements MobileService{
 		
 	
 	}
+
+	@Override
+	public void mobileGetMyPageStartInfo(HttpServletRequest req) {
+		List<String> dataList = new ArrayList<String>();
+		//항공예약건수
+		//렌트예약건수
+		//숙박예약건수
+		//프로필이미지
+		String mem_id = req.getParameter("mem_id");
+		dataList = dao.mobileGetMyPageStartInfo_proc(mem_id);
+		req.setAttribute("dataList",dataList);
+	}
+
+	@Override
+	public void mobileGetMyAirReservationList(HttpServletRequest req) {
+		List<MyResAirSummaryVO> voList;
+		String mem_id = (String)req.getParameter("mem_id");
+		voList = dao.mobileGetMyAirReservationList_proc(mem_id);
+		
+		for(MyResAirSummaryVO i : voList) {
+			if(!i.getAirPlaneNo().equals("finish")) {
+				String airPlaneName=dao.getAirPlaneName(i.getAirPlaneNo());
+				i.setAirPlaneName(airPlaneName);
+			}
+		}
+		
+		System.out.println("--------------------");
+		for(MyResAirSummaryVO i : voList) {
+			System.out.println(i.getAirPlaneName());
+		}
+		System.out.println("---------------");
+		
+		req.setAttribute("voList",voList);
+		
+	}
+
+	@Override
+	public void mobileCancelReservationAir(HttpServletRequest req) {
+
+		String airPlaneNo = req.getParameter("airPlaneNo");
+		String airResNo = req.getParameter("airResNo");
+		Map<String,Object> map = new HashMap<String,Object>();
+		map.put("airPlaneNo",airPlaneNo);
+		map.put("airResNo",airResNo);
+	
+		int cnt = dao.mobileCancelReservationAir(map);
+		req.setAttribute("cnt",Integer.toString(cnt));
+	}
+
+	@Override
+	public void getMobileStory(HttpServletRequest req) {}
+		/*	
+		Map<String, Object> map = new HashMap<String, Object>();
+
+		String kind = null;
+		if (req.getParameter("kind") != null)
+			kind = req.getParameter("kind");
+		
+		map.put("kind", kind);
+		System.out.println(kind);
+		String requestPage = req.getParameter("requestPage");
+
+
+		List<EpilogueFrontVO> list = eDao.getAllEpilogueList_proc(map);
+
+		for (EpilogueFrontVO i : list) {
+
+			int num = i.getEpilogueNo();
+			i.setCommentCount(eDao.getCommentCount(num));
+			i.setVisitOrder(eDao.getCourses(num));
+			i.setGoodcount(eDao.getLikeCount(num));
+			i.setImg1(eDao.getRepresentImg(num));
+		}
+
+		req.setAttribute("epilList", list);
+		
+	}*/
 
 	
 

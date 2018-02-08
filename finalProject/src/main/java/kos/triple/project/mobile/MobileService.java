@@ -30,6 +30,18 @@ public interface MobileService {
 	//항공 예약을 한다
 	void mobileReservationProc(HttpServletRequest req);
 
+	//모바일 마이페이지 시작데이터를 가져온다.
+	void mobileGetMyPageStartInfo(HttpServletRequest req);
+
+	//마이페이지에서 항공예약목록가져온다(최소정보)
+	void mobileGetMyAirReservationList(HttpServletRequest req);
+
+	//모바일에서 항공예약을 취소한다.
+	void mobileCancelReservationAir(HttpServletRequest req);
+
+	//이야기를 가져온다.
+	void getMobileStory(HttpServletRequest req);
+
 	
 	
 }

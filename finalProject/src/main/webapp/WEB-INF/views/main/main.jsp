@@ -2,7 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@ include file="../setting.jsp"%>
 
-<html class="no-js" lang="en">
+<html>
 <head>
 <meta charset="utf-8">
 <title>동행... 당신의 이야기</title>
@@ -35,7 +35,7 @@
 <script src="${js}vendor/jquery-1.11.2.min.js"></script>
 <script src="${js}vendor/bootstrap.min.js"></script>
 <script src="${js}isotope.min.js"></script>
-<script src="${js}jquery.magnific-popup.js"></script>
+<script src="${js}jquery.magnific-popup.js"></script> 
 <script src="${js}jquery.easing.1.3.js"></script>
 <script src="${js}slick.min.js"></script>
 <script src="${js}jquery.collapse.js"></script>
@@ -107,8 +107,8 @@
 						<i class="fa fa-bars"></i>
 					</button>
 					<a class="navbar-brand" href="main"> 
-						홈<img src="#" class="logo logo-display" alt=""> 
-						<img src="#"class="logo logo-scrolled" alt="">
+						홈<img  class="logo logo-display" alt=""> 
+						<img class="logo logo-scrolled" alt="">
 					</a>
 				</div>
 				<!-- End Header Navigation -->

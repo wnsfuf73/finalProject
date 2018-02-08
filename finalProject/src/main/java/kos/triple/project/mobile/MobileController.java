@@ -11,13 +11,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import kos.triple.project.mobile.vo.AirReservationSearchVO;
+import kos.triple.project.mobile.vo.MyResAirSummaryVO;
 
 @Controller
 public class MobileController {
 	
 	@Autowired
 	MobileService service;
-	
 	
 	//해당기기의 로그인여부확인
 	@RequestMapping(value="startRedirect")
@@ -111,4 +111,46 @@ public class MobileController {
 		return cnt;
 	}
 	
+	
+	@RequestMapping(value="mobileGetMyPageStartInfo")
+	public @ResponseBody List<String> mobileGetMyPageStartInfo(HttpServletRequest req ) {
+		System.out.println("mobileGetMyPageStartInfo() ");
+		
+		service.mobileGetMyPageStartInfo(req);
+		@SuppressWarnings("unchecked")
+		List<String> data = (List<String>)req.getAttribute("dataList");
+		return data;
+	}
+	
+	@RequestMapping(value="mobileGetMyAirReservationList")
+	public @ResponseBody List<MyResAirSummaryVO> mobileGetMyAirReservationList(HttpServletRequest req ) {
+		System.out.println("mobileGetMyAirReservationList() ");
+		
+		service.mobileGetMyAirReservationList(req);
+		
+		@SuppressWarnings("unchecked")
+		List<MyResAirSummaryVO> voList 
+		= (List<MyResAirSummaryVO>)req.getAttribute("voList");
+		return voList;
+	}
+	
+	
+	@RequestMapping(value="mobileCancelReservationAir")
+	public @ResponseBody String mobileCancelReservationAir(HttpServletRequest req ) {
+		System.out.println("mobileCancelReservationAir() ");
+		
+		service.mobileCancelReservationAir(req);
+		String cnt = (String)req.getAttribute("cnt");
+	
+		return cnt;
+	}
+	
+	/* 이야기 */
+	@RequestMapping(value="getMobileStory")
+	public @ResponseBody String getMobileStory(HttpServletRequest req ) {
+		System.out.println("getMobileStory() ");
+	
+		service.getMobileStory(req);
+		return "1";
+	}
 }

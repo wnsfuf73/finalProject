@@ -129,4 +129,71 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		</if>
 	</update>
 	
+	<select id="mobileGetMyPageStartInfo_proc_step1" 
+		parameterType="String"
+		resultType="int">
+		SELECT COUNT(*)
+		FROM res_air
+		WHERE mem_id=#{mem_id}
+	</select>
+	<select id="mobileGetMyPageStartInfo_proc_step2" 
+		parameterType="String"
+		resultType="int">
+		SELECT COUNT(*)
+		FROM reservation_car
+		WHERE mem_id=#{mem_id}
+	</select>
+	<select id="mobileGetMyPageStartInfo_proc_step3" 
+		parameterType="String"
+		resultType="int">
+		SELECT COUNT(*)
+		FROM room_reservation
+		WHERE mem_id=#{mem_id}
+	</select>
+	<select id="mobileGetMyPageStartInfo_proc_step4" 
+		parameterType="String"
+		resultType="String">	
+  		SELECT faceimg 
+  		FROM member 
+  		WHERE mem_id=#{mem_id}
+	</select>
+	
+	<select id="mobileGetMyAirReservationList_proc" parameterType="String"
+			 resultType="kos.triple.project.mobile.vo.MyResAirSummaryVO">
+		SELECT airresno , memsize , paymethod , price , NVL(airplaneno,'finish') 
+			    as airplaneno,startlocation,endlocation,starttime,restime,
+			    DECODE(seatlevel_adult,'nomal','일반석','highClass','고급석','premium','프리미엄석','noSelect','')||' '||adult||'명 , '
+			    ||DECODE(seatlevel_student,'nomal','일반석','highClass','고급석','premium','프리미엄석','noSelect','')||' '||student||'명 , '
+			    ||DECODE(seatlevel_baby,'nomal','일반석','highClass','고급석','premium','프리미엄석','noSelect','')||' '||baby||'명'
+			    as selectInfo
+		FROM res_air
+		WHERE mem_id=#{mem_id}
+		ORDER BY resTime DESC
+	</select>
+	
+	<select id="getAirPlaneName" parameterType="String" resultType="String">
+		SELECT airPlaneName
+		FROM airplane
+		WHERE airPlaneNo=#{airPlaneNo}
+	</select>
+	
+	<!-- 항공 예약 취소 -->
+	<select id="mobileCancelReservationAir_step1" parameterType="String" resultType="kos.triple.project.vo.AirReservationDetailVO">
+		SELECT *
+		FROM RES_AIR
+		WHERE AIRRESNO = #{airResNo}
+	</select>
+	
+	<delete id="mobileCancelReservationAir_step2">
+		DELETE FROM res_air
+		WHERE AIRRESNO = #{airResNo}
+	</delete>
+	
+	<update id="mobileCancelReservationAir_step3" parameterType="java.util.Map">
+		UPDATE airplane
+		SET premium = premium+#{premium}, highClass = highClass+#{highClass}, nomal = nomal+#{nomal} 
+		WHERE airPlaneNo=#{airPlaneNo}
+	</update>
+	<!-- 항공 예약 취소 -->
+	
  </mapper>

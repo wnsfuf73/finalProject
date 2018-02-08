@@ -1,5 +1,6 @@
 package kos.triple.project.mobile;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -9,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import kos.triple.project.mobile.vo.AirReservationSearchVO;
+import kos.triple.project.mobile.vo.MyResAirSummaryVO;
 import kos.triple.project.vo.AirReservationDetailVO;
 import kos.triple.project.vo.RouteVO;
 
@@ -100,5 +102,107 @@ public class MobileDAOImpl implements MobileDAO{
 	public int setRemainSeatUpdate(Map<String,Object> map) {
 		MobileDAO dao = sqlSession.getMapper(MobileDAO.class);
 		return dao.setRemainSeatUpdate(map);
+	}
+
+	@Override
+	public List<String> mobileGetMyPageStartInfo_proc(String mem_id) {
+		List<String> data = new ArrayList<String>();
+		String tmp = null;
+		String[] mapperName = { ".mobileGetMyPageStartInfo_proc_step1" //항공
+							,".mobileGetMyPageStartInfo_proc_step2" //숙박
+							,".mobileGetMyPageStartInfo_proc_step3" //렌트
+							};
+		
+		for(String i : mapperName) {
+			tmp = Integer.toString(sqlSession.selectOne(nameSpace+i,mem_id));
+			data.add(tmp);
+		}
+		
+		tmp = sqlSession.selectOne(nameSpace+".mobileGetMyPageStartInfo_proc_step4",mem_id); //프로필이미지
+		data.add(tmp);
+		
+		return data;
+	}
+
+	@Override
+	public List<MyResAirSummaryVO> mobileGetMyAirReservationList_proc(String mem_id) {
+		MobileDAO dao = sqlSession.getMapper(MobileDAO.class);
+		return dao.mobileGetMyAirReservationList_proc(mem_id);
+	}
+
+	@Override
+	public String getAirPlaneName(String airPlaneNo) {
+		MobileDAO dao = sqlSession.getMapper(MobileDAO.class);
+		return dao.getAirPlaneName(airPlaneNo);
+	}
+
+	@Override
+	public int mobileCancelReservationAir(Map<String, Object> map) {
+
+		int cnt = 0;
+		String airResNo = (String)map.get("airResNo");
+		String airPlaneNo = (String)map.get("airPlaneNo");
+
+		AirReservationDetailVO vo = sqlSession.selectOne(nameSpace+".mobileCancelReservationAir_step1",airResNo);
+		
+		cnt = sqlSession.delete(nameSpace+".mobileCancelReservationAir_step2",airResNo);
+		if(cnt == 1) {
+			int restore_nomal = 0;
+			int restore_highClass = 0;
+			int restore_premium = 0;
+			
+			int adult = vo.getAdult();
+			int student = vo.getStudent();
+			int baby = vo.getBaby();
+			
+			String seatLevel_adult = vo.getSeatLevel_adult();
+			String seatLevel_student = vo.getSeatLevel_student();
+			String seatLevel_baby = vo.getSeatLevel_baby();
+			
+			
+			if(seatLevel_adult.equals("nomal")) {
+				restore_nomal+=adult;
+			}
+			else if(seatLevel_adult.equals("highClass")) {
+				restore_highClass +=adult;
+			}
+			else if(seatLevel_adult.equals("premium")) {
+				restore_premium +=adult;
+			}
+			
+			if(seatLevel_student.equals("nomal")) {
+				restore_nomal+=student;
+			}
+			else if(seatLevel_student.equals("highClass")) {
+				restore_highClass +=student;
+			}
+			else if(seatLevel_student.equals("premium")) {
+				restore_premium +=student;
+			}
+			
+			if(seatLevel_baby.equals("nomal")) {
+				restore_nomal+=baby;
+			}
+			else if(seatLevel_baby.equals("highClass")) {
+				restore_highClass +=baby;
+			}
+			else if(seatLevel_baby.equals("premium")) {
+				restore_premium +=baby;
+			}
+			
+			map.clear();
+			
+			map.put("airPlaneNo", airPlaneNo);
+			map.put("nomal",restore_nomal);
+			map.put("highClass",restore_highClass);
+			map.put("premium",restore_premium);
+			map.forEach((k,v)->{
+				System.out.println(k + " : " + v);
+			});
+			sqlSession.update(nameSpace+".mobileCancelReservationAir_step3",map);
+		}
+		
+		return cnt;
+		
 	}
 }

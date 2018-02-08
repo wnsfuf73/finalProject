@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Map;
 
 import kos.triple.project.mobile.vo.AirReservationSearchVO;
+import kos.triple.project.mobile.vo.MyResAirSummaryVO;
 import kos.triple.project.vo.AirReservationDetailVO;
 import kos.triple.project.vo.RouteVO;
 
@@ -42,8 +43,20 @@ public interface MobileDAO {
 	//예약을 확정한다.
 	int reservationComplete_proc(AirReservationDetailVO vo);
 
-	//
+	//좌석남은수를 업데이트한다.
 	int setRemainSeatUpdate(Map<String,Object> map);
+
+	//마이페이지 시작데이터(각예약건수 , 프로필이미지)를 가져온다
+	List<String> mobileGetMyPageStartInfo_proc(String mem_id);
+
+	//마이페이지에서 항공예약목록가져온다(최소정보)
+	List<MyResAirSummaryVO> mobileGetMyAirReservationList_proc(String mem_id);
+
+	//항공기번호로 이름을 가져온다.
+	String getAirPlaneName(String airPlaneNo);
+
+	//모바일에서 항공예약을 취소한다.
+	int mobileCancelReservationAir(Map<String, Object> map);
 	
 	
 

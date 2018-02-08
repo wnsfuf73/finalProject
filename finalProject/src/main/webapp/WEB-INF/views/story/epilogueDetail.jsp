@@ -104,8 +104,8 @@ style="background-color: #36363b;">
 				<i class="fa fa-bars"></i>
 			</button>
 			<a class="navbar-brand" href="main"> 
-				<span><b>홈</b></span><img src="#" class="logo logo-display" alt=""> 
-				<img src="#"class="logo logo-scrolled" alt="">
+				<span><b>홈</b></span><img  class="logo logo-display" alt=""> 
+				<img class="logo logo-scrolled" alt="">
 			</a>
 		</div>
 		<!-- End Header Navigation -->

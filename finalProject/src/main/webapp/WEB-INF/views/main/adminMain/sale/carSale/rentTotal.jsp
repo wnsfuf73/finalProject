@@ -87,15 +87,6 @@
 	</div>
 	<div class="row">
 		<form action="carSalePage" method="post" name="totalForm">
-			<!--  <select name="year">
-				<option>2018</option>
-				<option>2019</option>
-				<option>2020</option>
-				<option>2021</option>
-				<option>2022</option>
-				<option>2023</option>
-			</select>
-			<input type="submit" value="확인"> -->
 			<input type="submit" value="◀" onClick="javascript:this.form.year.value--;">
 			<input type="text" name="year" class="year"  value="${today}" size="2" style="text-align:center;">
 			<input type="submit" value="▶" onClick="javascript:this.form.year.value++;">

@@ -11,7 +11,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import kos.triple.project.mobile.vo.AirReservationSearchVO;
+import kos.triple.project.mobile.vo.EpilogueDetailVO;
+import kos.triple.project.mobile.vo.EpilogueMobileCourseVO;
+import kos.triple.project.mobile.vo.EpilogueMobileVO;
 import kos.triple.project.mobile.vo.MyResAirSummaryVO;
+import kos.triple.project.vo.CarInfoVO;
+import kos.triple.project.vo.WhereVO;
 
 @Controller
 public class MobileController {
@@ -147,10 +152,84 @@ public class MobileController {
 	
 	/* 이야기 */
 	@RequestMapping(value="getMobileStory")
-	public @ResponseBody String getMobileStory(HttpServletRequest req ) {
+	public @ResponseBody List<EpilogueMobileVO> getMobileStory(HttpServletRequest req ) {
 		System.out.println("getMobileStory() ");
 	
 		service.getMobileStory(req);
-		return "1";
+		
+		@SuppressWarnings("unchecked")
+		List<EpilogueMobileVO> voList = (List<EpilogueMobileVO>)req.getAttribute("voList");
+		
+		return voList;
 	}
+	
+	@SuppressWarnings("unchecked")
+	@RequestMapping(value="mobileStoryDetail")
+	public @ResponseBody EpilogueDetailVO mobileStoryDetail(HttpServletRequest req ) {
+		System.out.println("mobileStoryDetail() ");
+		
+		service.mobileStoryDetail(req);
+		
+		EpilogueMobileVO vo = (EpilogueMobileVO) req.getAttribute("vo");
+		List<EpilogueMobileCourseVO> courseList = (List<EpilogueMobileCourseVO>) req.getAttribute("courseList");
+		vo.setFront_img(courseList.get(0).getImg1());
+		
+		EpilogueDetailVO resultData = new EpilogueDetailVO();
+		resultData.setE(vo);
+		resultData.setcList(courseList);
+		
+		return resultData;
+		
+	}
+	
+	/* 이야기 */
+	
+	/* 여행지정보 */
+	@RequestMapping(value="mobileWhere")
+	public @ResponseBody List<WhereVO> mobileWhere(HttpServletRequest req ) {
+		System.out.println("mobileWhere()");
+		
+		service.getMobileWhereAll(req);
+		
+		@SuppressWarnings("unchecked")
+		List<WhereVO> voList = (List<WhereVO>)req.getAttribute("voList");
+		return voList;
+	}
+	
+	
+	/* 여행지정보 지역별*/
+	@RequestMapping(value="mobileWhereArea")
+	public @ResponseBody List<WhereVO> mobileWhereArea(HttpServletRequest req ) {
+		System.out.println("mobileWhere()");
+		
+		service.mobileWhereArea(req);
+		
+		@SuppressWarnings("unchecked")
+		List<WhereVO> voList = (List<WhereVO>)req.getAttribute("voList");
+		return voList;
+	}
+	
+	/* 여행지정보 */
+	
+	/* 렌트 */
+	@RequestMapping(value="mobileRentList")
+	public @ResponseBody List<CarInfoVO> mobileRentList(HttpServletRequest req ) {
+		System.out.println("mobileRentList() ");
+		
+		service.mobileRentList(req);
+		
+		@SuppressWarnings("unchecked")
+		List<CarInfoVO> voList = (List<CarInfoVO>)req.getAttribute("voList");
+		
+		return voList;
+	}
+	
+	@RequestMapping(value="mobileRentReserStep3")
+	public String mobileRentReserStep3(HttpServletRequest req ) {
+		System.out.println("mobileRentReserStep3()");
+		
+		return "reservation/car/mobile/RentReserStep3";
+	}
+	
+	/* 렌트 */
 }

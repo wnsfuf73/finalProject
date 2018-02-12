@@ -12,12 +12,14 @@ import javax.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import kos.triple.project.etc.PageCalculator;
 import kos.triple.project.mobile.vo.AirReservationSearchVO;
+import kos.triple.project.mobile.vo.EpilogueMobileCourseVO;
+import kos.triple.project.mobile.vo.EpilogueMobileVO;
 import kos.triple.project.mobile.vo.MyResAirSummaryVO;
 import kos.triple.project.vo.AirReservationDetailVO;
-import kos.triple.project.vo.EpilogueFrontVO;
+import kos.triple.project.vo.CarInfoVO;
 import kos.triple.project.vo.RouteVO;
+import kos.triple.project.vo.WhereVO;
 
 
 
@@ -318,35 +320,100 @@ public class MobileServiceImpl implements MobileService{
 		req.setAttribute("cnt",Integer.toString(cnt));
 	}
 
+	
+	/* 이야기 */
 	@Override
-	public void getMobileStory(HttpServletRequest req) {}
-		/*	
-		Map<String, Object> map = new HashMap<String, Object>();
-
-		String kind = null;
-		if (req.getParameter("kind") != null)
-			kind = req.getParameter("kind");
+	public void getMobileStory(HttpServletRequest req) {
 		
-		map.put("kind", kind);
-		System.out.println(kind);
-		String requestPage = req.getParameter("requestPage");
-
-
-		List<EpilogueFrontVO> list = eDao.getAllEpilogueList_proc(map);
-
-		for (EpilogueFrontVO i : list) {
-
-			int num = i.getEpilogueNo();
-			i.setCommentCount(eDao.getCommentCount(num));
-			i.setVisitOrder(eDao.getCourses(num));
-			i.setGoodcount(eDao.getLikeCount(num));
-			i.setImg1(eDao.getRepresentImg(num));
+		List<EpilogueMobileVO> voList = dao.getMobileStory_proc();
+		
+		int index = 0;
+		for(EpilogueMobileVO i : voList) {
+			int epilogueNo = i.getEpilogueNo();
+			System.out.println("step4" + epilogueNo);
+			String imgPath = dao.getEpilogueFrontImage(epilogueNo);
+			voList.get(index).setFront_img(imgPath);
+			index++;
 		}
-
-		req.setAttribute("epilList", list);
 		
-	}*/
+		System.out.println("---------------------");
+		for(int i = 0 ; i<voList.size(); i++) {
+			System.out.println(voList.get(i).getFront_img());
+		}
+		
+		req.setAttribute("voList",voList);
+	}
+	
+	@Override
+	public void mobileStoryDetail(HttpServletRequest req) {
 
+		String epNum = req.getParameter("epilogueNo");
+		System.out.println(epNum);
+		int epilogueNo = Integer.parseInt(epNum);
+		
+		EpilogueMobileVO vo = dao.getMobileStoryDetail_proc(epilogueNo);
+		List<EpilogueMobileCourseVO> course = dao.getMobileStoryDetailCourse_proc(epilogueNo);
+		req.setAttribute("vo",vo);
+		req.setAttribute("courseList",course);
+	}
+	/* 이야기 */
+	
+	/* 여행지 정보 */
+
+	@Override
+	public void getMobileWhereAll(HttpServletRequest req) {
+		
+		List<WhereVO> voList = dao.getMobileWhereAll_proc();
+		
+		req.setAttribute("voList",voList);
+	}
+	
+	@Override
+	public void mobileWhereArea(HttpServletRequest req) {
+		
+		String area = req.getParameter("area");
+		List<WhereVO> voList = dao.getMobileWhereArea_proc(area);
+	
+		req.setAttribute("voList",voList);
+		
+	}
+	
+	/* 여행지 정보 */
+	
+
+	/* 렌트 */
+	@Override
+	public void mobileRentList(HttpServletRequest req) {
+	
+								
+		String car_kind = req.getParameter("car_kind");		
+		String rental_day = req.getParameter("rental_day");
+		String rental_time = req.getParameter("rental_time");
+		
+		String return_day = req.getParameter("return_day");		
+		String return_time = req.getParameter("return_time");
+		
+		System.out.println("--------------------");
+		System.out.println(car_kind);
+		System.out.println(rental_day);
+		System.out.println(rental_time);
+		System.out.println(return_day);
+		System.out.println(return_time);
+		Map<String,Object> map = new HashMap<String,Object>();
+		map.put("car_kind",car_kind );
+		map.put("rental_day",rental_day );
+		map.put("rental_time",rental_time );
+		map.put("return_day",return_day );
+		map.put("return_time",return_time );
+		
+		List<CarInfoVO> voList = dao.mobileRentList_proc(map);
+		req.setAttribute("voList",voList);
+		
+	}
+
+
+
+	/* 렌트 */
 	
 
 	

@@ -1,7 +1,5 @@
 package kos.triple.project.vo;
 
-import java.util.Map;
-
 public class WhereVO {
 	private String location_num;
 	private String thema_category;

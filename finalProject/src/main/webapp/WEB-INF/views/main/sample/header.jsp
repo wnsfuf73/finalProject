@@ -5,6 +5,8 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link rel="stylesheet" href="${css}carousel.css">
+<link rel="stylesheet" href="${css}where.css">
 <title>Insert title here</title>
 </head>
 <body>
@@ -104,16 +106,26 @@
 
 				<!-- Wrapper for slides -->
 				<div class="carousel-inner" role="listbox">
+<<<<<<< HEAD
 					<div class="item active" style="max-width:auto!important; height:800px!important;">
 						<img src="${images}travel/main/21.jpg" alt="travel1">
+=======
+					<div class="item active">
+						<img src="${images}background/bg_where_1.jpg" alt="travel1">
+>>>>>>> branch 'master' of https://github.com/wnsfuf73/finalProject.git
 						<div class="carousel-caption">
 							<h3>New York</h3>
 							<p>The atmosphere in New York is lorem ipsum.</p>
 						</div>
 					</div>
 
+<<<<<<< HEAD
 					<div class="item" style="max-width:auto!important; height:800px!important;">
 						<img src="${images}travel/main/8.jpg" alt="travel2" >
+=======
+					<div class="item">
+						<img src="${images}background/bg_where_2.jpg" alt="travel2">
+>>>>>>> branch 'master' of https://github.com/wnsfuf73/finalProject.git
 						<div class="carousel-caption">
 							<h3>Chicago</h3>
 							<p>Thank you, Chicago - A night we won't forget.</p>
@@ -121,8 +133,13 @@
 						
 					</div>
 
+<<<<<<< HEAD
 					<div class="item" style="max-width:auto!important; height:800px!important;">
 						<img src="${images}travel/main/55.jpg" alt="travel3">
+=======
+					<div class="item">
+						<img src="${images}background/bg_where_3.jpg" alt="travel3">
+>>>>>>> branch 'master' of https://github.com/wnsfuf73/finalProject.git
 						<div class="carousel-caption">
 							<h3>LA</h3>
 							<p>Even though the traffic was a mess, we had the best time.</p>

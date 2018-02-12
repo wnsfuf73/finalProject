@@ -220,8 +220,6 @@
 	<script src="${js}plugins.js"></script>
 	<script src="${js}main.js"></script>
 
-	<script src="${js}bootstrap.green.min.js"></script>
-
 	<script src="${js}stayReservation.js"></script>
 
 </body>

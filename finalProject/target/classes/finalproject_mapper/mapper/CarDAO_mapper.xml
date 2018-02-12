@@ -219,7 +219,7 @@
 	
 	<!-- 전체 결산(가격) -->
 	<select id="getSecondChat_car" resultType="int" >
-		SELECT SUM(price)  
+		SELECT NVL(SUM(price),0)
 		FROM reservation_car
 	</select>
 	

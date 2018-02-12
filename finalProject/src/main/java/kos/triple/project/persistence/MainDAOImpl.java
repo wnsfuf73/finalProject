@@ -51,6 +51,13 @@ public class MainDAOImpl implements MainDAO{
 	
 	//Ã¶È¯ÀÌÇü daoimpl·Î
 	@Override
+	public int deleteStoryComment(int epilogueNo) {
+		MainDAO dao = sqlSession.getMapper(MainDAO.class);
+		return dao.deleteStoryComment(epilogueNo);
+	}
+	
+	//Ã¶È¯ÀÌÇü daoimpl·Î
+	@Override
 	public int deleteMyStory_proc(int epilogueNo) {
 		MainDAO dao = sqlSession.getMapper(MainDAO.class);
 		return dao.deleteMyStory_proc(epilogueNo);
@@ -98,6 +105,7 @@ public class MainDAOImpl implements MainDAO{
 		MainDAO dao = sqlSession.getMapper(MainDAO.class);
 		return dao.getHomePageBestTravel();
 	}
+
 
 
 

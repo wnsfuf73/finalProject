@@ -31,9 +31,9 @@
 <link rel="stylesheet" href="${css}bootstrap.css">
 <link rel="stylesheet" href="${css}magnific-popup.css">
 <link rel="stylesheet" href="${css}bootsnav.css">
-<link rel="stylesheet" href="${css}carousel.css">
+<%-- <link rel="stylesheet" href="${css}carousel.css"> --%>
+<%-- <link rel="stylesheet" href="${css}where.css"> --%>
 <link rel="stylesheet" href="${css}storyCss/storyModal.css">
-
 <link rel="stylesheet" href="${css}style.css">
 <link rel="stylesheet" href="${css}responsive.css" />
 <script src="${js}vendor/modernizr-2.8.3-respond-1.4.2.min.js"></script>
@@ -95,12 +95,13 @@ footer {
  -->
 	<!--End off Preloader -->
 
+	<%@include file="../main/sample/header.jsp" %>
 
 	<div class="culmn">
 		<!--Home page style-->
 
-		<nav
-			class="navbar navbar-default navbar-fixed white no-background bootsnav text-uppercase">
+		<!-- <nav
+			class="navbar navbar-default navbar-fixed white no-background bootsnav text-uppercase"> -->
 			<!-- Start Top Search -->
 			<div class="top-search">
 				<div class="container">
@@ -114,30 +115,30 @@ footer {
 			</div>
 			<!-- End Top Search -->
 
-			<div class="container">
+		<!-- 	<div class="container"> -->
 				<!-- Start Atribute Navigation -->
-				<div class="attr-nav">
+<!-- 				<div class="attr-nav">
 					<ul>
 						<li class="search"><a href="#"><i class="fa fa-search"></i></a></li>
 					</ul>
-				</div>
+				</div> -->
 				<!-- End Atribute Navigation -->
 
 				<!-- Start Header Navigation -->
-				<div class="navbar-header">
-					<button type="button" class="navbar-toggle" data-toggle="collapse"
+				<!-- <div class="navbar-header"> -->
+<!-- 					<button type="button" class="navbar-toggle" data-toggle="collapse"
 						data-target="#navbar-menu">
 						<i class="fa fa-bars"></i>
-					</button>
-					<a class="navbar-brand" href="main"> 홈<img 
+					</button> -->
+					<!-- <a class="navbar-brand" href="main"> 홈<img 
 						class="logo logo-display" alt=""> <img 
 						class="logo logo-scrolled" alt="">
-					</a>
-				</div>
+					</a> -->
+				<!-- </div> -->
 				<!-- End Header Navigation -->
 
 				<!-- Collect the nav links, forms, and other content for toggling -->
-				<div class="collapse navbar-collapse" id="navbar-menu">
+				<%-- <div class="collapse navbar-collapse" id="navbar-menu">
 					<ul class="nav navbar-nav navbar-right" data-in="fadeInDown"
 						data-out="fadeOutUp">
 						<li><a href="plan">계획하기</a></li>
@@ -165,11 +166,11 @@ footer {
 							</li>
 						</c:if>
 					</ul>
-				</div>
+				</div> --%>
 				<!-- /.navbar-collapse -->
-			</div>
+			<!-- </div> -->
 
-		</nav>
+		<!-- </nav> -->
 
 		<c:if test="${sessionScope.mem_id == null}">
 			<%@include file="../main/modal/loginModal.jsp"%>	
@@ -202,7 +203,7 @@ footer {
 	
 	<div class="container">
 
-		<section id="hello" class="home bg-mega">
+<%-- 		<section id="hello" class="home bg-mega">
 			<div id="myCarousel" class="carousel slide" data-ride="carousel">
 				<!-- Indicators -->
 				<ol class="carousel-indicators">
@@ -253,7 +254,7 @@ footer {
 			
 
 
-		</section>
+		</section> --%>
 		<!--End off Home Sections-->
 		<br> <br> <br> <br> <br>
 		<div class="container-fluid">

@@ -206,4 +206,86 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			
 	</select>
 	<!-- 숙박 -->
+	<!-- 이야기 -->
+	
+	<select id="getMobileStory_proc" resultType="kos.triple.project.mobile.vo.EpilogueMobileVO">
+		SELECT *
+		FROM EPILOGUE
+		WHERE iscomplete = 'Y' AND security='Y'
+		ORDER BY reg_date DESC
+	</select>
+	
+	<select id="getEpilogueFrontImage" parameterType="int" resultType="String">
+		SELECT img1
+		FROM
+		EPILOGUE_COURSE
+		WHERE epilogueno=#{epilogueNo} AND visit_order=1
+	</select>
+	
+	<select id="getMobileStoryDetail_proc" 
+		parameterType="int" resultType="kos.triple.project.mobile.vo.EpilogueMobileVO">
+		SELECT *
+		FROM EPILOGUE
+		WHERE iscomplete = 'Y' AND security='Y'
+		AND epilogueno=#{epilogueNo}
+	</select>
+	
+	<select id="getMobileStoryDetailCourse_proc"
+		parameterType="int" resultType="kos.triple.project.mobile.vo.EpilogueMobileCourseVO">
+		SELECT c.epilogue_courseNo epilogue_courseNo,t.location_num location_num
+		      ,c.content content , c.img1 img1 , c.img2 img2 , c.img3 img3 , c.img4 img4
+		      ,c.visit_order visit_order , c.dday dday , t.location_name location_name , t.location_addr location_addr
+		FROM
+		EPILOGUE_COURSE c JOIN trip_location_info t ON c.location_num=t.location_num 
+		WHERE epilogueno=#{epilogueNo}
+		ORDER BY c.dday ,c.visit_order
+	</select>
+	
+	<!-- 이야기 -->
+	
+	<!-- 여행지 정보 -->
+	
+	<select id="getMobileWhereAll_proc" resultType="kos.triple.project.vo.WhereVO">
+		SELECT * FROM
+		trip_location_info 
+		ORDER BY LOCATION_NAME
+	</select>
+	
+	<select id="getMobileWhereArea_proc" parameterType="java.util.Map" resultType="kos.triple.project.vo.WhereVO">
+		<if test="area.equals('전체')">
+			SELECT * FROM
+			trip_location_info
+			ORDER BY LOCATION_NAME
+		</if>
+		<if test="area.equals('전체')==false">
+			SELECT * FROM
+			trip_location_info 
+			WHERE area=#{area}
+			ORDER BY LOCATION_NAME
+		</if>
+	</select>
+	
+	<!-- 여행지 정보 -->
+	
+	<!-- 렌트 -->
+	<select id="mobileRentList_proc" parameterType="java.util.Map" 
+				resultType="kos.triple.project.vo.CarInfoVO">
+		SELECT rentcar.use_km,rentcar.car_count,rentcar.insurance,rentcar.car_num,rentcar.car_img,
+   			 car.car_name, car.car_kind, car.fuel, car.brand_name, car.car_price,car.car_addprice,rentcar.rent_no
+		FROM 
+		car JOIN rentcar 
+		ON rentcar.car_num=car.car_num 
+		WHERE rent_no not in(
+		  SELECT rent_no 
+		  FROM reservation_car
+		  WHERE to_timestamp(#{rental_day}||' '||#{rental_time}) 
+		        BETWEEN to_timestamp(rental_day||' '||rental_time) 
+		                AND to_timestamp(return_day||' '||return_time)
+		)
+		<if test="car_kind.equals('전체')==false">
+			AND car_kind=#{car_kind}
+		</if>
+		ORDER BY car.car_price		
+	</select>
+	<!-- 렌트 -->
  </mapper>

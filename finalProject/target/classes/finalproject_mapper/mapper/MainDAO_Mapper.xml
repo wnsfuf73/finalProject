@@ -95,6 +95,11 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		WHERE epilogueNo=#{epilogueNo}
 	</delete>
 	
+	<delete id="deleteStoryComment" parameterType="int">
+		DELETE FROM EPILOGUE_COMMENT
+		WHERE epilogueNo=#{epilogueNo}
+	</delete>
+	
 	<!-- 철환이형 -->
 	
 	<!-- 호선이 -->

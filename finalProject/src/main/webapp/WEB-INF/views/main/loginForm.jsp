@@ -24,7 +24,8 @@
 <link rel="stylesheet" href="${css}bootstrap.css">
 <link rel="stylesheet" href="${css}magnific-popup.css">
 <link rel="stylesheet" href="${css}bootsnav.css">
-<link rel="stylesheet" href="${css}carousel.css">
+<%-- <link rel="stylesheet" href="${css}carousel.css">
+<link rel="stylesheet" href="${css}where.css"> --%>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 <link rel="stylesheet" href="${css}style.css">
 <link rel="stylesheet" href="${css}responsive.css" />
@@ -57,12 +58,14 @@
 		</div>
 	</div>
 	<!--End off Preloader -->
+		
+	<%@include file="../main/sample/header.jsp" %>
 
 	<div class="culmn">
 		<!--Home page style-->
-		<nav
+		<!-- <nav
 			class="navbar navbar-default navbar-fixed white no-background bootsnav text-uppercase">
-			<!-- Start Top Search -->
+			Start Top Search
 			<div class="top-search">
 				<div class="container">
 					<div class="input-group">
@@ -73,18 +76,18 @@
 					</div>
 				</div>
 			</div>
-			<!-- End Top Search -->
+			End Top Search
 
-			<div class="container">
+			<div class="container"> -->
 				<!-- Start Atribute Navigation -->
-				<div class="attr-nav">
+				<!-- <div class="attr-nav">
 					<ul>
 						<li class="search"><a href="#"><i class="fa fa-search"></i></a></li>
 					</ul>
 				</div>
-				<!-- End Atribute Navigation -->
+				End Atribute Navigation
 
-				<!-- Start Header Navigation -->
+				Start Header Navigation
 				<div class="navbar-header">
 					<button type="button" class="navbar-toggle" data-toggle="collapse"
 						data-target="#navbar-menu">
@@ -95,14 +98,14 @@
 					<img src="#" class="logo logo-scrolled" alt="">
 					</a>
 				</div>
-				<!-- End Header Navigation -->
+				End Header Navigation
 
-				<!-- Collect the nav links, forms, and other content for toggling -->
+				Collect the nav links, forms, and other content for toggling
 				<div class="collapse navbar-collapse" id="navbar-menu">
 					<ul class="nav navbar-nav navbar-right" data-in="fadeInDown"
 						data-out="fadeOutUp">
 						<li><a href="plan">계획하기</a></li>
-						<li><a href="epilogueList">이야기</a></li>
+						<li><a href="epilogueList">여행후기/a></li>
 						<li><a href="where_main">어디갈까</a></li>
 						<li class="dropdown"><a class="dropdown-toggle"
 							data-toggle="dropdown" href="#">예약 </a>
@@ -115,16 +118,16 @@
 							<li><a href="" data-toggle="modal" data-target="#register">회원가입</a></li>
 					</ul>
 				</div>
-				<!-- /.navbar-collapse -->
+				/.navbar-collapse
 			</div>
 
-		</nav>
+		</nav> -->
 		<%@include file="../main/modal/loginModal.jsp"%>
 		<%@include file="../main/modal/registerModal.jsp"%>
 
 		<!--Home Sections-->
 
-		<section id="hello" class="home bg-mega">
+		<%-- <section id="hello" class="home bg-mega">
 			<div id="myCarousel" class="carousel slide" data-ride="carousel">
 				<!-- Indicators -->
 				<ol class="carousel-indicators">
@@ -172,7 +175,7 @@
 				</a>
 			</div>
 
-		</section>
+		</section> --%>
 		<!--End off Home Sections-->
 		
 	<div id="loginForm" class="container" style="text-align: center;">

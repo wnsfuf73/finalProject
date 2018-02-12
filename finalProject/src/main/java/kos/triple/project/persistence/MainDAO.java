@@ -41,6 +41,9 @@ public interface MainDAO {
 	//철환이형 dao로
 	public int deleteMyStory_proc(int epilogueNo);
 	
+	//철환이형 dao로
+	public int deleteStoryComment(int epilogueNo);
+	
 	//호선이 dao로
 	public List<PlanVO> myNewPlan_proc(String mem_id);
 

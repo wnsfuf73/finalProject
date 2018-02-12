@@ -39,9 +39,31 @@ public interface MobileService {
 	//모바일에서 항공예약을 취소한다.
 	void mobileCancelReservationAir(HttpServletRequest req);
 
+	/* 이야기 */
+	
 	//이야기를 가져온다.
 	void getMobileStory(HttpServletRequest req);
 
+	//이야기 상세페이지
+	void mobileStoryDetail(HttpServletRequest req);
+	
+	/* 여행지정보 */
+	
+	//전체 여행지정보를가져온다.
+	void getMobileWhereAll(HttpServletRequest req);
+	
+	//지역별 여행지 정보를 가져온다.
+	void mobileWhereArea(HttpServletRequest req);
+	
+	/* 여행지정보 */
+	
+	/* 렌트 */
+	//차량목록을 가져온다.
+	void mobileRentList(HttpServletRequest req);
+
+
+
+	/* 렌트 */
 	
 	/* 숙박 */
 	//숙박 예약목록을 가져온다.

@@ -5,6 +5,8 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link rel="stylesheet" href="${css}carousel.css">
+<link rel="stylesheet" href="${css}where.css">
 <title>Insert title here</title>
 </head>
 <body>
@@ -105,7 +107,7 @@
 				<!-- Wrapper for slides -->
 				<div class="carousel-inner" role="listbox">
 					<div class="item active">
-						<img src="${images}travel/Travel1.jpg" alt="travel1">
+						<img src="${images}background/bg_where_1.jpg" alt="travel1">
 						<div class="carousel-caption">
 							<h3>New York</h3>
 							<p>The atmosphere in New York is lorem ipsum.</p>
@@ -113,7 +115,7 @@
 					</div>
 
 					<div class="item">
-						<img src="${images}travel/Travel2.jpg" alt="travel2">
+						<img src="${images}background/bg_where_2.jpg" alt="travel2">
 						<div class="carousel-caption">
 							<h3>Chicago</h3>
 							<p>Thank you, Chicago - A night we won't forget.</p>
@@ -121,7 +123,7 @@
 					</div>
 
 					<div class="item">
-						<img src="${images}travel/Travel3.jpg" alt="travel3">
+						<img src="${images}background/bg_where_3.jpg" alt="travel3">
 						<div class="carousel-caption">
 							<h3>LA</h3>
 							<p>Even though the traffic was a mess, we had the best time.</p>

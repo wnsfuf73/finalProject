@@ -795,10 +795,10 @@ label{
 								</li>
 								<li class="list-group-item">남은 좌석수&nbsp;:&nbsp;
 									<c:if test="${(a.nomal+a.highClass+a.premium) > 0}">
-										<span class="text-info" id="remain_total">${a.nomal+a.highClass+a.premium}</span>
+										<span style="color: #b71a4c;" class="text-info" id="remain_total">${a.nomal+a.highClass+a.premium}</span>
 									</c:if>
 									<c:if test="${(a.nomal+a.highClass+a.premium) <= 0}">
-										<span class="text-danger" id="remain_total">매진</span>
+										<span style="color: #b71a4c;" class="text-danger" id="remain_total">매진</span>
 									</c:if>
 								</li>
 							</ul>

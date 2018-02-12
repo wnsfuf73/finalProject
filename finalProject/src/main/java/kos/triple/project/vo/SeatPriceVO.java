@@ -13,8 +13,25 @@ public class SeatPriceVO {
 	private int nomal_C;
 
 	public SeatPriceVO() {
-		// TODO Auto-generated constructor stub
+
 	}
+	
+	public SeatPriceVO(String seatPriceCode, int premium_A, int premium_B, int premium_C, int highClass_A,
+			int highClass_B, int highClass_C, int nomal_A, int nomal_B, int nomal_C) {
+		super();
+		this.seatPriceCode = seatPriceCode;
+		this.premium_A = premium_A;
+		this.premium_B = premium_B;
+		this.premium_C = premium_C;
+		this.highClass_A = highClass_A;
+		this.highClass_B = highClass_B;
+		this.highClass_C = highClass_C;
+		this.nomal_A = nomal_A;
+		this.nomal_B = nomal_B;
+		this.nomal_C = nomal_C;
+	}
+
+
 
 	public String getSeatPriceCode() {
 		return seatPriceCode;

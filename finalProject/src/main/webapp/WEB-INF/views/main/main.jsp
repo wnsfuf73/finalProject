@@ -2,7 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@ include file="../setting.jsp"%>
 
-<html class="no-js" lang="en">
+<html>
 <head>
 <meta charset="utf-8">
 <title>동행... 당신의 이야기</title>
@@ -22,7 +22,6 @@
 <link rel="stylesheet" href="${css}fonticons.css">
 <link rel="stylesheet" href="${css}font-awesome.min.css">
 <link rel="stylesheet" href="${css}bootstrap.css">
-<link rel="stylesheet" href="${css}magnific-popup.css">
 <link rel="stylesheet" href="${css}bootsnav.css">
 <link rel="stylesheet" href="${css}carousel.css">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
@@ -36,7 +35,7 @@
 <script src="${js}vendor/jquery-1.11.2.min.js"></script>
 <script src="${js}vendor/bootstrap.min.js"></script>
 <script src="${js}isotope.min.js"></script>
-<script src="${js}jquery.magnific-popup.js"></script>
+<script src="${js}jquery.magnific-popup.js"></script> 
 <script src="${js}jquery.easing.1.3.js"></script>
 <script src="${js}slick.min.js"></script>
 <script src="${js}jquery.collapse.js"></script>
@@ -108,8 +107,8 @@
 						<i class="fa fa-bars"></i>
 					</button>
 					<a class="navbar-brand" href="main"> 
-						홈<img src="#" class="logo logo-display" alt=""> 
-						<img src="#"class="logo logo-scrolled" alt="">
+						홈<img  class="logo logo-display" alt=""> 
+						<img class="logo logo-scrolled" alt="">
 					</a>
 				</div>
 				<!-- End Header Navigation -->
@@ -169,24 +168,25 @@
 
 				<!-- Wrapper for slides -->
 				<div class="carousel-inner" role="listbox">
-					<div class="item active">
-						<img src="${images}travel/Travel1.jpg" alt="travel1">
+					<div class="item active" style="max-width:auto!important; height:800px!important;">
+						<img src="${images}travel/main/21.jpg" alt="travel1">
 						<div class="carousel-caption">
 							<h3>New York</h3>
 							<p>The atmosphere in New York is lorem ipsum.</p>
 						</div>
 					</div>
 
-					<div class="item">
-						<img src="${images}travel/Travel2.jpg" alt="travel2">
+					<div class="item" style="max-width:auto!important; height:800px!important;">
+						<img src="${images}travel/main/8.jpg" alt="travel2" >
 						<div class="carousel-caption">
 							<h3>Chicago</h3>
 							<p>Thank you, Chicago - A night we won't forget.</p>
 						</div>
+						
 					</div>
 
-					<div class="item">
-						<img src="${images}travel/Travel3.jpg" alt="travel3">
+					<div class="item" style="max-width:auto!important; height:800px!important;">
+						<img src="${images}travel/main/55.jpg" alt="travel3">
 						<div class="carousel-caption">
 							<h3>LA</h3>
 							<p>Even though the traffic was a mess, we had the best time.</p>
@@ -674,14 +674,14 @@
 						<div class="grid text-center">
 							<div class="grid-item transition metal ium"
 								style="width: 370px; height: 409px;">
-								<img alt="" src="${images}travel/BestTravel.jpg">
+								<img alt="" src="${images}travel/main/70.jpg">
 								<div class="grid_hover_area text-center">
 									<div class="grid_hover_text m-top-110">
 										<h4 class="text-blue">동행's gallery</h4>
 										<h5 class="text-blue">
 											<em>go whith..</em>
 										</h5>
-										<a href="${images}travel/BestTravel.jpg"
+										<a href="${images}travel/main/70.jpg"
 											class="popup-img text-blue m-top-40">View 
 											<i class="fa fa-long-arrow-right"></i>
 										</a>
@@ -693,14 +693,14 @@
 
 							<div class="grid-item metalloid "
 								style="width: 370px; height: 582px;">
-								<img alt="" src="${images}travel/BestTravel2.jpg">
+								<img alt="" src="${images}travel/main/66.jpg">
 								<div class="grid_hover_area text-center">
 									<div class="grid_hover_text m-top-150">
 										<h4 class="text-blue">동행's gallery</h4>
 										<h5 class="text-blue">
 											<em>go whith..</em>
 										</h5>
-										<a href="${images}travel/BestTravel2.jpg"
+										<a href="${images}travel/main/66.jpg"
 											class="popup-img text-blue m-top-40">View 
 											<i class="fa fa-long-arrow-right"></i>
 										</a>
@@ -712,14 +712,14 @@
 
 							<div class="grid-item post-transition metal numberGreaterThan50"
 								style="width: 370px; height: 249px;">
-								<img alt="" src="${images}travel/BestTravel3.jpg">
+								<img alt="" src="${images}travel/main/58.jpg">
 								<div class="grid_hover_area text-center">
 									<div class="grid_hover_text m-top-50">
 										<h4 class="text-blue">동행's gallery</h4>
 										<h5 class="text-blue">
 											<em>go whith..</em>
 										</h5>
-										<a href="${images}travel/BestTravel3.jpg"
+										<a href="${images}travel/main/58.jpg"
 											class="popup-img text-blue m-top-40">View <i
 											class="fa fa-long-arrow-right"></i></a>
 									</div>
@@ -730,14 +730,14 @@
 
 							<div class="grid-item alkali ar"
 								style="width: 370px; height: 533px;">
-								<img alt="" src="${images}travel/BestTravel4.jpg">
+								<img alt="" src="${images}travel/main/68.JPG">
 								<div class="grid_hover_area text-center">
 									<div class="grid_hover_text m-top-50">
 										<h4 class="text-blue">동행's gallery</h4>
 										<h5 class="text-blue">
 											<em>go whith..</em>
 										</h5>
-										<a href="${images}travel/BestTravel4.jpg"
+										<a href="${images}travel/main/68.JPG"
 											class="popup-img text-blue m-top-40">View <i
 											class="fa fa-long-arrow-right"></i></a>
 									</div>
@@ -748,14 +748,14 @@
 
 							<div class="grid-item post-transition metal ium"
 								style="width: 370px; height: 380px;">
-								<img alt="" src="${images}travel/BestTravel5.jpg">
+								<img alt="" src="${images}travel/main/65.jpg">
 								<div class="grid_hover_area text-center">
 									<div class="grid_hover_text m-top-150">
 										<h4 class="text-blue">동행's gallery</h4>
 										<h5 class="text-blue">
 											<em>go whith..</em>
 										</h5>
-										<a href="${images}travel/BestTravel5.jpg"
+										<a href="${images}travel/main/65.jpg"
 											class="popup-img text-blue m-top-50">View <i
 											class="fa fa-long-arrow-right"></i></a>
 									</div>
@@ -767,14 +767,14 @@
 
 							<div class="grid-item metal ar"
 								style="width: 370px; height: 361px;">
-								<img alt="" src="${images}travel/Travel1.jpg">
+								<img alt="" src="${images}travel/main/43.jpg">
 								<div class="grid_hover_area text-center">
 									<div class="grid_hover_text m-top-110">
 										<h4 class="text-blue">동행's gallery</h4>
 										<h5 class="text-blue">
 											<em>go whith..</em>
 										</h5>
-										<a href="${images}travel/Travel1.jpg"
+										<a href="${images}travel/main/43.jpg"
 											class="popup-img text-blue m-top-40">View 
 											<i class="fa fa-long-arrow-right"></i>
 										</a>
@@ -815,10 +815,10 @@
 						<div class="col-md-3 col-sm-6">
 							<div class="model_item m-top-30">
 								<div class="model_img">
-									<img src="${images}festival/festival1.jpg" alt="" width="270px"
+									<img src="${images}travel/main/71.jpg" alt="" width="270px"
 										height="270px" />
 									<div class="model_caption">
-										<h5 class="text-blue">홍천강 인삼송어 축제 2018</h5>
+										<h5 class="text-blue">대구 등불 축제 2018</h5>
 									</div>
 								</div>
 							</div>
@@ -828,10 +828,10 @@
 						<div class="col-md-3 col-sm-6">
 							<div class="model_item m-top-30">
 								<div class="model_img">
-									<img src="${images}festival/festival2.jpg" alt="" width="270px"
+									<img src="${images}travel/main/75.jpg" alt="" width="270px"
 										height="270px" />
 									<div class="model_caption">
-										<h5 class="text-blue">화천산천어축제 2018</h5>
+										<h5 class="text-blue">튤립 축제 2018</h5>
 									</div>
 								</div>
 							</div>
@@ -841,10 +841,10 @@
 						<div class="col-md-3 col-sm-6">
 							<div class="model_item m-top-30">
 								<div class="model_img">
-									<img src="${images}festival/festival3.jpg" alt="" width="270px"
+									<img src="${images}travel/main/73.jpg" alt="" width="270px"
 										height="270px" />
 									<div class="model_caption">
-										<h5 class="text-blue">파주 송어 축제 2018</h5>
+										<h5 class="text-blue">벚꽃 축제 2018</h5>
 									</div>
 								</div>
 							</div>
@@ -854,10 +854,10 @@
 						<div class="col-md-3 col-sm-6">
 							<div class="model_item m-top-30">
 								<div class="model_img">
-									<img src="${images}festival/festival4.jpg" alt="" width="270px"
+									<img src="${images}travel/main/76.jpg" alt="" width="270px"
 										height="270px" />
 									<div class="model_caption">
-										<h5 class="text-blue">강화도 빙어 송어 축제 2018</h5>
+										<h5 class="text-blue">순천만 갈대 축제 2018</h5>
 									</div>
 								</div>
 							</div>
@@ -867,10 +867,10 @@
 						<div class="col-md-3 col-sm-6">
 							<div class="model_item m-top-30">
 								<div class="model_img">
-									<img src="${images}festival/festival5.jpg" alt="" width="270px"
+									<img src="${images}travel/main/77.jpg" alt="" width="270px"
 										height="270px" />
 									<div class="model_caption">
-										<h5 class="text-blue">인제빙어축제 2018</h5>
+										<h5 class="text-blue">불꽃 축제 2018</h5>
 									</div>
 								</div>
 							</div>
@@ -880,10 +880,10 @@
 						<div class="col-md-3 col-sm-6">
 							<div class="model_item m-top-30">
 								<div class="model_img">
-									<img src="${images}festival/festival6.jpg" alt="" width="270px"
+									<img src="${images}travel/main/78.jpg" alt="" width="270px"
 										height="270px" />
 									<div class="model_caption">
-										<h5 class="text-blue">합천 황매산철쭉제 2017</h5>
+										<h5 class="text-blue">보성 녹차 대축제 2018</h5>
 									</div>
 								</div>
 							</div>
@@ -893,10 +893,10 @@
 						<div class="col-md-3 col-sm-6">
 							<div class="model_item m-top-30">
 								<div class="model_img">
-									<img src="${images}festival/festival7.jpg" alt="" width="270px"
+									<img src="${images}travel/main/80.JPG" alt="" width="270px"
 										height="270px" />
 									<div class="model_caption">
-										<h5 class="text-blue">고양국제꽃박람회 2017</h5>
+										<h5 class="text-blue">해운대 모레 축제 2018</h5>
 									</div>
 								</div>
 							</div>

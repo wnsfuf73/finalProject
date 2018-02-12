@@ -15,6 +15,23 @@ public class RouteVO {
 	private int resultDistance;
 	
 	public RouteVO() {	}
+	
+	public RouteVO(String routeNo, String route1, String route2, String route3, Timestamp startTime, Timestamp midTime,
+			Timestamp arrivalTime, int distance1, int distance2, int resultDistance) {
+		super();
+		this.routeNo = routeNo;
+		this.route1 = route1;
+		this.route2 = route2;
+		this.route3 = route3;
+		this.startTime = startTime;
+		this.midTime = midTime;
+		this.arrivalTime = arrivalTime;
+		this.distance1 = distance1;
+		this.distance2 = distance2;
+		this.resultDistance = resultDistance;
+	}
+
+
 
 	public String getRouteNo() {
 		return routeNo;

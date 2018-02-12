@@ -132,12 +132,14 @@ public class MainServiceImpl implements MainService{
 		
 	}
 
+	
 	@Override
 	public void deleteMyStory(HttpServletRequest req, Model model) {
 
 		String epilogueNoString = req.getParameter("epilogueNo");
 		int epilogueNo = Integer.parseInt(epilogueNoString);
-		int cnt = dao.deleteMyStory_proc(epilogueNo);
+		int cnt = dao.deleteStoryComment(epilogueNo);
+		cnt = dao.deleteMyStory_proc(epilogueNo);
 		req.setAttribute("cnt",Integer.toString(cnt));
 	}
 	

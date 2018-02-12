@@ -140,8 +140,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		parameterType="String"
 		resultType="int">
 		SELECT COUNT(*)
-		FROM reservation_car
-		WHERE mem_id=#{mem_id}
+		FROM reservation_car rc JOIN rentcar r ON rc.rent_no=r.rent_no
+		WHERE mem_id=#{mem_id} AND r.car_count=0
 	</select>
 	<select id="mobileGetMyPageStartInfo_proc_step3" 
 		parameterType="String"
@@ -196,6 +196,16 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</update>
 	<!-- 항공 예약 취소 -->
 	
+	
+	<!-- 숙박 -->
+	<select id="getMyStayReservationList" 
+		parameterType="String"
+		resultType="kos.triple.project.mobile.vo.MyResStayReservationVO">
+		
+			
+			
+	</select>
+	<!-- 숙박 -->
 	<!-- 이야기 -->
 	
 	<select id="getMobileStory_proc" resultType="kos.triple.project.mobile.vo.EpilogueMobileVO">

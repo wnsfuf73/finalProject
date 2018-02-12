@@ -15,6 +15,7 @@ import kos.triple.project.mobile.vo.EpilogueDetailVO;
 import kos.triple.project.mobile.vo.EpilogueMobileCourseVO;
 import kos.triple.project.mobile.vo.EpilogueMobileVO;
 import kos.triple.project.mobile.vo.MyResAirSummaryVO;
+import kos.triple.project.mobile.vo.MyResStayReservationVO;
 import kos.triple.project.vo.CarInfoVO;
 import kos.triple.project.vo.WhereVO;
 
@@ -162,6 +163,21 @@ public class MobileController {
 		
 		return voList;
 	}
+	
+	
+	/* ¼÷¹Ú */
+	
+	@RequestMapping(value="mobileGetMyStayReservationList")
+	public @ResponseBody List<MyResStayReservationVO> mobileGetMyStayReservationList(HttpServletRequest req ) {
+		System.out.println("mobileGetMyStayReservationList() ");
+	
+		service.getMyStayReservationList(req);
+		return (List<MyResStayReservationVO>)req.getAttribute("voList");
+	}
+	
+	
+	
+	/* ¼÷¹Ú */
 	
 	@SuppressWarnings("unchecked")
 	@RequestMapping(value="mobileStoryDetail")

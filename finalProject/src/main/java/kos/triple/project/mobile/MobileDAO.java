@@ -9,6 +9,7 @@ import kos.triple.project.mobile.vo.AirReservationSearchVO;
 import kos.triple.project.mobile.vo.EpilogueMobileCourseVO;
 import kos.triple.project.mobile.vo.EpilogueMobileVO;
 import kos.triple.project.mobile.vo.MyResAirSummaryVO;
+import kos.triple.project.mobile.vo.MyResStayReservationVO;
 import kos.triple.project.vo.AirReservationDetailVO;
 import kos.triple.project.vo.CarInfoVO;
 import kos.triple.project.vo.RouteVO;
@@ -64,8 +65,11 @@ public interface MobileDAO {
 	//모바일에서 항공예약을 취소한다.
 	int mobileCancelReservationAir(Map<String, Object> map);
 
+	/* 숙박 */
 	/* 이야기 */
 	
+	//숙박 예약목록을 가져온다.
+	List<MyResStayReservationVO> getMyStayReservationList(String mem_id);
 	//전체이야기를 가져온다.
 	List<EpilogueMobileVO> getMobileStory_proc();
 	
@@ -99,6 +103,8 @@ public interface MobileDAO {
 
 
 	
+
+	/* 숙박 */
 
 
 }

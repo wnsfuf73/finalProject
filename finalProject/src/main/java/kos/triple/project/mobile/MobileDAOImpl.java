@@ -13,6 +13,7 @@ import kos.triple.project.mobile.vo.AirReservationSearchVO;
 import kos.triple.project.mobile.vo.EpilogueMobileCourseVO;
 import kos.triple.project.mobile.vo.EpilogueMobileVO;
 import kos.triple.project.mobile.vo.MyResAirSummaryVO;
+import kos.triple.project.mobile.vo.MyResStayReservationVO;
 import kos.triple.project.vo.AirReservationDetailVO;
 import kos.triple.project.vo.CarInfoVO;
 import kos.triple.project.vo.RouteVO;
@@ -210,6 +211,16 @@ public class MobileDAOImpl implements MobileDAO{
 		
 	}
 
+	
+	
+	/* ¼÷ ¹Ú */
+	@Override
+	public List<MyResStayReservationVO> getMyStayReservationList(String mem_id) {
+		MobileDAO dao = sqlSession.getMapper(MobileDAO.class);
+		return dao.getMyStayReservationList(mem_id);
+	}
+	
+	/* ¼÷ ¹Ú */
 	@Override
 	public List<CarInfoVO> mobileRentList_proc(Map<String, Object> map) {
 		MobileDAO dao = sqlSession.getMapper(MobileDAO.class);

@@ -201,9 +201,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<select id="getMyStayReservationList" 
 		parameterType="String"
 		resultType="kos.triple.project.mobile.vo.MyResStayReservationVO">
-		
-			
-			
+		SELECT rs.reservation_no as stayResNo, st.stay_name as hotelName, rm.room_name as roomName, 
+			rs.check_in, rs.check_out, rs.room_sale_price as price, rs.reservation_date as stayResDate 
+		FROM stay st, room rm, room_reservation rs 
+		WHERE rs.stay_no = st.stay_no AND rs.room_no = rm.room_no AND rs.mem_id = #{mem_id}	
 	</select>
 	<!-- 숙박 -->
 	<!-- 이야기 -->

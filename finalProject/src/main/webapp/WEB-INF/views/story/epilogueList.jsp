@@ -344,7 +344,7 @@ footer {
 
 		<!-- </nav> -->
 
- 
+ <%@include file="../main/sample/header.jsp" %>
 
 		<c:if test="${sessionScope.mem_id == null}">
 
@@ -354,7 +354,7 @@ footer {
 
 		</c:if>
 
- <%@include file="../main/sample/header.jsp" %>
+ 
 
 	<!--Home Sections-->
 

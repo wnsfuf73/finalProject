@@ -47,8 +47,6 @@ public class MemberController {
 		return cnt;
 	}
 
-	
-	
 	//로그인처리
 	@RequestMapping(value="login")
 	public String login(HttpServletRequest req , Model model) {

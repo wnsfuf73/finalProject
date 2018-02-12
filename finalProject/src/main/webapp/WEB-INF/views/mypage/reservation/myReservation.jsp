@@ -371,8 +371,8 @@ function carResReturn(rent_no) {
 						<c:if test="${list.car_count <= 0}">
 							<tr>
 								<td>${list.seq}</td>
-								<td>${list.rental_day}${list.rental_time}</td>
-								<td>${list.return_day}${list.return_time}</td>
+								<td>${list.rental_day} ${list.rental_time}</td>
+								<td>${list.return_day} ${list.return_time}</td>
 								<td>${list.car_name}</td>
 								<td><fmt:formatNumber value="${list.price}"
 										groupingUsed="true" /></td>

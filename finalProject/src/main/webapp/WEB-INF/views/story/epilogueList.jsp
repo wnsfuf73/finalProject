@@ -97,9 +97,6 @@ footer {
 
 	<%@include file="../main/sample/header.jsp" %>
 
-<<<<<<< HEAD
-	<%@include file="../main/sample/header.jsp" %>
-=======
 	<div class="culmn">
 		<!--Home page style-->
 
@@ -179,16 +176,11 @@ footer {
 			<%@include file="../main/modal/loginModal.jsp"%>	
 			<%@include file="../main/modal/registerModal.jsp"%>
 		</c:if>
->>>>>>> branch 'master' of https://github.com/wnsfuf73/finalProject.git
 
 	<!--Home Sections-->
 	
 
 	<div class="container">
-
-<<<<<<< HEAD
-		
-=======
 <%-- 		<section id="hello" class="home bg-mega">
 			<div id="myCarousel" class="carousel slide" data-ride="carousel">
 				<!-- Indicators -->
@@ -241,7 +233,6 @@ footer {
 
 
 		</section> --%>
->>>>>>> branch 'master' of https://github.com/wnsfuf73/finalProject.git
 		<!--End off Home Sections-->
 		<br> <br> <br> <br> <br>
 		<div class="container-fluid">

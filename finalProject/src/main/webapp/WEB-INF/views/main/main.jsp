@@ -108,9 +108,6 @@
 					<a class="navbar-brand" href="main"> 
 						홈<img class="logo logo-display" alt=""> 
 						<img class="logo logo-scrolled" alt="">
-						
-						<img alt="이미지를 불러올수 없습니다." src="">
-						
 					</a>
 				</div>
 				<!-- End Header Navigation -->

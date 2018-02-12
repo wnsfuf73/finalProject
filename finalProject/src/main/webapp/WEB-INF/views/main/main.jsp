@@ -8,8 +8,7 @@
 <title>동행... 당신의 이야기</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
-
-<link rel="icon" type="image/png" href="favicon.ico">
+<link rel="shortcut icon" href="">
 
 <!--Google Fonts link-->
 <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet">
@@ -107,8 +106,11 @@
 						<i class="fa fa-bars"></i>
 					</button>
 					<a class="navbar-brand" href="main"> 
-						홈<img  class="logo logo-display" alt=""> 
+						홈<img class="logo logo-display" alt=""> 
 						<img class="logo logo-scrolled" alt="">
+						
+						<img alt="이미지를 불러올수 없습니다." src="">
+						
 					</a>
 				</div>
 				<!-- End Header Navigation -->

@@ -10,9 +10,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import kos.triple.project.mobile.vo.AirReservationSearchVO;
+import kos.triple.project.mobile.vo.EpilogueMobileCourseVO;
+import kos.triple.project.mobile.vo.EpilogueMobileVO;
 import kos.triple.project.mobile.vo.MyResAirSummaryVO;
 import kos.triple.project.vo.AirReservationDetailVO;
+import kos.triple.project.vo.CarInfoVO;
 import kos.triple.project.vo.RouteVO;
+import kos.triple.project.vo.WhereVO;
 
 @Repository
 public class MobileDAOImpl implements MobileDAO{
@@ -205,4 +209,48 @@ public class MobileDAOImpl implements MobileDAO{
 		return cnt;
 		
 	}
+
+	@Override
+	public List<CarInfoVO> mobileRentList_proc(Map<String, Object> map) {
+		MobileDAO dao = sqlSession.getMapper(MobileDAO.class);
+		return dao.mobileRentList_proc(map);
+	}
+
+	@Override
+	public List<EpilogueMobileVO> getMobileStory_proc() {
+		MobileDAO dao = sqlSession.getMapper(MobileDAO.class);
+		return dao.getMobileStory_proc();
+	}
+
+	@Override
+	public String getEpilogueFrontImage(int epilogueNo) {
+		MobileDAO dao = sqlSession.getMapper(MobileDAO.class);
+		return dao.getEpilogueFrontImage(epilogueNo);
+	}
+	
+	@Override
+	public EpilogueMobileVO getMobileStoryDetail_proc(int epilogueNo) {
+		MobileDAO dao = sqlSession.getMapper(MobileDAO.class);
+		return dao.getMobileStoryDetail_proc(epilogueNo);
+	}
+	
+	@Override
+	public List<EpilogueMobileCourseVO> getMobileStoryDetailCourse_proc(int epilogueNo){
+		MobileDAO dao = sqlSession.getMapper(MobileDAO.class);
+		return dao.getMobileStoryDetailCourse_proc(epilogueNo);
+	}
+
+	@Override
+	public List<WhereVO> getMobileWhereAll_proc() {
+		MobileDAO dao = sqlSession.getMapper(MobileDAO.class);
+		return dao.getMobileWhereAll_proc();
+	}
+
+	@Override
+	public List<WhereVO> getMobileWhereArea_proc(String area) {
+		Map<String,Object> map = new HashMap<String,Object>();
+		map.put("area",area);
+		return sqlSession.selectList(nameSpace+".getMobileWhereArea_proc",map);
+	}
+	
 }

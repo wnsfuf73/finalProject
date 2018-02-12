@@ -65,5 +65,11 @@ public interface MobileService {
 
 	/* ·»Æ® */
 	
+	/* ¼÷¹Ú */
+	//¼÷¹Ú ¿¹¾à¸ñ·ÏÀ» °¡Á®¿Â´Ù.
+	void getMyStayReservationList(HttpServletRequest req);
+
+
+	/* ¼÷¹Ú */
 	
 }

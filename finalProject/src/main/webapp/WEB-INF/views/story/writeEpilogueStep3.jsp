@@ -210,8 +210,8 @@ input.checkbox:checked+label.input-label.radio::before {
 						data-target="#navbar-menu">
 						<i class="fa fa-bars"></i>
 					</button>
-					<a class="navbar-brand" href="main"> 홈<img src="#"
-						class="logo logo-display" alt=""> <img src="#"
+					<a class="navbar-brand" href="main"> 홈<img 
+						class="logo logo-display" alt=""> <img 
 						class="logo logo-scrolled" alt="">
 					</a>
 				</div>
@@ -222,7 +222,7 @@ input.checkbox:checked+label.input-label.radio::before {
 					<ul class="nav navbar-nav navbar-right" data-in="fadeInDown"
 						data-out="fadeOutUp">
 						<li><a href="plan">계획하기</a></li>
-						<li><a href="epilogueList">이야기</a></li>
+						<li><a href="epilogueList">여행후기</a></li>
 						<li><a href="whereStart">어디갈까</a></li>
 						<li><a href="recomandStart">추천여행기</a></li>
 						<li class="dropdown"><a class="dropdown-toggle"

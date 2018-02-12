@@ -58,6 +58,10 @@ $(document).ready(function(){
 			
 			success: function(data){
 				alert("코스저장");
+				$('#searchText').val("");
+				$('#content').val("");
+				$('#dday').val("");
+				$('#modalbody').empty();
 				$('.resultContainer').html(data);
 				
 			},

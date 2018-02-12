@@ -16,6 +16,21 @@ public class AirPlaneVO {
 
 	}
 
+	public AirPlaneVO(String airPlaneNo, String airPlaneName, String airPortNo, String routeNo, String seatPriceCode,
+			int premium, int highClass, int nomal, String airPlaneSize) {
+		super();
+		this.airPlaneNo = airPlaneNo;
+		this.airPlaneName = airPlaneName;
+		this.airPortNo = airPortNo;
+		this.routeNo = routeNo;
+		this.seatPriceCode = seatPriceCode;
+		this.premium = premium;
+		this.highClass = highClass;
+		this.nomal = nomal;
+		this.airPlaneSize = airPlaneSize;
+	}
+
+
 	public String getAirPlaneNo() {
 		return airPlaneNo;
 	}
